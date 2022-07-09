@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 import ReposList from "../ReposList/ReposList";
 import { useRepos } from "../../../graphql/repos/queries/repos";
 import { oneWeekAgo } from "../../../utils/oneWeekAgo";
-import programmingLanguagesList from "../../../data/programming-languages";
+import programmingLanguages from "../../../data/programming-languages";
 
 const TrendingReposView = () => {
   const [validationError, setValidationError] = useState<ZodError>();
@@ -30,14 +30,18 @@ const TrendingReposView = () => {
   return (
     <div>
       <div>
-        <div className="mb-4 flex align-middle justify-between">
-          <h1 className={"text-3xl mb-4"}>Trending This Week</h1>
+        <div className="mb-6 flex align-middle justify-between">
+          <h1 className={"text-3xl"}>Trending This Week</h1>
           <select className={"mb-2 w-1/5"}>
-            <option disabled>Language</option>
-            {programmingLanguagesList.map((lang: string) => (
-              <option key={lang} value={lang}>
-                {lang}
-              </option>
+            <option>Choose Language</option>
+            {Object.keys(programmingLanguages).map((category) => (
+              <optgroup key={category} label={category}>
+                {Object.keys(programmingLanguages[category]).map((language) => (
+                  <option key={language} value={language}>
+                    {language}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>

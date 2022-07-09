@@ -2,15 +2,15 @@ import { withUrqlClient } from "next-urql";
 import { NextPage } from "next";
 import { GITHUB_GRAPHQL_URL } from "./constants";
 
-const withDefaultGithubClient = (p: NextPage) => {
+const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
   return withUrqlClient(() => ({
     url: GITHUB_GRAPHQL_URL,
     fetchOptions: {
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
       },
     },
-  }))(p);
+  }))(AppOrPage);
 };
 
 export default withDefaultGithubClient;

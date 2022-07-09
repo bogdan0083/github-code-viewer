@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import AppHeader from "../components/common/AppHeader/AppHeader";
-import withDefaultGithubClient from "../utils/withUrqlGithubClient";
 import TrendingReposView from "../components/repos/TrendingReposView/TrendingReposView";
 
 const Home: NextPage = () => {
@@ -20,4 +19,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default withDefaultGithubClient(Home);
+export default Home;
