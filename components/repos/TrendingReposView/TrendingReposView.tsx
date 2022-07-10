@@ -3,47 +3,54 @@ import { RepoListModel } from "../../../models/repo";
 import { ZodError } from "zod";
 import ReposList from "../ReposList/ReposList";
 import { useRepos } from "../../../graphql/repos/queries/repos";
-import { oneWeekAgo } from "../../../utils/oneWeekAgo";
 import programmingLanguages from "../../../data/programming-languages";
+import Select from "../../form/Select/Select";
+import { buildSearchQuery } from "../../../models/common";
+import subDays from "date-fns/subDays";
+import format from "date-fns/format";
+
+let datesMap = {
+  week: () => format(subDays(new Date(), 7), "yyyy-MM-dd"),
+  month: () => format(subDays(new Date(), 30), "yyyy-MM-dd"),
+  year: () => format(subDays(new Date(), 365), "yyyy-MM-dd"),
+};
 
 const TrendingReposView = () => {
+  let oneWeekAgo = datesMap["week"]();
+  let q = buildSearchQuery({ created: `>${oneWeekAgo}` });
   const [validationError, setValidationError] = useState<ZodError>();
-  const { repos, fetching, error } = useRepos({
-    query: `created:>${oneWeekAgo()}`,
+  const [languages, setLanguages] = useState<string[]>([]);
+
+  const [result, reexecuteQuery] = useRepos({
+    query: q,
   });
+
+  const { repos, fetching, error } = result;
 
   useEffect(() => {
     if (repos) {
       const result = RepoListModel.safeParse(repos);
-      console.log("triggering useEffect");
 
-      if (result.success) {
-        console.log("TrendingReposView Success:", result);
-      } else {
-        console.log("TrendingReposView Error:", result.error);
-        console.log("this is triggered");
+      if (!result.success) {
         setValidationError((e) => (!e ? result.error : e));
       }
     }
   }, [repos]);
+
+  const handleLanguageChange = (selected: string[]) => {
+    setLanguages(selected);
+  };
 
   return (
     <div>
       <div>
         <div className="mb-6 flex align-middle justify-between">
           <h1 className={"text-3xl"}>Trending This Week</h1>
-          <select className={"mb-2 w-1/5"}>
-            <option>Choose Language</option>
-            {Object.keys(programmingLanguages).map((category) => (
-              <optgroup key={category} label={category}>
-                {Object.keys(programmingLanguages[category]).map((language) => (
-                  <option key={language} value={language}>
-                    {language}
-                  </option>
-                ))}
-              </optgroup>
-            ))}
-          </select>
+          <Select
+            onChange={handleLanguageChange}
+            options={programmingLanguages}
+            placeholder={"Language"}
+          />
         </div>
         {fetching ? <p>Loading...</p> : null}
         {error ? <p>Error: {error.message}</p> : null}
@@ -57,5 +64,4 @@ const TrendingReposView = () => {
     </div>
   );
 };
-
 export default TrendingReposView;

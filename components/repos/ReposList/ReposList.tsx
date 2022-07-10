@@ -3,11 +3,12 @@ import ReposListItem from "./ReposListItem";
 
 interface ReposListProps {
   repos: Repo[];
+  className?: string;
 }
 
-const ReposList = ({ repos }: ReposListProps) => {
+const ReposList = ({ repos, className }: ReposListProps) => {
   return (
-    <div>
+    <div className={className}>
       {repos.map((repo) => (
         <ReposListItem key={repo.id} {...repo} />
       ))}

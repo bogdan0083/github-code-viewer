@@ -1,4 +1,4 @@
-type ProgrammingLanguagesMap = Record<string, Object>;
+type ProgrammingLanguagesMap = Record<string, string | Record<string, string>>;
 
 const programmingLanguages: ProgrammingLanguagesMap = {
   Popular: {

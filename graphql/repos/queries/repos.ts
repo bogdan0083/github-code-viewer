@@ -1,4 +1,4 @@
-import { CombinedError, useQuery } from "urql";
+import { CombinedError, OperationContext, useQuery } from "urql";
 import { Repo } from "../../../models/repo";
 
 export const REPOS_QUERY = `
@@ -26,7 +26,7 @@ query ReposQuery($query: String!, $limit: Int!) {
   }
 }`;
 
-type UseReposResponse = {
+type UseReposState = {
   data?: any;
   fetching: boolean;
   repos?: Repo[];
@@ -56,10 +56,12 @@ const useReposDefaultOptions: Partial<UseReposOptions> = {
   page: 1,
 };
 
+type UseReposResponse = [UseReposState, Partial<OperationContext>];
+
 export const useRepos = (userOpts: UseReposOptions): UseReposResponse => {
   const opts = { ...useReposDefaultOptions, ...userOpts };
 
-  const [result] = useQuery({
+  const [result, reexecuteQuery] = useQuery({
     query: REPOS_QUERY,
     variables: { query: opts.query, limit: opts.limit },
   });
@@ -72,8 +74,11 @@ export const useRepos = (userOpts: UseReposOptions): UseReposResponse => {
 
     const repos = nodes.map(normalize);
 
-    return { repos, fetching, error, endCursor: search?.pageInfo?.endCursor };
+    return [
+      { repos, fetching, error, endCursor: search?.pageInfo?.endCursor },
+      reexecuteQuery,
+    ];
   }
 
-  return { data, fetching, error };
+  return [{ data, fetching, error }, reexecuteQuery];
 };
