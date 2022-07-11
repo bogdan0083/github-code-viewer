@@ -1,21 +1,23 @@
 import Input from "../../form/Input/Input";
 import { ChangeEvent, useCallback, useMemo } from "react";
 import debounce from "lodash.debounce";
+import clsx from "clsx";
+import ThemedButton from "../ThemedButton/ThemedButton";
 
 interface SearchFormProps {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSearch: (query: string) => void;
   query?: string;
   debounceDelay?: number;
+  className?: string;
 }
 
 const SearchForm = ({
-  onSubmit,
   onChange,
   onSearch,
   query = "",
   debounceDelay = 300,
+  className,
 }: SearchFormProps) => {
   const debouncedOnSearch = useMemo(() => {
     return debounce((q) => {
@@ -33,8 +35,10 @@ const SearchForm = ({
     [debouncedOnSearch, onChange]
   );
 
+  const cls = clsx("w-full max-w-lg mx-auto", className);
+
   return (
-    <form className="w-full max-w-lg mx-auto" onSubmit={onSubmit}>
+    <form className={cls} onSubmit={(e) => onSearch(e.currentTarget.value)}>
       <Input
         type="search"
         name="search"
@@ -42,6 +46,9 @@ const SearchForm = ({
         value={query}
         onChange={(e) => onChangeHandler(e)}
       />
+      <ThemedButton type="submit" className="ml-2" disabled={query === ""}>
+        Search
+      </ThemedButton>
     </form>
   );
 };
