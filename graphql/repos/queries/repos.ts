@@ -14,7 +14,7 @@ query ReposQuery($query: String!, $limit: Int!) {
           description
           forkCount
           stargazerCount
-          languages(first: 1) {
+          languages(first: 3, orderBy: {field: SIZE, direction: DESC }) {
             nodes {
               color
               name
@@ -36,6 +36,7 @@ type UseReposState = {
 
 const normalize = (node: any) => {
   if (node.languages.nodes.length > 0) {
+    console.log(node.languages.nodes);
     const { name, color } = node.languages.nodes[0];
     return {
       ...node,

@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import AppHeader from "../components/common/AppHeader/AppHeader";
-import TrendingReposView from "../components/repos/TrendingReposView/TrendingReposView";
+import ReposView from "../components/repos/ReposView/ReposView";
+import subDays from "date-fns/subDays";
+import format from "date-fns/format";
 
 const Home: NextPage = () => {
+  const weekAgo = format(subDays(new Date(), 7), "yyyy-MM-dd");
+
   return (
     <div className="container mx-auto">
       <Head>
@@ -12,8 +16,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <AppHeader title={"GitHub Code Viewer"} caption={"Fast and quick"} />
-        <TrendingReposView />
+        <AppHeader
+          title={"GitHub Code Viewer"}
+          caption={"Fast and quick"}
+          fixed
+        />
+        <div className="grid grid-cols-2 gap-10">
+          <ReposView title={"Trending This Week"} created={weekAgo} />
+          <ReposView title={"Popular"} stars={1000} />
+        </div>
       </main>
     </div>
   );

@@ -25,16 +25,10 @@ const ReposListItem = ({
       <p className={"text-sm text-gray-500"}>{description}</p>
       <div className="mt-3">
         {primaryLanguage && <LangLabel {...primaryLanguage} />}
-        {forkCount && (
-          <span className={"ml-2 text-xs text-gray-500"}>
-            {forkCount} forks
-          </span>
-        )}
-        {stargazerCount && (
-          <span className={"ml-2 text-xs text-gray-500"}>
-            {stargazerCount} stars
-          </span>
-        )}
+        <span className={"ml-2 text-xs text-gray-500"}>{forkCount} forks</span>
+        <span className={"ml-2 text-xs text-gray-500"}>
+          {stargazerCount} stars
+        </span>
       </div>
     </div>
   );

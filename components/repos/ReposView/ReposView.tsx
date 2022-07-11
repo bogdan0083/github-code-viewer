@@ -5,24 +5,35 @@ import ReposList from "../ReposList/ReposList";
 import { useRepos } from "../../../graphql/repos/queries/repos";
 import programmingLanguages from "../../../data/programming-languages";
 import Select from "../../form/Select/Select";
-import { buildSearchQuery } from "../../../models/common";
-import subDays from "date-fns/subDays";
-import format from "date-fns/format";
+import { buildSearchQuery, SearchOptions } from "../../../models/common";
+import clsx from "clsx";
 
-let datesMap = {
-  week: () => format(subDays(new Date(), 7), "yyyy-MM-dd"),
-  month: () => format(subDays(new Date(), 30), "yyyy-MM-dd"),
-  year: () => format(subDays(new Date(), 365), "yyyy-MM-dd"),
-};
+interface ReposViewProps extends SearchOptions {
+  title: string;
+}
 
-const TrendingReposView = () => {
-  let oneWeekAgo = datesMap["week"]();
-  let q = buildSearchQuery({ created: `>${oneWeekAgo}` });
+const ReposView = ({
+  query,
+  language,
+  created,
+  title,
+  stars,
+}: ReposViewProps) => {
   const [validationError, setValidationError] = useState<ZodError>();
-  const [languages, setLanguages] = useState<string[]>([]);
+  const [q] = useState(query);
+  const [languages, setLanguages] = useState<string[]>(
+    language ? [language] : []
+  );
 
-  const [result, reexecuteQuery] = useRepos({
+  let builtQuery = buildSearchQuery({
     query: q,
+    created: created,
+    language: languages[0],
+    stars,
+  });
+
+  const [result] = useRepos({
+    query: builtQuery,
   });
 
   const { repos, fetching, error } = result;
@@ -45,23 +56,27 @@ const TrendingReposView = () => {
     <div>
       <div>
         <div className="mb-6 flex align-middle justify-between">
-          <h1 className={"text-3xl"}>Trending This Week</h1>
+          <h1 className={"text-3xl"}>{title}</h1>
           <Select
             onChange={handleLanguageChange}
             options={programmingLanguages}
             placeholder={"Language"}
+            className={"w-3/12"}
           />
         </div>
-        {fetching ? <p>Loading...</p> : null}
+        {fetching && !repos ? <p>Loading...</p> : null}
         {error ? <p>Error: {error.message}</p> : null}
         {validationError ? <p>Error: {validationError.message}</p> : null}
         {repos ? (
           <>
-            <ReposList repos={repos} />
+            <ReposList
+              repos={repos}
+              className={clsx({ "cursor-progress opacity-30": fetching })}
+            />
           </>
         ) : null}
       </div>
     </div>
   );
 };
-export default TrendingReposView;
+export default ReposView;

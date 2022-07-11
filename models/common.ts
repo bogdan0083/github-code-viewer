@@ -12,13 +12,15 @@ export type SearchOptions = {
   language?: string;
   after?: string;
   created?: string;
+  stars?: number;
 };
 
 export const buildSearchQuery = ({
   query = "",
   language = "",
   created,
-}: Pick<SearchOptions, "query" | "language" | "created">): string => {
+  stars,
+}: Pick<SearchOptions, "query" | "language" | "created" | "stars">): string => {
   let preparedCreated = `created:${created}`;
 
   let result = [];
@@ -34,6 +36,11 @@ export const buildSearchQuery = ({
 
   if (created) {
     result.push(preparedCreated);
+  }
+
+  if (stars) {
+    let preparedStars = `stars:>${stars}`;
+    result.push(preparedStars);
   }
 
   return result.join(" ");
