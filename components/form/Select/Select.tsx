@@ -8,9 +8,16 @@ interface SelectProps {
   multiple?: boolean;
   options: SelectOptions;
   placeholder?: string;
+  className?: string;
 }
 
-const Select = ({ onChange, multiple, options, placeholder }: SelectProps) => {
+const Select = ({
+  onChange,
+  multiple,
+  options,
+  placeholder,
+  className,
+}: SelectProps) => {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const values = [...e.target.options]
@@ -19,9 +26,8 @@ const Select = ({ onChange, multiple, options, placeholder }: SelectProps) => {
       onChange(values);
     } else {
       const { value } = e.target;
-      if (value) {
-        onChange([value]);
-      }
+      console.log(value);
+      onChange([value]);
     }
   };
 
@@ -47,7 +53,7 @@ const Select = ({ onChange, multiple, options, placeholder }: SelectProps) => {
   };
 
   return (
-    <select onChange={handleChange} multiple={multiple}>
+    <select onChange={handleChange} multiple={multiple} className={className}>
       {placeholder && <option value="">{placeholder}</option>}
       {renderOptions(options)}
     </select>
