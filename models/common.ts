@@ -6,6 +6,8 @@ export const dateSchema = z.preprocess((arg) => {
 
 export type DateSchema = z.infer<typeof dateSchema>;
 
+export type SearchType = "REPOSITORY" | "USER" | "ISSUE" | "ORG";
+
 export type SearchOptions = {
   query?: string;
   limit?: number;
@@ -13,6 +15,7 @@ export type SearchOptions = {
   after?: string;
   created?: string;
   stars?: number;
+  type: SearchType;
 };
 
 export const buildSearchQuery = ({

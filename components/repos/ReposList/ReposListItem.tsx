@@ -1,6 +1,6 @@
 import { Repo } from "../../../models/repo";
 import Link from "next/link";
-import LangLabel from "../LangLabel/LangLabel";
+import LangLabel from "../../common/LangLabel/LangLabel";
 
 interface ReposListProps extends Repo {}
 
@@ -10,8 +10,9 @@ const ReposListItem = ({
   description,
   forkCount,
   stargazerCount,
-  primaryLanguage,
+  languages,
 }: ReposListProps) => {
+  const primaryLang = languages.nodes[0];
   return (
     <div
       key={id}
@@ -24,7 +25,7 @@ const ReposListItem = ({
       </Link>
       <p className={"text-sm text-gray-500"}>{description}</p>
       <div className="mt-3">
-        {primaryLanguage && <LangLabel {...primaryLanguage} />}
+        {primaryLang && <LangLabel {...primaryLang} />}
         <span className={"ml-2 text-xs text-gray-500"}>{forkCount} forks</span>
         <span className={"ml-2 text-xs text-gray-500"}>
           {stargazerCount} stars

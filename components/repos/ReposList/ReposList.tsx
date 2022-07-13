@@ -1,9 +1,9 @@
-import { Repo } from "../../../models/repo";
+import { RepoList } from "../../../models/repo";
 import ReposListItem from "./ReposListItem";
 import clsx from "clsx";
 
 interface ReposListProps {
-  repos: Repo[];
+  repos: RepoList;
   className?: string;
 }
 

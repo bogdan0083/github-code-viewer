@@ -21,9 +21,11 @@ const Home: NextPage = () => {
           caption={"Fast and quick"}
           fixed
         />
-        <div className="grid grid-cols-2 gap-10">
-          <ReposView title={"Trending This Week"} created={weekAgo} />
-          <ReposView title={"Popular"} stars={1000} />
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:grid-rows-1">
+            <ReposView title={"Trending This Week"} created={weekAgo} />
+            <ReposView title={"Popular"} stars={1000} />
+          </div>
         </div>
       </main>
     </div>

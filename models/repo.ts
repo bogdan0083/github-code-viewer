@@ -1,17 +1,19 @@
 import { z } from "zod";
 
+export const RepoLang = z.object({
+  name: z.string(),
+  color: z.string(),
+});
+
 export const RepoModel = z.object({
   id: z.string(),
   nameWithOwner: z.string(),
   description: z.nullable(z.string()),
   forkCount: z.number(),
   stargazerCount: z.number(),
-  primaryLanguage: z.optional(
-    z.object({
-      name: z.string(),
-      color: z.nullable(z.string()),
-    })
-  ),
+  languages: z.object({
+    nodes: z.array(RepoLang),
+  }),
 });
 
 export const RepoListModel = z.array(RepoModel);

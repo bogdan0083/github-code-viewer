@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { RepoListModel } from "../../../models/repo";
-import { ZodError } from "zod";
+import { useState } from "react";
+import { RepoList } from "../../../models/repo";
 import ReposList from "../ReposList/ReposList";
-import { useRepos } from "../../../graphql/repos/queries/repos";
 import programmingLanguages from "../../../data/programming-languages";
 import Select from "../../form/Select/Select";
 import { buildSearchQuery, SearchOptions } from "../../../models/common";
 import clsx from "clsx";
+import { useSearch } from "../../../graphql/search";
 
-interface ReposViewProps extends SearchOptions {
+interface ReposViewProps extends Omit<SearchOptions, "type"> {
   title: string;
 }
 
@@ -19,7 +18,6 @@ const ReposView = ({
   title,
   stars,
 }: ReposViewProps) => {
-  const [validationError, setValidationError] = useState<ZodError>();
   const [q] = useState(query);
   const [languages, setLanguages] = useState<string[]>(
     language ? [language] : []
@@ -27,26 +25,18 @@ const ReposView = ({
 
   let builtQuery = buildSearchQuery({
     query: q,
-    created: created,
     language: languages[0],
+    created,
     stars,
   });
 
-  const [result] = useRepos({
+  const [result] = useSearch({
     query: builtQuery,
+    limit: 10,
+    type: "REPOSITORY",
   });
 
-  const { repos, fetching, error } = result;
-
-  useEffect(() => {
-    if (repos) {
-      const result = RepoListModel.safeParse(repos);
-
-      if (!result.success) {
-        setValidationError((e) => (!e ? result.error : e));
-      }
-    }
-  }, [repos]);
+  const { searchResults, validationError, fetching, error } = result;
 
   const handleLanguageChange = (selected: string[]) => {
     setLanguages(selected);
@@ -64,13 +54,13 @@ const ReposView = ({
             className={"w-3/12"}
           />
         </div>
-        {fetching && !repos ? <p>Loading...</p> : null}
+        {fetching && !searchResults ? <p>Loading...</p> : null}
         {error ? <p>Error: {error.message}</p> : null}
         {validationError ? <p>Error: {validationError.message}</p> : null}
-        {repos ? (
+        {searchResults ? (
           <>
             <ReposList
-              repos={repos}
+              repos={searchResults.items as RepoList}
               className={clsx({ "cursor-progress opacity-30": fetching })}
             />
           </>
