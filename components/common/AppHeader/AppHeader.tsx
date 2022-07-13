@@ -33,7 +33,7 @@ const AppHeader = ({ title, caption, fixed = false }: AppHeaderProps) => {
     fixed && "flex items-center"
   );
 
-  const searchFormClass = clsx("flex mt-4", fixed && "mt-0 max-w-none ml-6");
+  const searchFormClass = clsx("flex mt-4", fixed && "mt-0 ml-6");
 
   const headingClassName = clsx(
     "font-bold",
