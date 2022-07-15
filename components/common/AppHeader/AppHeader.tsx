@@ -1,5 +1,4 @@
 import SearchForm from "../SearchForm/SearchForm";
-import { ChangeEvent, useState } from "react";
 import clsx from "clsx";
 
 interface AppHeaderProps {
@@ -9,17 +8,6 @@ interface AppHeaderProps {
 }
 
 const AppHeader = ({ title, caption, fixed = false }: AppHeaderProps) => {
-  const [query, setQuery] = useState("");
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setQuery(event.currentTarget.value);
-    console.log("Changed:", event.currentTarget.value);
-  };
-
-  const onSearch = (query: string) => {
-    console.log("Searching:", query);
-  };
 
   const headerClassName = clsx(
     "w-full pt-4 pt-5 mb-11 bg-white/50",
@@ -41,7 +29,7 @@ const AppHeader = ({ title, caption, fixed = false }: AppHeaderProps) => {
   );
 
   const captionClassName = clsx(
-    "text-gray-600 mt-1",
+    "text-gray-600",
     fixed && "text-xs whitespace-nowrap mt-0"
   );
 
@@ -53,9 +41,6 @@ const AppHeader = ({ title, caption, fixed = false }: AppHeaderProps) => {
           {caption && <h2 className={captionClassName}>{caption}</h2>}
         </div>
         <SearchForm
-          query={query}
-          onChange={onChange}
-          onSearch={onSearch}
           className={searchFormClass}
         />
       </div>
@@ -63,3 +48,4 @@ const AppHeader = ({ title, caption, fixed = false }: AppHeaderProps) => {
   );
 };
 export default AppHeader;
+

@@ -40,10 +40,11 @@ export type UseSearchResponse<Data = any, Variables = object> = [
 ];
 
 export const useSearch = (
-  searchOpts: SearchOptions
+  searchOpts: SearchOptions & { pause?: boolean }
 ): UseSearchResponse<SearchResults> => {
   const [result, reexecuteQuery] = useQuery({
     query: SEARCH_QUERY,
+    pause: searchOpts.pause,
     variables: {
       query: searchOpts.query,
       limit: searchOpts.limit,
@@ -61,7 +62,6 @@ export const useSearch = (
   useEffect(() => {
     if (data) {
       const { search } = data;
-
       const { nodes, pageInfo } = search;
 
       const parseResult = SearchResultsModel.safeParse({
