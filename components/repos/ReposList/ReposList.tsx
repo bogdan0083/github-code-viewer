@@ -1,9 +1,9 @@
-import { RepoList } from "../../../models/repo";
 import ReposListItem from "./ReposListItem";
 import clsx from "clsx";
+import { RepoFieldsFragment } from "../../../generated/graphql";
 
 interface ReposListProps {
-  repos: RepoList;
+  repos: RepoFieldsFragment[];
   className?: string;
 }
 

@@ -1,8 +1,8 @@
-import { Repo } from "../../../models/repo";
 import Link from "next/link";
 import LangLabel from "../../common/LangLabel/LangLabel";
+import { RepoFieldsFragment } from "../../../generated/graphql";
 
-interface ReposListProps extends Repo {}
+interface ReposListProps extends RepoFieldsFragment {}
 
 const ReposListItem = ({
   id,
@@ -10,9 +10,8 @@ const ReposListItem = ({
   description,
   forkCount,
   stargazerCount,
-  languages,
+  primaryLanguage = null,
 }: ReposListProps) => {
-  const primaryLang = languages.nodes[0];
   return (
     <div
       key={id}
@@ -25,7 +24,12 @@ const ReposListItem = ({
       </Link>
       <p className={"text-sm text-gray-500"}>{description}</p>
       <div className="mt-3">
-        {primaryLang && <LangLabel {...primaryLang} />}
+        {primaryLanguage && (
+          <LangLabel
+            name={primaryLanguage.name}
+            color={primaryLanguage?.color || null}
+          />
+        )}
         <span className={"ml-2 text-xs text-gray-500"}>{forkCount} forks</span>
         <span className={"ml-2 text-xs text-gray-500"}>
           {stargazerCount} stars

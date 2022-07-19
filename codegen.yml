@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  - "https://api.github.com/graphql":
+      headers:
+        Authorization: bearer ${GITHUB_TOKEN}
+documents:
+  - pages/**/*.tsx
+  - components/**/*.tsx
+  - lib/**/*.ts
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    config:
+      withHooks: true
+      dedupeOperationSuffix: true

@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { RepoList } from "../../../models/repo";
-import ReposList from "../ReposList/ReposList";
-import programmingLanguages from "../../../data/programming-languages";
+import { useMemo, useState } from "react";
+import programmingLanguages from "../../../lib/data/programming-languages";
 import Select from "../../form/Select/Select";
-import { buildSearchQuery, SearchOptions } from "../../../models/common";
+import { buildSearchQuery, SearchOptions } from "../../../lib/models/common";
+import {
+  RepoFieldsFragment,
+  SearchType,
+  useSearchQuery,
+} from "../../../generated/graphql";
+import ReposList from "../ReposList/ReposList";
 import clsx from "clsx";
-import { useSearch } from "../../../graphql/search";
 
 interface ReposViewProps extends Omit<SearchOptions, "type"> {
   title: string;
@@ -19,24 +22,33 @@ const ReposView = ({
   stars,
 }: ReposViewProps) => {
   const [q] = useState(query);
+
   const [languages, setLanguages] = useState<string[]>(
     language ? [language] : []
   );
 
-  let builtQuery = buildSearchQuery({
-    query: q,
-    language: languages[0],
-    created,
-    stars,
+  let builtQuery = useMemo(
+    () =>
+      buildSearchQuery({
+        query: q,
+        language: languages[0],
+        created,
+        stars,
+      }),
+    [q, languages, created, stars]
+  );
+
+  const [result] = useSearchQuery({
+    variables: {
+      query: builtQuery,
+      type: SearchType.Repository,
+      limit: 10,
+    },
   });
 
-  const [result] = useSearch({
-    query: builtQuery,
-    limit: 10,
-    type: "REPOSITORY",
-  });
+  const { data, error, fetching } = result;
 
-  const { searchResults, validationError, fetching, error } = result;
+  console.log(data, error, fetching);
 
   const handleLanguageChange = (selected: string[]) => {
     setLanguages(selected);
@@ -54,13 +66,12 @@ const ReposView = ({
             className={"w-3/12"}
           />
         </div>
-        {fetching && !searchResults ? <p>Loading...</p> : null}
+        {fetching && !data ? <p>Loading...</p> : null}
         {error ? <p>Error: {error.message}</p> : null}
-        {validationError ? <p>Error: {validationError.message}</p> : null}
-        {searchResults ? (
+        {data ? (
           <>
             <ReposList
-              repos={searchResults.items as RepoList}
+              repos={data.search.nodes as RepoFieldsFragment[]}
               className={clsx({ "cursor-progress opacity-30": fetching })}
             />
           </>

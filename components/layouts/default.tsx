@@ -1,4 +1,4 @@
-import AppHeader from "../components/common/AppHeader/AppHeader";
+import AppHeader from "../common/AppHeader/AppHeader";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -6,14 +6,14 @@ interface LayoutProps {
 
 const DefaultLayout = ({ children }: LayoutProps) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-3">
       <main>
         <AppHeader
           title={"GitHub Code Viewer"}
           caption={"Fast and quick"}
           fixed
         />
-        <div className="container mx-auto">{children}</div>
+        {children}
       </main>
     </div>
   );
