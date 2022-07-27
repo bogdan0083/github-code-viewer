@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "../_app";
-import DefaultLayout from "../../components/layouts/default";
+import DefaultLayout from "../../components/layouts/defaultLayout";
 
 const Owner: NextPageWithLayout = () => {
   const router = useRouter();

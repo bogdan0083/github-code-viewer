@@ -48,8 +48,6 @@ const ReposView = ({
 
   const { data, error, fetching } = result;
 
-  console.log(data, error, fetching);
-
   const handleLanguageChange = (selected: string[]) => {
     setLanguages(selected);
   };

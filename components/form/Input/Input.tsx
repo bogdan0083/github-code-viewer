@@ -28,7 +28,7 @@ const Input = ({
   onClick,
 }: InputProps) => {
   const cl = clsx(
-    "py-2 px-3 w-full border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+    "py-2 px-2 w-full border text-sm rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     className
   );
   return (

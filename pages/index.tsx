@@ -3,7 +3,7 @@ import ReposView from "../components/repos/ReposView/ReposView";
 import subDays from "date-fns/subDays";
 import format from "date-fns/format";
 import { NextPageWithLayout } from "./_app";
-import DefaultLayout from "../components/layouts/default";
+import DefaultLayout from "../components/layouts/defaultLayout";
 
 const Home: NextPageWithLayout = () => {
   const weekAgo = format(subDays(new Date(), 7), "yyyy-MM-dd");

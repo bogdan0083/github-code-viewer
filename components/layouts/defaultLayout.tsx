@@ -10,7 +10,6 @@ const DefaultLayout = ({ children }: LayoutProps) => {
       <main>
         <AppHeader
           title={"GitHub Code Viewer"}
-          caption={"Fast and quick"}
           fixed
         />
         {children}

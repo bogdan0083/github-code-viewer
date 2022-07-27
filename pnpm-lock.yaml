@@ -6,6 +6,7 @@ specifiers:
   '@graphql-codegen/typescript-urql': ^3.6.1
   '@types/lodash': ^4.14.182
   '@types/lodash.debounce': ^4.0.7
+  '@types/lodash.orderby': ^4.6.7
   '@types/node': 18.0.3
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
@@ -25,6 +26,7 @@ specifiers:
   graphql: ^16.5.0
   init: ^0.1.2
   lodash.debounce: ^4.0.8
+  lodash.orderby: ^4.6.0
   lodash.sortby: ^4.7.0
   next: 12.2.0
   next-urql: ^3.3.3
@@ -32,6 +34,7 @@ specifiers:
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-icons: ^4.4.0
   tailwindcss: ^3.1.4
   typescript: 4.7.4
   urql: ^2.2.2
@@ -47,12 +50,14 @@ dependencies:
   graphql: 16.5.0
   init: 0.1.2
   lodash.debounce: 4.0.8
+  lodash.orderby: 4.6.0
   lodash.sortby: 4.7.0
   next: 12.2.0_biqbaboplfbrettd7655fr4n2y
   next-urql: 3.3.3_react@18.2.0+urql@2.2.2
   postcss: 8.4.14
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.4.0_react@18.2.0
   tailwindcss: 3.1.4
   urql: 2.2.2_aez2jvt6lsvokp3l4ousdbdxf4
   zod: 3.17.3
@@ -60,6 +65,7 @@ dependencies:
 devDependencies:
   '@types/lodash': 4.14.182
   '@types/lodash.debounce': 4.0.7
+  '@types/lodash.orderby': 4.6.7
   '@types/node': 18.0.3
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
@@ -1392,6 +1398,12 @@ packages:
 
   /@types/lodash.debounce/4.0.7:
     resolution: { integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA== }
+    dependencies:
+      '@types/lodash': 4.14.182
+    dev: true
+
+  /@types/lodash.orderby/4.6.7:
+    resolution: { integrity: sha512-GaaUBTS4RTjL8gz1ZXkwAB/defpGMOWwCG9C4HL9g81i4wghIoVVESQCUa1xRsyUBqAb5JwLbSwvL0q36rK0sA== }
     dependencies:
       '@types/lodash': 4.14.182
     dev: true
@@ -3650,6 +3662,10 @@ packages:
     resolution: { integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg== }
     dev: false
 
+  /lodash.orderby/4.6.0:
+    resolution: { integrity: sha512-T0rZxKmghOOf5YPnn8EY5iLYeWCpZq8G41FfqoVHH5QDTAFaghJRmAdLiadEDq+ztgM2q5PjA+Z1fOwGrLgmtg== }
+    dev: false
+
   /lodash.sortby/4.7.0:
     resolution: { integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA== }
     dev: false
@@ -4282,6 +4298,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-icons/4.4.0_react@18.2.0:
+    resolution: { integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg== }
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

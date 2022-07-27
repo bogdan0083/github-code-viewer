@@ -7,7 +7,7 @@ interface Elem {
 
 interface DropdownProps<T extends Elem> {
   isLoading?: boolean;
-  items?: T[];
+  items?: T[] | null;
   renderItem: (item: T) => ReactNode;
   className?: string;
   onClickOutside?: () => void;

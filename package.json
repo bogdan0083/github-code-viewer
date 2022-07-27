@@ -18,12 +18,14 @@
     "graphql": "^16.5.0",
     "init": "^0.1.2",
     "lodash.debounce": "^4.0.8",
+    "lodash.orderby": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "next": "12.2.0",
     "next-urql": "^3.3.3",
     "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "tailwindcss": "^3.1.4",
     "urql": "^2.2.2",
     "zod": "^3.17.3"
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.182",
     "@types/lodash.debounce": "^4.0.7",
+    "@types/lodash.orderby": "^4.6.7",
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
