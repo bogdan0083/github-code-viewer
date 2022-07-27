@@ -5,25 +5,15 @@ import {
   TreeFieldsFragment,
   useRepoTreeQuery,
 } from "../../../generated/graphql";
-import clsx from "clsx";
 import { useMemo } from "react";
 import orderBy from "lodash.orderby";
 import RepoEntries from "../RepoEntries/RepoEntries";
+import { RepoPageQueryParams } from "../../../lib/utils/types";
+import Topline from "../../common/Topline/Topline";
 
-type QueryParams = {
-  owner: string;
-  name: string;
-  path?: string[];
-};
-
-const RepoExplorerMainView = () => {
+const RepoExplorerDirectoryView = () => {
   const router = useRouter();
-  const { owner, name, path = [] } = router.query as QueryParams;
-
-  // Check if the current path is a file.
-  // For example vim/hello/src/main.c
-
-  const isFile = path[path.length - 1]?.includes(".");
+  const { owner, name, path = [] } = router.query as RepoPageQueryParams;
 
   const slicedPath = path?.join("/");
 
@@ -50,30 +40,20 @@ const RepoExplorerMainView = () => {
 
   const fullGithubViewUrl = `${GITHUB_URL}/${fullPath}`;
 
+  const right = useMemo(
+    () => (
+      <a href={fullGithubViewUrl} target="_blank" rel="noreferrer">
+        <IoLogoGithub size={20} />
+      </a>
+    ),
+    [fullGithubViewUrl]
+  );
+
+  const left = useMemo(() => <div>{slicedPath}</div>, [slicedPath]);
+
   return (
     <div>
-      <div
-        className={
-          "bg-gray-100 border-b border-gray-300 text-xs flex justify-between items-center px-2 py-2"
-        }
-      >
-        <div className={"flex items-center"}>/{path?.join("/")}</div>
-        <div
-          className={clsx(
-            "flex items-center",
-            fetching && "opacity-40 pointer-events-none"
-          )}
-        >
-          <a
-            target={"_blank"}
-            href={fullGithubViewUrl}
-            rel="noreferrer"
-            title={"View on GitHub"}
-          >
-            <IoLogoGithub size={20} />
-          </a>
-        </div>
-      </div>
+      <Topline left={left} right={right} />
       <div className={"p-2"}>
         <RepoEntries
           showBackFolder={false}
@@ -85,4 +65,4 @@ const RepoExplorerMainView = () => {
   );
 };
 
-export default RepoExplorerMainView;
+export default RepoExplorerDirectoryView;

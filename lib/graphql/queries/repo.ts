@@ -7,6 +7,12 @@ export const REPO_TREE_QUERY = gql`
     path
     oid
   }
+
+  fragment FileFields on Blob {
+    text
+    byteSize
+  }
+
   fragment TreeFields on Tree {
     entries {
       ...TreeEntryFields
@@ -19,6 +25,7 @@ export const REPO_TREE_QUERY = gql`
       }
       object(expression: $path) {
         ...TreeFields
+        ...FileFields
       }
     }
   }

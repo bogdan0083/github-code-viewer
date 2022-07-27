@@ -41,7 +41,7 @@ const RepoEntries = ({
   const slicedPath = path.slice(0, path.length - 2).join("/");
 
   return (
-    <ul className={"list-none"}>
+    <ul className={"list-none"} style={{ width: "calc(100% - 1px)" }}>
       {path.length > 0 && showBackFolder && (
         <RepoDirectoryEntry
           name={".."}

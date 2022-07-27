@@ -6,17 +6,12 @@ import {
 import RepoEntries from "./RepoEntries";
 import orderBy from "lodash.orderby";
 import { useMemo } from "react";
-
-type QueryParams = {
-  owner: string;
-  name: string;
-  path?: string[];
-};
+import { RepoPageQueryParams } from "../../../lib/utils/types";
 
 const RepoEntriesView = () => {
   const router = useRouter();
   // @ts-ignore
-  const { owner, name, path = [] }: QueryParams = router.query;
+  const { owner, name, path = [] } = router.query as RepoPageQueryParams;
 
   const isFilePath = path[path.length - 1]?.includes(".");
 

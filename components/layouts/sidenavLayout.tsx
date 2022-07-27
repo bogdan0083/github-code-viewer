@@ -10,7 +10,7 @@ const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
     <>
       <AppHeader title={"GitHub Code Viewer"} fixed />
       <main className={"flex flex-grow"}>
-        <div className="flex-col flex-shrink w-3/12 border-r border-gray-300 max-h-full">
+        <div className="flex-col flex-shrink-0 w-3/12 border-r border-gray-300 max-h-full">
           {sideNavContent}
         </div>
         <div className="flex-grow">{children}</div>

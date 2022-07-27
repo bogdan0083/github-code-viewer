@@ -4,6 +4,7 @@ specifiers:
   '@graphql-codegen/cli': ^2.8.1
   '@graphql-codegen/typescript-operations': ^2.5.1
   '@graphql-codegen/typescript-urql': ^3.6.1
+  '@types/highlightjs': ^9.12.2
   '@types/lodash': ^4.14.182
   '@types/lodash.debounce': ^4.0.7
   '@types/lodash.orderby': ^4.6.7
@@ -24,6 +25,7 @@ specifiers:
   eslint-plugin-react: ^7.28.0
   eslint-plugin-react-hooks: ^4.3.0
   graphql: ^16.5.0
+  highlightjs: ^9.16.2
   init: ^0.1.2
   lodash.debounce: ^4.0.8
   lodash.orderby: ^4.6.0
@@ -31,6 +33,7 @@ specifiers:
   next: 12.2.0
   next-urql: ^3.3.3
   postcss: ^8.4.14
+  postcss-import: ^14.1.0
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
@@ -48,6 +51,7 @@ dependencies:
   clsx: 1.2.1
   date-fns: 2.28.0
   graphql: 16.5.0
+  highlightjs: 9.16.2
   init: 0.1.2
   lodash.debounce: 4.0.8
   lodash.orderby: 4.6.0
@@ -63,6 +67,7 @@ dependencies:
   zod: 3.17.3
 
 devDependencies:
+  '@types/highlightjs': 9.12.2
   '@types/lodash': 4.14.182
   '@types/lodash.debounce': 4.0.7
   '@types/lodash.orderby': 4.6.7
@@ -79,6 +84,7 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.6.0_eslint@8.19.0
   eslint-plugin-react: 7.30.1_eslint@8.19.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.19.0
+  postcss-import: 14.1.0_postcss@8.4.14
   prettier: 2.7.1
   typescript: 4.7.4
 
@@ -1373,6 +1379,10 @@ packages:
     resolution: { integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A== }
     engines: { node: '>= 10' }
     dev: false
+
+  /@types/highlightjs/9.12.2:
+    resolution: { integrity: sha512-oW2pEKwshxwBW1nVUizWQg/tnhboRtKrUKnF2hd6l4BZ0shr5ZjQ4ra/82+NEH6uWeM8JjrMGCux5enQXOQbTA== }
+    dev: true
 
   /@types/js-yaml/4.0.5:
     resolution: { integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA== }
@@ -3172,6 +3182,11 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /highlightjs/9.16.2:
+    resolution: { integrity: sha512-FK1vmMj8BbEipEy8DLIvp71t5UsC7n2D6En/UfM/91PCwmOpj6f2iu0Y0coRC62KSRHHC+dquM2xMULV/X7NFg== }
+    deprecated: Use the 'highlight.js' package instead https://npm.im/highlight.js
+    dev: false
+
   /http-proxy-agent/5.0.0:
     resolution: { integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w== }
     engines: { node: '>= 6' }
@@ -3805,7 +3820,6 @@ packages:
     resolution: { integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw== }
     engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
     hasBin: true
-    dev: false
 
   /natural-compare/1.4.0:
     resolution: { integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw== }
@@ -4162,7 +4176,6 @@ packages:
 
   /picocolors/1.0.0:
     resolution: { integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ== }
-    dev: false
 
   /picomatch/2.3.1:
     resolution: { integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA== }
@@ -4171,7 +4184,6 @@ packages:
   /pify/2.3.0:
     resolution: { integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog== }
     engines: { node: '>=0.10.0' }
-    dev: false
 
   /postcss-import/14.1.0_postcss@8.4.14:
     resolution: { integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw== }
@@ -4183,7 +4195,6 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
-    dev: false
 
   /postcss-js/4.0.0_postcss@8.4.14:
     resolution: { integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ== }
@@ -4232,7 +4243,6 @@ packages:
 
   /postcss-value-parser/4.2.0:
     resolution: { integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ== }
-    dev: false
 
   /postcss/8.4.14:
     resolution: { integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig== }
@@ -4241,7 +4251,6 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
 
   /postcss/8.4.5:
     resolution: { integrity: sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg== }
@@ -4331,7 +4340,6 @@ packages:
     resolution: { integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA== }
     dependencies:
       pify: 2.3.0
-    dev: false
 
   /readable-stream/3.6.0:
     resolution: { integrity: sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA== }
@@ -4582,7 +4590,6 @@ packages:
   /source-map-js/1.0.2:
     resolution: { integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw== }
     engines: { node: '>=0.10.0' }
-    dev: false
 
   /source-map-support/0.5.21:
     resolution: { integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w== }
