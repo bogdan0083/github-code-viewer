@@ -9,10 +9,12 @@ export const SEARCH_QUERY = gql<SearchQuery, SearchQueryVariables>`
       forkCount
       stargazerCount
       primaryLanguage {
+        id
         color
         name
       }
       owner {
+        id
         login
       }
       name

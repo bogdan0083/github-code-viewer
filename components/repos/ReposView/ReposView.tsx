@@ -9,6 +9,7 @@ import {
 } from "../../../generated/graphql";
 import ReposList from "../ReposList/ReposList";
 import clsx from "clsx";
+import ThemedButton from "../../common/ThemedButton/ThemedButton";
 
 interface ReposViewProps extends Omit<SearchOptions, "type"> {
   title: string;
@@ -22,6 +23,7 @@ const ReposView = ({
   stars,
 }: ReposViewProps) => {
   const [q] = useState(query);
+  const [after, setAfter] = useState<string | null>(null);
 
   const [languages, setLanguages] = useState<string[]>(
     language ? [language] : []
@@ -43,10 +45,12 @@ const ReposView = ({
       query: builtQuery,
       type: SearchType.Repository,
       limit: 10,
+      after,
     },
   });
 
   const { data, error, fetching } = result;
+  console.log(result);
 
   const handleLanguageChange = (selected: string[]) => {
     setLanguages(selected);
@@ -72,6 +76,16 @@ const ReposView = ({
               repos={data.search.nodes as RepoFieldsFragment[]}
               className={clsx({ "cursor-progress opacity-30": fetching })}
             />
+            {data.search.pageInfo.hasNextPage && (
+              <ThemedButton
+                loading={fetching}
+                className={"mt-3"}
+                onClick={() => setAfter(data.search.pageInfo.endCursor || null)}
+                fullWidth
+              >
+                Load more
+              </ThemedButton>
+            )}
           </>
         ) : null}
       </div>

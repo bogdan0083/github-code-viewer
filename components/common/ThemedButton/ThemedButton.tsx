@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface ThemedButtonProps {
   className?: string;
@@ -7,6 +8,8 @@ interface ThemedButtonProps {
   disabled?: boolean;
   theme?: "primary";
   type?: "button" | "submit" | "reset";
+  loading?: boolean;
+  fullWidth?: boolean;
 }
 
 const ThemedButton = ({
@@ -16,17 +19,25 @@ const ThemedButton = ({
   disabled,
   theme = "primary",
   type = "button",
+  loading = false,
+  fullWidth = false,
 }: ThemedButtonProps) => {
   const cls = clsx(
-    "font-bold flex justify-center items-center py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none",
+    "font-bold flex justify-center relative items-center py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none",
     className,
     theme === "primary" && "bg-blue-500 text-white",
-    disabled && "cursor-not-allowed opacity-50"
+    disabled && "cursor-not-allowed opacity-50",
+    fullWidth && "w-full"
   );
 
   return (
     <button className={cls} onClick={onClick} disabled={disabled} type={type}>
-      <span className={"flex-grow"}>{children}</span>
+      {loading ? (
+        <LoadingSpinner wrapperClassName={"absolute"} size={"md"} />
+      ) : null}
+      <span className={clsx("flex-grow", loading && "opacity-0")}>
+        {children}
+      </span>
     </button>
   );
 };
