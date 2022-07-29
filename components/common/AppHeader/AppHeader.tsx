@@ -28,18 +28,10 @@ const AppHeader = ({ title, mobileTitle, fixed = false }: AppHeaderProps) => {
       <div className={""}>
         <h1 className={headingClassName}>
           <Link href={"/"}>
-            <>
-              <a
-                className={
-                  "transition-opacity hover:opacity-40 hidden sm:block"
-                }
-              >
-                {title}
-              </a>
-              <a className={"transition-opacity hover:opacity-40 sm:hidden"}>
-                {mobileTitle}
-              </a>
-            </>
+            <a className={"transition-opacity hover:opacity-40"}>
+              <span className={"hidden sm:inline"}>{title}</span>
+              <span className={"sm:hidden"}>{mobileTitle}</span>
+            </a>
           </Link>
         </h1>
       </div>
