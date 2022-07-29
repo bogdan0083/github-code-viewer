@@ -1,4 +1,6 @@
 import { ChangeEvent } from "react";
+import clsx from "clsx";
+import styles from "./Select.module.css";
 
 type Rec = Record<string, string>;
 type SelectOptions = Record<string, string | Rec>;
@@ -52,8 +54,18 @@ const Select = ({
     });
   };
 
+  const selectClassName = clsx(
+    styles.select,
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+    className
+  );
+
   return (
-    <select onChange={handleChange} multiple={multiple} className={className}>
+    <select
+      onChange={handleChange}
+      multiple={multiple}
+      className={selectClassName}
+    >
       {placeholder && <option value="">{placeholder}</option>}
       {renderOptions(options)}
     </select>

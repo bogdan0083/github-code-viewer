@@ -7,7 +7,7 @@ interface LayoutProps {
 const DefaultLayout = ({ children }: LayoutProps) => {
   return (
     <>
-      <AppHeader title={"GitHub Code Viewer"} fixed />
+      <AppHeader title={"GitHub Code Viewer"} mobileTitle={"GCV"} fixed />
       {children}
     </>
   );

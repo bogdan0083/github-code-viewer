@@ -55,13 +55,13 @@ const ReposView = ({
   return (
     <div>
       <div>
-        <div className="mb-6 flex align-middle justify-between">
-          <h1 className={"text-3xl"}>{title}</h1>
+        <div className="mb-6 lg:flex lg:items-center lg:justify-between">
+          <h1 className={"text-xl md:text-2xl lg:text-3xl"}>{title}</h1>
           <Select
             onChange={handleLanguageChange}
             options={programmingLanguages}
             placeholder={"Language"}
-            className={"w-3/12"}
+            className={"mt-3 w-full lg:w-4/12 lg:mt-0"}
           />
         </div>
         {fetching && !data ? <p>Loading...</p> : null}

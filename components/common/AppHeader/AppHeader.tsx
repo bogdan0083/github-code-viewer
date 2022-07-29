@@ -1,12 +1,14 @@
 import SearchForm from "../SearchForm/SearchForm";
 import clsx from "clsx";
+import Link from "next/link";
 
 interface AppHeaderProps {
   title: string;
+  mobileTitle: string;
   fixed?: boolean;
 }
 
-const AppHeader = ({ title, fixed = false }: AppHeaderProps) => {
+const AppHeader = ({ title, mobileTitle, fixed = false }: AppHeaderProps) => {
   const headerClassName = clsx(
     "w-full pt-4 pt-5 bg-white/50 flex items-center px-3",
     fixed &&
@@ -23,8 +25,23 @@ const AppHeader = ({ title, fixed = false }: AppHeaderProps) => {
 
   return (
     <header className={headerClassName}>
-      <div>
-        <h1 className={headingClassName}>{title}</h1>
+      <div className={""}>
+        <h1 className={headingClassName}>
+          <Link href={"/"}>
+            <>
+              <a
+                className={
+                  "transition-opacity hover:opacity-40 hidden sm:block"
+                }
+              >
+                {title}
+              </a>
+              <a className={"transition-opacity hover:opacity-40 sm:hidden"}>
+                {mobileTitle}
+              </a>
+            </>
+          </Link>
+        </h1>
       </div>
       <SearchForm className={searchFormClass} />
     </header>

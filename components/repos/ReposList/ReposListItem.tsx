@@ -7,6 +7,8 @@ interface ReposListProps extends RepoFieldsFragment {}
 const ReposListItem = ({
   id,
   nameWithOwner,
+  name,
+  owner,
   description,
   forkCount,
   stargazerCount,
@@ -20,14 +22,18 @@ const ReposListItem = ({
       }
     >
       <Link href={`/${nameWithOwner}`}>
-        <a className={"font-bold text-xl mb-1 block"}>{nameWithOwner}</a>
+        <a className={"font-bold lg:text-xl block mb-1"}>
+          <span>{name}</span>/
+          <span className={"inline-block"}>{owner.login}</span>
+        </a>
       </Link>
-      <p className={"text-sm text-gray-500"}>{description}</p>
+      <p className={"text-xs lg:text-sm text-gray-500"}>{description}</p>
       <div className="mt-3">
         {primaryLanguage && (
           <LangLabel
             name={primaryLanguage.name}
             color={primaryLanguage?.color || null}
+            className={"text-xs"}
           />
         )}
         <span className={"ml-2 text-xs text-gray-500"}>{forkCount} forks</span>

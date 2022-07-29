@@ -8,7 +8,7 @@ interface LayoutProps {
 const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
   return (
     <>
-      <AppHeader title={"GitHub Code Viewer"} fixed />
+      <AppHeader title={"GitHub Code Viewer"} mobileTitle={"GCV"} fixed />
       <main className={"flex flex-grow"}>
         <div className="flex-col flex-shrink-0 w-3/12 border-r border-gray-300 max-h-full">
           {sideNavContent}

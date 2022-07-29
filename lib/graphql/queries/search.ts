@@ -12,6 +12,10 @@ export const SEARCH_QUERY = gql<SearchQuery, SearchQueryVariables>`
         color
         name
       }
+      owner {
+        login
+      }
+      name
       nameWithOwner
     }
   }

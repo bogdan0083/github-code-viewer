@@ -10,6 +10,7 @@ import {
 import Input from "../../form/Input/Input";
 import Dropdown from "../Dropdown/Dropdown";
 import Link from "next/link";
+import { IoSearch } from "react-icons/io5";
 
 interface SearchFormProps {
   debounceDelay?: number;
@@ -62,12 +63,18 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
         <Input
           type="search"
           name="search"
-          placeholder="Search code"
+          placeholder="Search repos"
           value={query}
           className={"flex-grow"}
           onChange={onChangeHandler}
           onFocus={() => data && setDropdownOpen(true)}
         />
+        {/*<Select*/}
+        {/*  onChange={() => console.log("onChange")}*/}
+        {/*  options={programmingLanguages}*/}
+        {/*  placeholder={"Language"}*/}
+        {/*  className={"mt-3 w-full lg:w-4/12 lg:mt-0"}*/}
+        {/*/>*/}
         <Dropdown
           isOpen={isDropdownOpen}
           items={data ? data.search.nodes : undefined}
@@ -75,7 +82,11 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
           onClickOutside={closeDropdown}
           renderItem={(item: RepoFieldsFragment) => (
             <Link href={item.nameWithOwner} key={item.id}>
-              <a className={"block hover:bg-gray-200 hover:bg-gray-300 p-3"}>
+              <a
+                className={
+                  "block hover:bg-gray-200 hover:bg-gray-300 px-3 pt-2 pb-3"
+                }
+              >
                 <span className={"text-sm"}>{item.nameWithOwner}</span>
                 <p className={"text-xs text-gray-500"}>{item.description}</p>
               </a>
@@ -83,8 +94,12 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
           )}
         />
       </div>
-      <ThemedButton type="submit" className="ml-2" disabled={query === ""}>
-        Search
+      <ThemedButton
+        type="submit"
+        className="ml-2 w-10 h-10"
+        disabled={query === ""}
+      >
+        <IoSearch size={22} />
       </ThemedButton>
     </form>
   );

@@ -18,7 +18,7 @@ const ThemedButton = ({
   type = "button",
 }: ThemedButtonProps) => {
   const cls = clsx(
-    "font-bold py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none",
+    "font-bold flex justify-center items-center py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none",
     className,
     theme === "primary" && "bg-blue-500 text-white",
     disabled && "cursor-not-allowed opacity-50"
@@ -26,7 +26,7 @@ const ThemedButton = ({
 
   return (
     <button className={cls} onClick={onClick} disabled={disabled} type={type}>
-      {children}
+      <span className={"flex-grow"}>{children}</span>
     </button>
   );
 };
