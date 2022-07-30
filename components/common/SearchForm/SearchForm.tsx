@@ -69,19 +69,18 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
           onChange={onChangeHandler}
           onFocus={() => data && setDropdownOpen(true)}
         />
-        {/*<Select*/}
-        {/*  onChange={() => console.log("onChange")}*/}
-        {/*  options={programmingLanguages}*/}
-        {/*  placeholder={"Language"}*/}
-        {/*  className={"mt-3 w-full lg:w-4/12 lg:mt-0"}*/}
-        {/*/>*/}
         <Dropdown
           isOpen={isDropdownOpen}
           items={data ? data.search.nodes : undefined}
           isLoading={fetching}
           onClickOutside={closeDropdown}
           renderItem={(item: RepoFieldsFragment) => (
-            <Link href={item.nameWithOwner} key={item.id}>
+            <Link
+              href={`/${encodeURIComponent(
+                item.owner.login
+              )}/${encodeURIComponent(item.name)}`}
+              key={item.id}
+            >
               <a
                 className={
                   "block hover:bg-gray-200 hover:bg-gray-300 px-3 pt-2 pb-3"

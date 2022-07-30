@@ -21,7 +21,7 @@ const ReposListItem = ({
         "mb-1 rounded border border-gray-200 p-3 mb-3 shadow last:mb-0"
       }
     >
-      <Link href={`/${nameWithOwner}`}>
+      <Link href={`/${nameWithOwner}/`}>
         <a className={"font-bold lg:text-xl block mb-1"}>
           <span>{name}</span>/
           <span className={"inline-block"}>{owner.login}</span>

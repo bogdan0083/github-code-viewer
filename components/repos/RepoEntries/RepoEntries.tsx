@@ -10,6 +10,8 @@ interface RepoEntriesProps {
   isLoading?: boolean;
   showBackFolder: boolean;
   size: RepoEntrySize;
+  selectedEntryPath?: string;
+  currentPath?: string[];
 }
 
 export const textSizeMap = {
@@ -31,6 +33,8 @@ const RepoEntries = ({
   isLoading,
   showBackFolder,
   size,
+  selectedEntryPath,
+  currentPath = [],
 }: RepoEntriesProps) => {
   const router = useRouter();
   const { owner, path = [] } = router.query as {
@@ -38,25 +42,34 @@ const RepoEntries = ({
     path: string[];
   };
 
-  const slicedPath = path.slice(0, path.length - 2).join("/");
-
   return (
     <ul className={"list-none"} style={{ width: "calc(100% - 1px)" }}>
-      {path.length > 0 && showBackFolder && (
+      {showBackFolder && (
         <RepoDirectoryEntry
           name={".."}
           oid={"123"}
           type={"tree"}
-          path={slicedPath}
+          path={currentPath.join("/")}
           size={size}
+          selected={false}
         />
       )}
       {entries?.map((entry) =>
         entry ? (
           entry.type === "tree" ? (
-            <RepoDirectoryEntry {...entry} key={entry.oid} size={size} />
+            <RepoDirectoryEntry
+              {...entry}
+              key={entry.oid}
+              size={size}
+              selected={selectedEntryPath === entry.name}
+            />
           ) : (
-            <RepoFileEntry {...entry} key={entry.oid} size={size} />
+            <RepoFileEntry
+              {...entry}
+              key={entry.oid}
+              size={size}
+              selected={selectedEntryPath === entry.name}
+            />
           )
         ) : null
       )}

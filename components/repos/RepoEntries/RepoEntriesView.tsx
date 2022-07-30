@@ -16,15 +16,15 @@ const RepoEntriesView = () => {
   const isFilePath = path[path.length - 1]?.includes(".");
 
   let slicedPath;
-  console.log(path);
 
   if (isFilePath) {
     slicedPath = path.slice(0, path.length - 1);
   } else {
-    slicedPath = path.length > 1 ? path?.slice(0, path?.length - 1) : path;
+    slicedPath = path.length > 0 ? path?.slice(0, path?.length - 1) : path;
   }
 
-  console.log(slicedPath);
+  let selectedEntryPath = path[path.length - 1];
+  console.log(selectedEntryPath);
 
   const [result] = useRepoTreeQuery({
     variables: {
@@ -52,7 +52,9 @@ const RepoEntriesView = () => {
       <RepoEntries
         entries={sortedEntries}
         isLoading={fetching}
-        showBackFolder={true}
+        currentPath={slicedPath}
+        showBackFolder={slicedPath.length > 0 && !fetching}
+        selectedEntryPath={selectedEntryPath}
         size={"xs"}
       />
     </div>

@@ -16,6 +16,7 @@ const RepoEntryPage: NextPageWithLayout = () => {
   // Check if the current path is a file.
   // For example vim/hello/src/main.c
   const isFile = path[path.length - 1]?.includes(".");
+  console.log(path);
 
   return (
     <>

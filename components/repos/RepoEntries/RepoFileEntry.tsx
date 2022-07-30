@@ -5,9 +5,16 @@ import { RepoEntrySize, textSizeMap } from "./RepoEntries";
 
 interface RepoFileEntryProps extends TreeEntryFieldsFragment {
   size: RepoEntrySize;
+  selected: boolean;
 }
 
-const RepoFileEntry = ({ oid, name, path, size }: RepoFileEntryProps) => {
+const RepoFileEntry = ({
+  oid,
+  name,
+  path,
+  size,
+  selected,
+}: RepoFileEntryProps) => {
   const router = useRouter();
   const owner = router.query.owner as string;
   const ownerName = router.query.name as string;
@@ -15,7 +22,7 @@ const RepoFileEntry = ({ oid, name, path, size }: RepoFileEntryProps) => {
   const href = `/${owner}/${ownerName}/${path}`;
 
   return (
-    <li key={oid}>
+    <li key={oid} className={"whitespace-nowrap overflow-ellipsis"}>
       <Link className={textSizeMap[size]} href={href}>
         <a
           className={
