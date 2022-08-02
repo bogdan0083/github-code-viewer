@@ -17,6 +17,10 @@ export const SEARCH_QUERY = gql<SearchQuery, SearchQueryVariables>`
         id
         login
       }
+      defaultBranchRef {
+        id
+        name
+      }
       name
       nameWithOwner
     }

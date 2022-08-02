@@ -1,4 +1,3 @@
-import hljs from "highlightjs";
 
 interface CodeFragmentProps {
   fileContents: string;
@@ -9,12 +8,11 @@ interface CodeFragmentProps {
 }
 
 const CodeFragment = ({ fileContents, language }: CodeFragmentProps) => {
-  const html = hljs.highlight(language, fileContents);
   return (
     <div>
       <pre>
         <code
-          dangerouslySetInnerHTML={{ __html: html.value }}
+          dangerouslySetInnerHTML={{ __html: fileContents }}
           style={{ fontSize: 12 }}
         ></code>
       </pre>

@@ -5,24 +5,33 @@ import {
   FileFieldsFragment,
   useRepoTreeQuery,
 } from "../../../generated/graphql";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
 import CodeFragment from "../../code/CodeFragment/CodeFragment";
+import hljs from "highlightjs";
 
 const RepoExplorerFileView = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
+  const [fileHtmlContents, setFileHtmlContents] = useState<string | null>(null);
 
   const fileExtensionSplit = path[path.length - 1].split(".");
   const fileExtension = fileExtensionSplit[fileExtensionSplit.length - 1];
-  const slicedPath = path?.join("/");
+  const entryType = path[0];
+  const branchName = path[1];
+
+  let entryPath = path.slice(2);
+  console.log(entryPath);
+  let expression = `${branchName}:${entryPath.join("/") || ""}`;
+  console.log("haha");
+  console.log(expression);
 
   const [result] = useRepoTreeQuery({
     variables: {
       owner: owner as string,
       name: name as string,
-      path: `HEAD:${slicedPath || ""}`,
+      path: expression,
     },
   });
 
@@ -30,9 +39,9 @@ const RepoExplorerFileView = () => {
 
   let object = data?.repository?.object as FileFieldsFragment;
 
-  let branchName = data?.repository?.defaultBranchRef?.name;
-
-  const fullPath = `${owner}/${name}/tree/${branchName}/${slicedPath || ""}`;
+  const fullPath = `${owner}/${name}/tree/${branchName}/${
+    entryPath.join("/") || ""
+  }`;
 
   const fullGithubViewUrl = `${GITHUB_URL}/${fullPath}`;
 
@@ -45,7 +54,24 @@ const RepoExplorerFileView = () => {
     [fullGithubViewUrl]
   );
 
-  const left = useMemo(() => <div>{slicedPath}</div>, [slicedPath]);
+  const left = useMemo(() => <div>{entryPath.join("/")}</div>, [entryPath]);
+
+  useEffect(() => {
+    if (object?.text) {
+      try {
+        const html = hljs.highlight(fileExtension, object.text);
+        setFileHtmlContents(html.value);
+      } catch (e) {
+        setFileHtmlContents(object.text);
+      }
+    }
+  }, [object?.text, fileExtension]);
+
+  useEffect(() => {
+    if (fetching) {
+      setFileHtmlContents(null);
+    }
+  }, [fetching]);
 
   return (
     <div>
@@ -56,10 +82,12 @@ const RepoExplorerFileView = () => {
         ) : error ? (
           <div>Error: {error.message}</div>
         ) : (
-          <CodeFragment
-            fileContents={object.text ?? ""}
-            language={fileExtension}
-          />
+          fileHtmlContents && (
+            <CodeFragment
+              fileContents={fileHtmlContents}
+              language={fileExtension}
+            />
+          )
         )}
       </div>
     </div>

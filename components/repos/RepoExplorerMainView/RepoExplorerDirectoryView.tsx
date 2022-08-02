@@ -15,13 +15,17 @@ const RepoExplorerDirectoryView = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
 
-  const slicedPath = path?.join("/");
+  const entryType = path[0];
+  const branchName = path[1];
+
+  let entryPath = path.slice(2);
+  let expression = `${branchName}:${entryPath.join("/") || ""}`;
 
   const [result] = useRepoTreeQuery({
     variables: {
       owner: owner as string,
       name: name as string,
-      path: `HEAD:${slicedPath || ""}`,
+      path: expression,
     },
   });
 
@@ -34,11 +38,9 @@ const RepoExplorerDirectoryView = () => {
     [object?.entries]
   );
 
-  let branchName = data?.repository?.defaultBranchRef?.name;
-
-  const fullPath = `${owner}/${name}/tree/${branchName}/${slicedPath || ""}`;
-
-  const fullGithubViewUrl = `${GITHUB_URL}/${fullPath}`;
+  const fullGithubViewUrl = `${GITHUB_URL}/${entryType}/${branchName}/${entryPath.join(
+    "/"
+  )}`;
 
   const right = useMemo(
     () => (
@@ -49,7 +51,7 @@ const RepoExplorerDirectoryView = () => {
     [fullGithubViewUrl]
   );
 
-  const left = useMemo(() => <div>{slicedPath}</div>, [slicedPath]);
+  const left = useMemo(() => <div>{entryPath.join("/")}</div>, [entryPath]);
 
   return (
     <div>

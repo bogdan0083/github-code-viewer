@@ -78,7 +78,9 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
             <Link
               href={`/${encodeURIComponent(
                 item.owner.login
-              )}/${encodeURIComponent(item.name)}`}
+              )}/${encodeURIComponent(item.name)}/tree/${
+                item.defaultBranchRef?.name
+              }`}
               key={item.id}
             >
               <a

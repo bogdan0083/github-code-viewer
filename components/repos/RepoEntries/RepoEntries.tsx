@@ -43,12 +43,11 @@ const RepoEntries = ({
   };
 
   return (
-    <ul className={"list-none"} style={{ width: "calc(100% - 1px)" }}>
+    <ul className={"list-none"}>
       {showBackFolder && (
         <RepoDirectoryEntry
           name={".."}
           oid={"123"}
-          type={"tree"}
           path={currentPath.join("/")}
           size={size}
           selected={false}

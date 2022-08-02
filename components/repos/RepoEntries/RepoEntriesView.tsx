@@ -13,24 +13,19 @@ const RepoEntriesView = () => {
   // @ts-ignore
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
 
-  const isFilePath = path[path.length - 1]?.includes(".");
+  const entryType = path[0];
+  const branchName = path[1];
 
-  let slicedPath;
-
-  if (isFilePath) {
-    slicedPath = path.slice(0, path.length - 1);
-  } else {
-    slicedPath = path.length > 0 ? path?.slice(0, path?.length - 1) : path;
-  }
-
-  let selectedEntryPath = path[path.length - 1];
-  console.log(selectedEntryPath);
+  let entryPath = path.slice(2);
+  let parentPath = entryPath.slice(0, -1);
+  let parentPathExpression = `${branchName}:${parentPath.join("/") || ""}`;
+  const selectedEntryPath = entryPath[entryPath.length - 1];
 
   const [result] = useRepoTreeQuery({
     variables: {
       owner: owner as string,
       name: name as string,
-      path: `HEAD:${slicedPath.join("/") || ""}`,
+      path: parentPathExpression,
     },
   });
 
@@ -44,16 +39,12 @@ const RepoEntriesView = () => {
   );
 
   return (
-    <div
-      className={
-        "text-xs p-2 h-[var(--sidenav-height)] overflow-auto fixed w-[inherit]"
-      }
-    >
+    <div className={"text-xs p-2 overflow-auto h-full"}>
       <RepoEntries
         entries={sortedEntries}
         isLoading={fetching}
-        currentPath={slicedPath}
-        showBackFolder={slicedPath.length > 0 && !fetching}
+        currentPath={parentPath}
+        showBackFolder={parentPath.length > 0 && !fetching}
         selectedEntryPath={selectedEntryPath}
         size={"xs"}
       />

@@ -13,11 +13,12 @@ const RepoEntryPage: NextPageWithLayout = () => {
   const ownerWithName = `${owner}/${name}`;
   const title = path ? `${ownerWithName}/${path.join("/")}` : ownerWithName;
 
+  const entryType = path[0];
+  const branchName = path[1];
+
   // Check if the current path is a file.
   // For example vim/hello/src/main.c
-  const isFile = path[path.length - 1]?.includes(".");
-  console.log(path);
-
+  const isFile = entryType === "blob";
   return (
     <>
       <Head>
@@ -32,13 +33,7 @@ const RepoEntryPage: NextPageWithLayout = () => {
 
 RepoEntryPage.getLayout = function (page) {
   return (
-    <SidenavLayout
-      sideNavContent={
-        <div className={"h-full w-full w-[inherit]"}>
-          <RepoExplorerSideView />
-        </div>
-      }
-    >
+    <SidenavLayout sideNavContent={<RepoExplorerSideView />}>
       {page}
     </SidenavLayout>
   );
