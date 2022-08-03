@@ -20,14 +20,9 @@ const RepoFileEntry = ({
   const owner = router.query.owner as string;
   const ownerName = router.query.name as string;
   const routePath = [...(router.query.path as string[]), name];
-  const entryType = routePath[0];
   const branchName = routePath[1];
 
-  let slicedPath = routePath.slice(2);
-
-  const href = `/${owner}/${ownerName}/blob/${branchName}/${slicedPath.join(
-    "/"
-  )}`;
+  const href = `/${owner}/${ownerName}/blob/${branchName}/${path}`;
 
   const cls = clsx(
     "flex items-center block py-[1px] px-3 -ml-2 -mr-2 hover:bg-gray-100 focus:text-white focus:bg-blue-400 focus:outline-none",
