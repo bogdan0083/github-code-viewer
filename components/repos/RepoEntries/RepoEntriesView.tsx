@@ -18,14 +18,14 @@ const RepoEntriesView = () => {
 
   let entryPath = path.slice(2);
   let parentPath = entryPath.slice(0, -1);
-  let parentPathExpression = `${branchName}:${parentPath.join("/") || ""}`;
+  let expression = `${branchName}:${parentPath.join("/") || ""}`;
   const selectedEntryPath = entryPath[entryPath.length - 1];
 
   const [result] = useRepoTreeQuery({
     variables: {
       owner: owner as string,
       name: name as string,
-      path: parentPathExpression,
+      path: expression,
     },
   });
 

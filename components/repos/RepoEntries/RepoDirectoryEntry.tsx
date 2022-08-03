@@ -21,7 +21,7 @@ const RepoDirectoryEntry = ({
   const router = useRouter();
   const owner = router.query.owner as string;
   const ownerName = router.query.name as string;
-  const routePath = [...(router.query.path as string[]), name];
+  const routePath = (router.query.path as string[]) ?? [];
   const branchName = routePath[1];
 
   const href = `/${owner}/${ownerName}/tree/${branchName}/${path}`;

@@ -22,10 +22,7 @@ const RepoExplorerFileView = () => {
   const branchName = path[1];
 
   let entryPath = path.slice(2);
-  console.log(entryPath);
   let expression = `${branchName}:${entryPath.join("/") || ""}`;
-  console.log("haha");
-  console.log(expression);
 
   const [result] = useRepoTreeQuery({
     variables: {
@@ -45,6 +42,11 @@ const RepoExplorerFileView = () => {
 
   const fullGithubViewUrl = `${GITHUB_URL}/${fullPath}`;
 
+  const left = useMemo(
+    () => <div className={"flex items-center"}>{entryPath.join("/")}</div>,
+    [entryPath]
+  );
+
   const right = useMemo(
     () => (
       <a href={fullGithubViewUrl} target="_blank" rel="noreferrer">
@@ -53,8 +55,6 @@ const RepoExplorerFileView = () => {
     ),
     [fullGithubViewUrl]
   );
-
-  const left = useMemo(() => <div>{entryPath.join("/")}</div>, [entryPath]);
 
   useEffect(() => {
     if (object?.text) {

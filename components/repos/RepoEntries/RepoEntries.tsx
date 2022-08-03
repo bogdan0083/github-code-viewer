@@ -48,7 +48,7 @@ const RepoEntries = ({
         <RepoDirectoryEntry
           name={".."}
           oid={"123"}
-          path={currentPath.join("/")}
+          path={currentPath.slice(0, -1).join("/")}
           size={size}
           selected={false}
         />

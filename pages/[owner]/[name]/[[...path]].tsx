@@ -11,18 +11,19 @@ const RepoEntryPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
   const ownerWithName = `${owner}/${name}`;
-  const title = path ? `${ownerWithName}/${path.join("/")}` : ownerWithName;
 
   const entryType = path[0];
-  const branchName = path[1];
+  const entryPath = path.slice(2);
+  const title = entryPath.join("/");
 
   // Check if the current path is a file.
   // For example vim/hello/src/main.c
   const isFile = entryType === "blob";
+
   return (
     <>
       <Head>
-        <title>{title} - Github Code Viewer</title>
+        <title>{title} | Github Code Viewer</title>
         <meta name="description" content="RepoPage" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
