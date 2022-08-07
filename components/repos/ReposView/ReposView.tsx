@@ -22,7 +22,6 @@ const ReposView = ({
   title,
   stars,
 }: ReposViewProps) => {
-  const [q] = useState(query);
   const [after, setAfter] = useState<string | null>(null);
 
   const [languages, setLanguages] = useState<string[]>(
@@ -32,12 +31,12 @@ const ReposView = ({
   let builtQuery = useMemo(
     () =>
       buildSearchQuery({
-        query: q,
+        query,
         language: languages[0],
         created,
         stars,
       }),
-    [q, languages, created, stars]
+    [query, languages, created, stars]
   );
 
   const [result] = useSearchQuery({
@@ -50,6 +49,10 @@ const ReposView = ({
   });
 
   const { data, error, fetching } = result;
+
+  if (error) {
+    throw error;
+  }
 
   const handleLanguageChange = (selected: string[]) => {
     setLanguages(selected);
@@ -68,7 +71,6 @@ const ReposView = ({
           />
         </div>
         {fetching && !data ? <p>Loading...</p> : null}
-        {error ? <p>Error: {error.message}</p> : null}
         {data ? (
           <>
             <ReposList

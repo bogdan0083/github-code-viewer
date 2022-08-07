@@ -5,6 +5,7 @@ import { devtoolsExchange } from "@urql/devtools";
 import { dedupExchange, fetchExchange } from "urql";
 import { relayPagination } from "@urql/exchange-graphcache/extras";
 import { cacheExchange } from "@urql/exchange-graphcache";
+import { retryExchange } from "@urql/exchange-retry";
 
 const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
   return withUrqlClient(() => ({
@@ -24,6 +25,7 @@ const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
           },
         },
       }),
+      retryExchange({}),
       fetchExchange,
     ],
   }))(AppOrPage);

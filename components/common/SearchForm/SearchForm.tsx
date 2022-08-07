@@ -11,6 +11,7 @@ import Input from "../../form/Input/Input";
 import Dropdown from "../Dropdown/Dropdown";
 import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 interface SearchFormProps {
   debounceDelay?: number;
@@ -18,6 +19,7 @@ interface SearchFormProps {
 }
 
 const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -85,7 +87,7 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
             >
               <a
                 className={
-                  "block hover:bg-gray-200 hover:bg-gray-300 px-3 pt-2 pb-3"
+                  "block hover:bg-gray-200 hover:bg-gray-300 px-2 pt-1 sm:px-3 sm:pt-2 pb-3"
                 }
               >
                 <span className={"text-sm"}>{item.nameWithOwner}</span>
@@ -99,6 +101,10 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
         type="submit"
         className="ml-2 w-10 h-10"
         disabled={query === ""}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push(`/search/?q=${encodeURIComponent(query)}`);
+        }}
       >
         <IoSearch size={22} />
       </ThemedButton>

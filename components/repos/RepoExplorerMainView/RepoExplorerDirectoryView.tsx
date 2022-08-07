@@ -57,7 +57,7 @@ const RepoExplorerDirectoryView = () => {
     [object?.entries]
   );
 
-  const fullGithubViewUrl = `${GITHUB_URL}/${entryType}/${branchName}/${entryPath.join(
+  const fullGithubViewUrl = `${GITHUB_URL}/${owner}/${name}/${entryType}/${branchName}/${entryPath.join(
     "/"
   )}`;
 

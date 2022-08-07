@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { MouseEventHandler } from "react";
 
 interface ThemedButtonProps {
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   theme?: "primary";
   type?: "button" | "submit" | "reset";
