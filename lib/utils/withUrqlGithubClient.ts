@@ -2,7 +2,7 @@ import { withUrqlClient } from "next-urql";
 import { NextPage } from "next";
 import { GITHUB_GRAPHQL_URL } from "./constants";
 import { devtoolsExchange } from "@urql/devtools";
-import { dedupExchange, fetchExchange } from "urql";
+import { dedupExchange, errorExchange, fetchExchange } from "urql";
 import { relayPagination } from "@urql/exchange-graphcache/extras";
 import { cacheExchange } from "@urql/exchange-graphcache";
 import { retryExchange } from "@urql/exchange-retry";
@@ -27,6 +27,11 @@ const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
       }),
       retryExchange({}),
       fetchExchange,
+      errorExchange({
+        onError: (e) => {
+          throw e;
+        },
+      }),
     ],
   }))(AppOrPage);
 };
