@@ -14,7 +14,7 @@ const RepoEntryPage: NextPageWithLayout = () => {
 
   const entryType = path[0];
   const entryPath = path.slice(2);
-  const title = entryPath.join("/");
+  const title = `${ownerWithName}/${entryPath.join("/") && ""}`;
 
   // Check if the current path is a file.
   // For example vim/hello/src/main.c
