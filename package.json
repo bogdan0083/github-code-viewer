@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm prettier pages components tests --write && next lint"
+    "lint": "pnpm prettier pages components tests --write && next lint",
+    "codegen": "DOTENV_CONFIG_PATH=\"./.env.local\" graphql-codegen --require dotenv/config --config codegen.yml"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^2.8.1",
@@ -19,6 +20,7 @@
     "autoprefixer": "^10.4.7",
     "clsx": "^1.2.1",
     "date-fns": "^2.28.0",
+    "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
     "highlightjs": "^9.16.2",
     "init": "^0.1.2",
