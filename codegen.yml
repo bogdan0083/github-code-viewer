@@ -17,3 +17,6 @@ generates:
       withHooks: true
       dedupeOperationSuffix: true
       gqlImport: 'urql#gql'
+  generated/schema.graphql:
+    plugins:
+      - schema-ast
