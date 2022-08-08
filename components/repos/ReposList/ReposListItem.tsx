@@ -1,6 +1,9 @@
 import Link from "next/link";
 import LangLabel from "../../common/LangLabel/LangLabel";
 import { RepoFieldsFragment } from "../../../generated/graphql";
+import { prettifyNumberToThousands } from "../../../lib/utils/prettify";
+import { TbGitFork } from "react-icons/tb";
+import { RiStarSLine } from "react-icons/ri";
 
 interface ReposListProps extends RepoFieldsFragment {}
 
@@ -29,18 +32,22 @@ const ReposListItem = ({
         </a>
       </Link>
       <p className={"text-xs lg:text-sm text-gray-500"}>{description}</p>
-      <div className="mt-3">
+      <div className="mt-3 flex items-center">
         {primaryLanguage && (
           <LangLabel
             name={primaryLanguage.name}
             color={primaryLanguage?.color || null}
-            className={"text-xs"}
+            className={"text-xs mr-3"}
           />
         )}
-        <span className={"ml-2 text-xs text-gray-500"}>{forkCount} forks</span>
-        <span className={"ml-2 text-xs text-gray-500"}>
-          {stargazerCount} stars
-        </span>
+        <div className={"mr-3 flex items-center text-xs text-gray-500"}>
+          <TbGitFork size={14} className={"mr-1"} />
+          {prettifyNumberToThousands(forkCount)}
+        </div>
+        <div className={"mr-3 flex items-center text-xs text-gray-500"}>
+          <RiStarSLine size={14} className={"mr-1"} />
+          {prettifyNumberToThousands(stargazerCount)}
+        </div>
       </div>
     </div>
   );
