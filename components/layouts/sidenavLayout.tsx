@@ -1,6 +1,8 @@
 import AppHeader from "../common/AppHeader/AppHeader";
 import styles from "./sidenavLayout.module.css";
 import clsx from "clsx";
+import ErrorBoundary from "../common/ErrorBoundary/ErrorBoundary";
+import { useRouter } from "next/router";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +10,7 @@ interface LayoutProps {
 }
 
 const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
+  const router = useRouter();
   return (
     <>
       <AppHeader title={"GitHub Code Viewer"} mobileTitle={"GCV"} fixed />
@@ -19,7 +22,10 @@ const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
         >
           {sideNavContent}
         </div>
-        <div className="flex-grow md:max-h-full overflow-auto">{children}</div>
+
+        <div className="flex-grow md:max-h-full overflow-auto">
+          <ErrorBoundary router={router}>{children}</ErrorBoundary>
+        </div>
       </main>
     </>
   );
