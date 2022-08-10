@@ -6,15 +6,18 @@ import RepoExplorerSideView from "../../../components/repos/RepoEntries/RepoEntr
 import RepoExplorerDirectoryView from "../../../components/repos/RepoExplorerMainView/RepoExplorerDirectoryView";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 import RepoExplorerFileView from "../../../components/repos/RepoExplorerFileView/RepoExplorerFileView";
+import { NextPageContext } from "next";
+import { ReactElement } from "react";
 
-const RepoEntryPage: NextPageWithLayout = () => {
+type Props = {
+  title: string;
+};
+
+const RepoEntryPage: NextPageWithLayout<any, Props> = ({ title }) => {
   const router = useRouter();
-  const { owner, name, path = [] } = router.query as RepoPageQueryParams;
-  const ownerWithName = `${owner}/${name}`;
+  const { path = [] } = router.query as RepoPageQueryParams;
 
   const entryType = path[0];
-  const entryPath = path.slice(2);
-  const title = `${ownerWithName}/${entryPath.join("/") && ""}`;
 
   // Check if the current path is a file.
   // For example vim/hello/src/main.c
@@ -32,12 +35,17 @@ const RepoEntryPage: NextPageWithLayout = () => {
   );
 };
 
-RepoEntryPage.getLayout = function (page) {
+RepoEntryPage.getLayout = function (page: ReactElement) {
   return (
     <SidenavLayout sideNavContent={<RepoExplorerSideView />}>
       {page}
     </SidenavLayout>
   );
+};
+
+RepoEntryPage.getInitialProps = function (ctx: NextPageContext): Props {
+  const { owner, name, path } = ctx.query as RepoPageQueryParams;
+  return { title: `${owner}/${name}/${path?.join("/") || ""}` };
 };
 
 export default RepoEntryPage;
