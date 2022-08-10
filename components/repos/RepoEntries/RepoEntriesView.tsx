@@ -38,6 +38,11 @@ const RepoEntriesView = () => {
     [object?.entries]
   );
 
+  if (error) {
+    throw error;
+  }
+
+
   return (
     <div className={"text-xs p-2 overflow-auto h-full"}>
       <RepoEntries

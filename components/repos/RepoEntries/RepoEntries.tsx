@@ -2,6 +2,7 @@ import { TreeFieldsFragment } from "../../../generated/graphql";
 import RepoDirectoryEntry from "./RepoDirectoryEntry";
 import RepoFileEntry from "./RepoFileEntry";
 import { useRouter } from "next/router";
+import clsx from "clsx";
 
 export type RepoEntrySize = "xs" | "sm" | "md" | "lg";
 
@@ -42,8 +43,14 @@ const RepoEntries = ({
     path: string[];
   };
 
+  const cls = clsx(
+    "list-none transition-opacity",
+    (isLoading && entries && entries.length > 0) && "opacity-50"
+  );
+
+
   return (
-    <ul className={"list-none"}>
+    <ul className={cls}>
       {showBackFolder && (
         <RepoDirectoryEntry
           name={".."}

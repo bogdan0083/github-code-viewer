@@ -50,6 +50,10 @@ const RepoExplorerDirectoryView = () => {
 
   const { data, error, fetching } = result;
 
+  if (error) {
+    throw error;
+  }
+
   let object = data?.repository?.object as TreeFieldsFragment;
 
   let sortedEntries = useMemo(
@@ -84,6 +88,7 @@ const RepoExplorerDirectoryView = () => {
           size={"sm"}
           entries={sortedEntries}
           currentPath={entryPath}
+          isLoading={fetching}
         />
       </div>
     </div>
