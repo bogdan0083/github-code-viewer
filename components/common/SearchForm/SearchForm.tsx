@@ -35,6 +35,10 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
 
   const { data, error, fetching } = result;
 
+  if (error) {
+    throw error;
+  }
+
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.currentTarget.value);
     if (!event.currentTarget.value) {
