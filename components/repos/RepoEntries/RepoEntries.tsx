@@ -38,6 +38,7 @@ const RepoEntries = ({
   currentPath = [],
 }: RepoEntriesProps) => {
   const router = useRouter();
+
   const { owner, path = [] } = router.query as {
     owner: string;
     path: string[];
@@ -45,9 +46,12 @@ const RepoEntries = ({
 
   const cls = clsx(
     "list-none transition-opacity",
-    (isLoading && entries && entries.length > 0) && "opacity-50"
+    isLoading && entries && entries.length > 0 && "opacity-50"
   );
 
+  if (isLoading && !entries) {
+    return <>Loading...</>;
+  }
 
   return (
     <ul className={cls}>

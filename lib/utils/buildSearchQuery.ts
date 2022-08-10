@@ -1,12 +1,4 @@
-import { z } from "zod";
-
-export const dateSchema = z.preprocess((arg) => {
-  if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
-}, z.date());
-
-export type DateSchema = z.infer<typeof dateSchema>;
-
-export type SearchType = "REPOSITORY" | "USER" | "ISSUE" | "ORG";
+import { SearchType } from "../../generated/graphql";
 
 export type SearchOptions = {
   query?: string;
@@ -18,12 +10,12 @@ export type SearchOptions = {
   type: SearchType;
 };
 
-export const buildSearchQuery = ({
+export function buildSearchQuery({
   query = "",
   language = "",
   created,
   stars,
-}: Pick<SearchOptions, "query" | "language" | "created" | "stars">): string => {
+}: Pick<SearchOptions, "query" | "language" | "created" | "stars">): string {
   let preparedCreated = `created:${created}`;
 
   let result = [];
@@ -47,4 +39,4 @@ export const buildSearchQuery = ({
   }
 
   return result.join(" ");
-};
+}

@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react";
 import programmingLanguages from "../../../lib/data/programming-languages";
 import Select from "../../form/Select/Select";
-import { buildSearchQuery, SearchOptions } from "../../../lib/models/common";
+import {
+  buildSearchQuery,
+  SearchOptions,
+} from "../../../lib/utils/buildSearchQuery";
 import {
   RepoFieldsFragment,
   SearchType,
