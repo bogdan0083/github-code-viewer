@@ -45,7 +45,13 @@ RepoEntryPage.getLayout = function (page: ReactElement) {
 
 RepoEntryPage.getInitialProps = function (ctx: NextPageContext): Props {
   const { owner, name, path } = ctx.query as RepoPageQueryParams;
-  return { title: `${owner}/${name}/${path?.join("/") || ""}` };
+  const entryPath = path?.slice(2);
+  const ownerWithName = `${owner}/${name}`;
+  let title = ownerWithName;
+  if (entryPath && entryPath.length > 0) {
+    title += `/${entryPath.join("/")}`;
+  }
+  return { title };
 };
 
 export default RepoEntryPage;
