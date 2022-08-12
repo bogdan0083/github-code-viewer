@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import clsx from "clsx";
+import { Transition } from "@headlessui/react";
 
 interface Elem {
   id: string;
@@ -51,48 +52,49 @@ const Dropdown = ({
   }, [isOpen, onClickOutside]);
 
   return (
-    <>
-      {isOpen && (
-        <div className="absolute bottom-0 translate-y-full right-0 w-full max-h-screen">
-          <div
-            className={clsx(
-              "bg-white rounded shadow-md mt-2 border border-gray-200",
-              className
-            )}
-          >
-            {isLoading && (
-              <div className="text-xs p-2">
-                <div>Loading...</div>
-              </div>
-            )}
-            {!isLoading && items && items.length === 0 && (
-              <div className="text-sm">
-                <div>No results found</div>
-              </div>
-            )}
-            {!isLoading && items && (
-              <div className="flex flex-col">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => handleClick(item)}
-                    className={clsx(
-                      "items-center py-2",
-                      selectedItem &&
-                        selectedItem.id === item.id &&
-                        "bg-gray-100"
-                    )}
-                    onKeyDown={handleKeyDown}
-                  >
-                    {renderItem(item)}
-                  </div>
-                ))}
-              </div>
-            )}
+    <div className="absolute bottom-0 translate-y-full right-0 w-full max-h-screen">
+      <Transition
+        show={isOpen}
+        enter={"transition-all"}
+        enterFrom={"opacity-0 scale-95"}
+        enterTo={"opacity-100 scale-100"}
+        leave={"transition-all"}
+        leaveFrom={"opacity-100 scale-100"}
+        leaveTo={"opacity-0 scale-95"}
+        className={clsx(
+          "bg-white rounded shadow-md mt-2 border border-gray-200",
+          className
+        )}
+      >
+        {isLoading && (
+          <div className="text-xs p-2">
+            <div>Loading...</div>
           </div>
-        </div>
-      )}
-    </>
+        )}
+        {!isLoading && items && items.length === 0 && (
+          <div className="text-sm p-2">
+            <div>No results found</div>
+          </div>
+        )}
+        {!isLoading && items && (
+          <div className="flex flex-col">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleClick(item)}
+                className={clsx(
+                  "items-center py-2",
+                  selectedItem && selectedItem.id === item.id && "bg-gray-100"
+                )}
+                onKeyDown={handleKeyDown}
+              >
+                {renderItem(item)}
+              </div>
+            ))}
+          </div>
+        )}
+      </Transition>
+    </div>
   );
 };
 
