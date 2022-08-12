@@ -24,9 +24,9 @@ const ThemedButton = ({
   fullWidth = false,
 }: ThemedButtonProps) => {
   const cls = clsx(
-    "font-bold flex justify-center relative items-center py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none",
+    "font-bold flex justify-center relative items-center py-2 px-4 rounded focus:ring-2 focus:ring-blue-300 focus:outline-none transition",
     className,
-    theme === "primary" && "bg-blue-500 text-white",
+    theme === "primary" && "bg-blue-500 hover:bg-blue-600 text-white",
     disabled && "cursor-not-allowed opacity-50",
     fullWidth && "w-full"
   );
