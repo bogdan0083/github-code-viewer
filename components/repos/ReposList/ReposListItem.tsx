@@ -22,7 +22,7 @@ const ReposListItem = ({
     <div
       key={id}
       className={
-        "mb-1 rounded border border-gray-200 p-3 mb-3 shadow last:mb-0"
+        "mb-1 rounded border border-gray-200 p-3 mb-3 shadow last:mb-0 transition-colors hover:bg-gray-100"
       }
     >
       <Link href={`/${nameWithOwner}/tree/${defaultBranchRef?.name}`}>
