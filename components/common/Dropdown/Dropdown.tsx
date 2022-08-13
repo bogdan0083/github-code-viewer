@@ -56,11 +56,11 @@ const Dropdown = ({
       <Transition
         show={isOpen}
         enter={"transition-all"}
-        enterFrom={"opacity-0 scale-95"}
-        enterTo={"opacity-100 scale-100"}
+        enterFrom={"opacity-0 scale-[0.99]"}
+        enterTo={"opacity-100 scale-[1]"}
         leave={"transition-all"}
-        leaveFrom={"opacity-100 scale-100"}
-        leaveTo={"opacity-0 scale-95"}
+        leaveFrom={"opacity-100 scale-[1]"}
+        leaveTo={"opacity-0 scale-[0.99]"}
         className={clsx(
           "bg-white rounded shadow-md mt-2 border border-gray-200",
           className
