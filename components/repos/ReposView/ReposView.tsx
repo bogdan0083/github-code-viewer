@@ -76,10 +76,14 @@ const ReposView = ({
         {fetching && !data ? <p>Loading...</p> : null}
         {data ? (
           <>
-            <ReposList
-              repos={data.search.nodes as RepoFieldsFragment[]}
-              className={clsx({ "cursor-progress opacity-30": fetching })}
-            />
+            {data.search.nodes && data.search.nodes.length > 0 ? (
+              <ReposList
+                repos={data.search.nodes as RepoFieldsFragment[]}
+                className={clsx({ "cursor-progress opacity-30": fetching })}
+              />
+            ) : (
+              "No repos found"
+            )}
             {data.search.pageInfo.hasNextPage && (
               <ThemedButton
                 loading={fetching}
