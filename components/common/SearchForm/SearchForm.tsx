@@ -91,7 +91,7 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
             >
               <a
                 className={
-                  "block hover:bg-gray-200 hover:bg-gray-300 px-2 pt-1 sm:px-3 sm:pt-2 pb-3"
+                  "block hover:bg-gray-200 hover:bg-gray-300 transition-colors px-2 pt-1 sm:px-3 sm:pt-2 pb-3"
                 }
               >
                 <span className={"text-sm"}>{item.nameWithOwner}</span>
