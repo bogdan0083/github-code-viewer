@@ -38,11 +38,10 @@ const RepoEntries = ({
   currentPath = [],
 }: RepoEntriesProps) => {
   const router = useRouter();
-
-  const { owner, path = [] } = router.query as {
-    owner: string;
-    path: string[];
-  };
+  const owner = router.query.owner as string;
+  const ownerName = router.query.name as string;
+  const routePath = (router.query.path as string[]) ?? [];
+  const branchName = routePath[1];
 
   const cls = clsx(
     "list-none transition-opacity",
@@ -53,6 +52,8 @@ const RepoEntries = ({
     return <>Loading...</>;
   }
 
+  const basePath = `/${owner}/${ownerName}/tree/${branchName}/`;
+
   return (
     <ul className={cls}>
       {showBackFolder && (
@@ -62,6 +63,7 @@ const RepoEntries = ({
           path={currentPath.slice(0, -1).join("/")}
           size={size}
           selected={false}
+          href={basePath + currentPath.slice(0, -1).join("/")}
         />
       )}
       {entries?.map((entry) =>
@@ -72,6 +74,7 @@ const RepoEntries = ({
               key={entry.oid}
               size={size}
               selected={selectedEntryPath === entry.name}
+              href={basePath + entry.path}
             />
           ) : (
             <RepoFileEntry
@@ -79,6 +82,7 @@ const RepoEntries = ({
               key={entry.oid}
               size={size}
               selected={selectedEntryPath === entry.name}
+              href={basePath + entry.path}
             />
           )
         ) : null
