@@ -14,11 +14,12 @@ const LoadingSpinner = ({
   theme = "dark",
 }: LoadingSpinnerProps) => {
   const cls = clsx(
-    "inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600",
+    "inline mr-2 w-4 h-4 text-gray-200 animate-spin fill-blue-600",
     size === "md" && "w-6 h-6",
     size === "sm" && "w-2 h-2",
     size === "lg" && "w-8 h-8",
-    className
+    className,
+    theme === "light" && "text-white fill-blue-400"
   );
 
   return (

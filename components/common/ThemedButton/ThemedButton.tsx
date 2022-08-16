@@ -20,7 +20,7 @@ const ThemedButton = ({
   disabled,
   theme = "primary",
   type = "button",
-  loading = false,
+  loading = true,
   fullWidth = false,
 }: ThemedButtonProps) => {
   const cls = clsx(
@@ -34,7 +34,11 @@ const ThemedButton = ({
   return (
     <button className={cls} onClick={onClick} disabled={disabled} type={type}>
       {loading ? (
-        <LoadingSpinner wrapperClassName={"absolute"} size={"md"} />
+        <LoadingSpinner
+          wrapperClassName={"absolute"}
+          size={"md"}
+          theme={"light"}
+        />
       ) : null}
       <span className={clsx("flex-grow", loading && "opacity-0")}>
         {children}
