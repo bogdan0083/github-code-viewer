@@ -52,7 +52,7 @@ const RepoEntries = ({
     return <>Loading...</>;
   }
 
-  const basePath = `/${owner}/${ownerName}/tree/${branchName}/`;
+  const ownerWithName = `/${owner}/${ownerName}`;
 
   return (
     <ul className={cls}>
@@ -63,7 +63,9 @@ const RepoEntries = ({
           path={currentPath.slice(0, -1).join("/")}
           size={size}
           selected={false}
-          href={basePath + currentPath.slice(0, -1).join("/")}
+          href={`${ownerWithName}/tree/${branchName}/${currentPath
+            .slice(0, -1)
+            .join("/")}`}
         />
       )}
       {entries?.map((entry) =>
@@ -74,7 +76,7 @@ const RepoEntries = ({
               key={entry.oid}
               size={size}
               selected={selectedEntryPath === entry.name}
-              href={basePath + entry.path}
+              href={`${ownerWithName}/tree/${branchName}/${entry.path}`}
             />
           ) : (
             <RepoFileEntry
@@ -82,7 +84,7 @@ const RepoEntries = ({
               key={entry.oid}
               size={size}
               selected={selectedEntryPath === entry.name}
-              href={basePath + entry.path}
+              href={`${ownerWithName}/blob/${branchName}/${entry.path}`}
             />
           )
         ) : null
