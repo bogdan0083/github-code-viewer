@@ -20,7 +20,7 @@ const ThemedButton = ({
   disabled,
   theme = "primary",
   type = "button",
-  loading = true,
+  loading = false,
   fullWidth = false,
 }: ThemedButtonProps) => {
   const cls = clsx(
