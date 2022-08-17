@@ -1,6 +1,6 @@
 interface CodeFragmentProps {
   fileContents: string;
-  language: string;
+  language: string | null;
   lineNumbers?: boolean;
   lineNumberStart?: number;
   lineNumberEnd?: number;
