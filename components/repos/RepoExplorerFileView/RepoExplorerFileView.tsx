@@ -74,6 +74,7 @@ const RepoExplorerFileView = () => {
       setLanguage(null);
     }
   }, [fetching, fileHtmlContents]);
+
   return (
     <div className={"flex flex-col max-h-full"}>
       <Topline left={left} right={right} className={"flex-shrink"} />
