@@ -1,10 +1,17 @@
-import { gql } from 'urql';
-import * as Urql from 'urql';
+import * as Urql from "urql";
+import { gql } from "urql";
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -4727,25 +4734,28 @@ export type DiscussionUserContentEditsArgs = {
 };
 
 /** A category for discussions in a repository. */
-export type DiscussionCategory = Node & RepositoryNode & {
-  __typename?: 'DiscussionCategory';
+export type DiscussionCategory = Node &
+  RepositoryNode & {
+  __typename?: "DiscussionCategory";
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars["DateTime"];
   /** A description of this category. */
-  description?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars["String"]>;
   /** An emoji representing this category. */
-  emoji: Scalars['String'];
+  emoji: Scalars["String"];
   /** This category's emoji rendered as HTML. */
-  emojiHTML: Scalars['HTML'];
-  id: Scalars['ID'];
+  emojiHTML: Scalars["HTML"];
+  id: Scalars["ID"];
   /** Whether or not discussions in this category support choosing an answer with the markDiscussionCommentAsAnswer mutation. */
-  isAnswerable: Scalars['Boolean'];
+  isAnswerable: Scalars["Boolean"];
   /** The name of this category. */
-  name: Scalars['String'];
+  name: Scalars["String"];
   /** The repository associated with this node. */
   repository: Repository;
+  /** The slug of this category. */
+  slug: Scalars["String"];
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars["DateTime"];
 };
 
 /** The connection type for DiscussionCategory. */
@@ -18907,14 +18917,21 @@ export enum ReportedContentClassifiers {
 }
 
 /** A repository contains the content for a project. */
-export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & RepositoryInfo & Starrable & Subscribable & UniformResourceLocatable & {
-  __typename?: 'Repository';
+export type Repository = Node &
+  PackageOwner &
+  ProjectOwner &
+  ProjectV2Recent &
+  RepositoryInfo &
+  Starrable &
+  Subscribable &
+  UniformResourceLocatable & {
+  __typename?: "Repository";
   /** Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging. */
-  allowUpdateBranch: Scalars['Boolean'];
+  allowUpdateBranch: Scalars["Boolean"];
   /** A list of users that can be assigned to issues in this repository. */
   assignableUsers: UserConnection;
   /** Whether or not Auto-merge can be enabled on pull requests in this repository. */
-  autoMergeAllowed: Scalars['Boolean'];
+  autoMergeAllowed: Scalars["Boolean"];
   /** A list of branch protection rules for this repository. */
   branchProtectionRules: BranchProtectionRuleConnection;
   /** Returns the code of conduct for this repository */
@@ -18928,76 +18945,78 @@ export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & 
   /** Returns a list of contact links associated to the repository */
   contactLinks?: Maybe<Array<RepositoryContactLink>>;
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars["DateTime"];
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars['Int']>;
+  databaseId?: Maybe<Scalars["Int"]>;
   /** The Ref associated with the repository's default branch. */
   defaultBranchRef?: Maybe<Ref>;
   /** Whether or not branches are automatically deleted when merged in this repository. */
-  deleteBranchOnMerge: Scalars['Boolean'];
+  deleteBranchOnMerge: Scalars["Boolean"];
   /** A list of deploy keys that are on this repository. */
   deployKeys: DeployKeyConnection;
   /** Deployments associated with the repository */
   deployments: DeploymentConnection;
   /** The description of the repository. */
-  description?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars["String"]>;
   /** The description of the repository rendered to HTML. */
-  descriptionHTML: Scalars['HTML'];
+  descriptionHTML: Scalars["HTML"];
   /** Returns a single discussion from the current repository by number. */
   discussion?: Maybe<Discussion>;
   /** A list of discussion categories that are available in the repository. */
   discussionCategories: DiscussionCategoryConnection;
+  /** A discussion category by slug. */
+  discussionCategory?: Maybe<DiscussionCategory>;
   /** A list of discussions that have been opened in the repository. */
   discussions: DiscussionConnection;
   /** The number of kilobytes this repository occupies on disk. */
-  diskUsage?: Maybe<Scalars['Int']>;
+  diskUsage?: Maybe<Scalars["Int"]>;
   /** Returns a single active environment from the current repository by name. */
   environment?: Maybe<Environment>;
   /** A list of environments that are in this repository. */
   environments: EnvironmentConnection;
   /** Returns how many forks there are of this repository in the whole network. */
-  forkCount: Scalars['Int'];
+  forkCount: Scalars["Int"];
   /** Whether this repository allows forks. */
-  forkingAllowed: Scalars['Boolean'];
+  forkingAllowed: Scalars["Boolean"];
   /** A list of direct forked repositories. */
   forks: RepositoryConnection;
   /** The funding links for this repository */
   fundingLinks: Array<FundingLink>;
   /** Indicates if the repository has issues feature enabled. */
-  hasIssuesEnabled: Scalars['Boolean'];
+  hasIssuesEnabled: Scalars["Boolean"];
   /** Indicates if the repository has the Projects feature enabled. */
-  hasProjectsEnabled: Scalars['Boolean'];
+  hasProjectsEnabled: Scalars["Boolean"];
   /** Indicates if the repository has wiki feature enabled. */
-  hasWikiEnabled: Scalars['Boolean'];
+  hasWikiEnabled: Scalars["Boolean"];
   /** The repository's URL. */
-  homepageUrl?: Maybe<Scalars['URI']>;
-  id: Scalars['ID'];
+  homepageUrl?: Maybe<Scalars["URI"]>;
+  id: Scalars["ID"];
   /** The interaction ability settings for this repository. */
   interactionAbility?: Maybe<RepositoryInteractionAbility>;
   /** Indicates if the repository is unmaintained. */
-  isArchived: Scalars['Boolean'];
+  isArchived: Scalars["Boolean"];
   /** Returns true if blank issue creation is allowed */
-  isBlankIssuesEnabled: Scalars['Boolean'];
+  isBlankIssuesEnabled: Scalars["Boolean"];
   /** Returns whether or not this repository disabled. */
-  isDisabled: Scalars['Boolean'];
+  isDisabled: Scalars["Boolean"];
   /** Returns whether or not this repository is empty. */
-  isEmpty: Scalars['Boolean'];
+  isEmpty: Scalars["Boolean"];
   /** Identifies if the repository is a fork. */
-  isFork: Scalars['Boolean'];
+  isFork: Scalars["Boolean"];
   /** Indicates if a repository is either owned by an organization, or is a private fork of an organization repository. */
-  isInOrganization: Scalars['Boolean'];
+  isInOrganization: Scalars["Boolean"];
   /** Indicates if the repository has been locked or not. */
-  isLocked: Scalars['Boolean'];
+  isLocked: Scalars["Boolean"];
   /** Identifies if the repository is a mirror. */
-  isMirror: Scalars['Boolean'];
+  isMirror: Scalars["Boolean"];
   /** Identifies if the repository is private or internal. */
-  isPrivate: Scalars['Boolean'];
+  isPrivate: Scalars["Boolean"];
   /** Returns true if this repository has a security policy */
-  isSecurityPolicyEnabled?: Maybe<Scalars['Boolean']>;
+  isSecurityPolicyEnabled?: Maybe<Scalars["Boolean"]>;
   /** Identifies if the repository is a template that can be used to generate new repositories. */
-  isTemplate: Scalars['Boolean'];
+  isTemplate: Scalars["Boolean"];
   /** Is this repository a user configuration repository? */
-  isUserConfigurationRepository: Scalars['Boolean'];
+  isUserConfigurationRepository: Scalars["Boolean"];
   /** Returns a single issue from the current repository by number. */
   issue?: Maybe<Issue>;
   /** Returns a single issue-like object from the current repository by number. */
@@ -19021,21 +19040,21 @@ export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & 
   /** A list of Users that can be mentioned in the context of the repository. */
   mentionableUsers: UserConnection;
   /** Whether or not PRs are merged with a merge commit on this repository. */
-  mergeCommitAllowed: Scalars['Boolean'];
+  mergeCommitAllowed: Scalars["Boolean"];
   /** Returns a single milestone from the current repository by number. */
   milestone?: Maybe<Milestone>;
   /** A list of milestones associated with the repository. */
   milestones?: Maybe<MilestoneConnection>;
   /** The repository's original mirror URL. */
-  mirrorUrl?: Maybe<Scalars['URI']>;
+  mirrorUrl?: Maybe<Scalars["URI"]>;
   /** The name of the repository. */
-  name: Scalars['String'];
+  name: Scalars["String"];
   /** The repository's name with owner. */
-  nameWithOwner: Scalars['String'];
+  nameWithOwner: Scalars["String"];
   /** A Git object in the repository */
   object?: Maybe<GitObject>;
   /** The image used to represent this repository in Open Graph data. */
-  openGraphImageUrl: Scalars['URI'];
+  openGraphImageUrl: Scalars["URI"];
   /** The User owner of the repository. */
   owner: RepositoryOwner;
   /** A list of packages under the owner. */
@@ -19065,9 +19084,9 @@ export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & 
    */
   projectsNext: ProjectNextConnection;
   /** The HTTP path listing the repository's projects */
-  projectsResourcePath: Scalars['URI'];
+  projectsResourcePath: Scalars["URI"];
   /** The HTTP URL listing the repository's projects */
-  projectsUrl: Scalars['URI'];
+  projectsUrl: Scalars["URI"];
   /** List of projects linked to this repository. */
   projectsV2: ProjectV2Connection;
   /** Returns a single pull request from the current repository by number. */
@@ -19077,9 +19096,9 @@ export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & 
   /** A list of pull requests that have been opened in the repository. */
   pullRequests: PullRequestConnection;
   /** Identifies when the repository was last pushed to. */
-  pushedAt?: Maybe<Scalars['DateTime']>;
+  pushedAt?: Maybe<Scalars["DateTime"]>;
   /** Whether or not rebase-merging is enabled on this repository. */
-  rebaseMergeAllowed: Scalars['Boolean'];
+  rebaseMergeAllowed: Scalars["Boolean"];
   /** Recent projects that this user has modified in the context of the owner. */
   recentProjects: ProjectV2Connection;
   /** Fetch a given ref from the repository */
@@ -19093,54 +19112,54 @@ export type Repository = Node & PackageOwner & ProjectOwner & ProjectV2Recent & 
   /** A list of applied repository-topic associations for this repository. */
   repositoryTopics: RepositoryTopicConnection;
   /** The HTTP path for this repository */
-  resourcePath: Scalars['URI'];
+  resourcePath: Scalars["URI"];
   /** The security policy URL. */
-  securityPolicyUrl?: Maybe<Scalars['URI']>;
+  securityPolicyUrl?: Maybe<Scalars["URI"]>;
   /** A description of the repository, rendered to HTML without any links in it. */
-  shortDescriptionHTML: Scalars['HTML'];
+  shortDescriptionHTML: Scalars["HTML"];
   /** Whether or not squash-merging is enabled on this repository. */
-  squashMergeAllowed: Scalars['Boolean'];
+  squashMergeAllowed: Scalars["Boolean"];
   /** Whether a squash merge commit can use the pull request title as default. */
-  squashPrTitleUsedAsDefault: Scalars['Boolean'];
+  squashPrTitleUsedAsDefault: Scalars["Boolean"];
   /** The SSH URL to clone this repository */
-  sshUrl: Scalars['GitSSHRemote'];
+  sshUrl: Scalars["GitSSHRemote"];
   /**
    * Returns a count of how many stargazers there are on this object
    *
    */
-  stargazerCount: Scalars['Int'];
+  stargazerCount: Scalars["Int"];
   /** A list of users who have starred this starrable. */
   stargazers: StargazerConnection;
   /** Returns a list of all submodules in this repository parsed from the .gitmodules file as of the default branch's HEAD commit. */
   submodules: SubmoduleConnection;
   /** Temporary authentication token for cloning this repository. */
-  tempCloneToken?: Maybe<Scalars['String']>;
+  tempCloneToken?: Maybe<Scalars["String"]>;
   /** The repository from which this repository was generated, if any. */
   templateRepository?: Maybe<Repository>;
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars["DateTime"];
   /** The HTTP URL for this repository */
-  url: Scalars['URI'];
+  url: Scalars["URI"];
   /** Whether this repository has a custom image to use with Open Graph as opposed to being represented by the owner's avatar. */
-  usesCustomOpenGraphImage: Scalars['Boolean'];
+  usesCustomOpenGraphImage: Scalars["Boolean"];
   /** Indicates whether the viewer has admin permissions on this repository. */
-  viewerCanAdminister: Scalars['Boolean'];
+  viewerCanAdminister: Scalars["Boolean"];
   /** Can the current viewer create new projects on this owner. */
-  viewerCanCreateProjects: Scalars['Boolean'];
+  viewerCanCreateProjects: Scalars["Boolean"];
   /** Check if the viewer is able to change their subscription status for the repository. */
-  viewerCanSubscribe: Scalars['Boolean'];
+  viewerCanSubscribe: Scalars["Boolean"];
   /** Indicates whether the viewer can update the topics of this repository. */
-  viewerCanUpdateTopics: Scalars['Boolean'];
+  viewerCanUpdateTopics: Scalars["Boolean"];
   /** The last commit email for the viewer. */
-  viewerDefaultCommitEmail?: Maybe<Scalars['String']>;
+  viewerDefaultCommitEmail?: Maybe<Scalars["String"]>;
   /** The last used merge method by the viewer or the default for the repository. */
   viewerDefaultMergeMethod: PullRequestMergeMethod;
   /** Returns a boolean indicating whether the viewing user has starred this starrable. */
-  viewerHasStarred: Scalars['Boolean'];
+  viewerHasStarred: Scalars["Boolean"];
   /** The users permission level on the repository. Will return null if authenticated as an GitHub App. */
   viewerPermission?: Maybe<RepositoryPermission>;
   /** A list of emails this viewer can commit with. */
-  viewerPossibleCommitEmails?: Maybe<Array<Scalars['String']>>;
+  viewerPossibleCommitEmails?: Maybe<Array<Scalars["String"]>>;
   /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
   viewerSubscription?: Maybe<SubscriptionState>;
   /** Indicates the repository's visibility level. */
@@ -19199,47 +19218,48 @@ export type RepositoryCommitCommentsArgs = {
 
 /** A repository contains the content for a project. */
 export type RepositoryDeployKeysArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
 };
-
 
 /** A repository contains the content for a project. */
 export type RepositoryDeploymentsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  environments?: InputMaybe<Array<Scalars['String']>>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  environments?: InputMaybe<Array<Scalars["String"]>>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<DeploymentOrder>;
 };
 
-
 /** A repository contains the content for a project. */
 export type RepositoryDiscussionArgs = {
-  number: Scalars['Int'];
+  number: Scalars["Int"];
 };
-
 
 /** A repository contains the content for a project. */
 export type RepositoryDiscussionCategoriesArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  filterByAssignable?: InputMaybe<Scalars['Boolean']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  filterByAssignable?: InputMaybe<Scalars["Boolean"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
 };
 
+/** A repository contains the content for a project. */
+export type RepositoryDiscussionCategoryArgs = {
+  slug: Scalars["String"];
+};
 
 /** A repository contains the content for a project. */
 export type RepositoryDiscussionsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  categoryId?: InputMaybe<Scalars['ID']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  categoryId?: InputMaybe<Scalars["ID"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<DiscussionOrder>;
 };
 
@@ -21768,27 +21788,29 @@ export type StarredRepositoryEdge = {
 /** Autogenerated input type of StartRepositoryMigration */
 export type StartRepositoryMigrationInput = {
   /** The Octoshift migration source access token. */
-  accessToken: Scalars['String'];
+  accessToken: Scalars["String"];
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: InputMaybe<Scalars['String']>;
+  clientMutationId?: InputMaybe<Scalars["String"]>;
   /** Whether to continue the migration on error */
-  continueOnError?: InputMaybe<Scalars['Boolean']>;
+  continueOnError?: InputMaybe<Scalars["Boolean"]>;
   /** The signed URL to access the user-uploaded git archive */
-  gitArchiveUrl?: InputMaybe<Scalars['String']>;
+  gitArchiveUrl?: InputMaybe<Scalars["String"]>;
   /** The GitHub personal access token of the user importing to the target repository. */
-  githubPat?: InputMaybe<Scalars['String']>;
+  githubPat?: InputMaybe<Scalars["String"]>;
   /** The signed URL to access the user-uploaded metadata archive */
-  metadataArchiveUrl?: InputMaybe<Scalars['String']>;
+  metadataArchiveUrl?: InputMaybe<Scalars["String"]>;
   /** The ID of the organization that will own the imported repository. */
-  ownerId: Scalars['ID'];
+  ownerId: Scalars["ID"];
   /** The name of the imported repository. */
-  repositoryName: Scalars['String'];
+  repositoryName: Scalars["String"];
   /** Whether to skip migrating releases for the repository. */
-  skipReleases?: InputMaybe<Scalars['Boolean']>;
+  skipReleases?: InputMaybe<Scalars["Boolean"]>;
   /** The ID of the Octoshift migration source. */
-  sourceId: Scalars['ID'];
+  sourceId: Scalars["ID"];
   /** The Octoshift migration source repository URL. */
-  sourceRepositoryUrl: Scalars['URI'];
+  sourceRepositoryUrl: Scalars["URI"];
+  /** The visibility of the imported repository. */
+  targetRepoVisibility?: InputMaybe<Scalars["String"]>;
 };
 
 /** Autogenerated return type of StartRepositoryMigration */
@@ -25664,125 +25686,307 @@ export type WorkflowRun = Node & {
 
 /** A workflow run. */
 export type WorkflowRunDeploymentReviewsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
 };
-
 
 /** A workflow run. */
 export type WorkflowRunPendingDeploymentRequestsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
 };
 
-export type TreeEntryFieldsFragment = { __typename?: 'TreeEntry', name: string, type: string, path?: string | null, oid: any };
+export type TreeEntryFieldsFragment = {
+  __typename?: "TreeEntry";
+  name: string;
+  type: string;
+  path?: string | null;
+  oid: any;
+};
 
-export type FileFieldsFragment = { __typename?: 'Blob', text?: string | null, byteSize: number };
+export type FileFieldsFragment = {
+  __typename?: "Blob";
+  text?: string | null;
+  byteSize: number;
+  oid: any;
+};
 
-export type TreeFieldsFragment = { __typename?: 'Tree', entries?: Array<{ __typename?: 'TreeEntry', name: string, type: string, path?: string | null, oid: any }> | null };
+export type TreeFieldsFragment = {
+  __typename?: "Tree";
+  id: string;
+  entries?: Array<{
+    __typename?: "TreeEntry";
+    name: string;
+    type: string;
+    path?: string | null;
+    oid: any;
+  }> | null;
+};
 
 export type RepoTreeQueryVariables = Exact<{
-  owner: Scalars['String'];
-  name: Scalars['String'];
-  path: Scalars['String'];
+  owner: Scalars["String"];
+  name: Scalars["String"];
+  path: Scalars["String"];
 }>;
 
+export type RepoTreeQuery = {
+  __typename?: "Query";
+  repository?: {
+    __typename?: "Repository";
+    id: string;
+    defaultBranchRef?: { __typename?: "Ref"; name: string; id: string } | null;
+    object?:
+      | { __typename?: "Blob"; id: string }
+      | { __typename?: "Commit"; id: string }
+      | { __typename?: "Tag"; id: string }
+      | {
+          __typename?: "Tree";
+          id: string;
+          entries?: Array<{
+            __typename?: "TreeEntry";
+            name: string;
+            type: string;
+            path?: string | null;
+            oid: any;
+          }> | null;
+        }
+      | null;
+  } | null;
+};
 
-export type RepoTreeQuery = { __typename?: 'Query', repository?: { __typename?: 'Repository', defaultBranchRef?: { __typename?: 'Ref', name: string } | null, object?: { __typename?: 'Blob', text?: string | null, byteSize: number } | { __typename?: 'Commit' } | { __typename?: 'Tag' } | { __typename?: 'Tree', entries?: Array<{ __typename?: 'TreeEntry', name: string, type: string, path?: string | null, oid: any }> | null } | null } | null };
+export type RepoBlobQueryVariables = Exact<{
+  owner: Scalars["String"];
+  name: Scalars["String"];
+  path: Scalars["String"];
+}>;
 
-export type RepoFieldsFragment = { __typename?: 'Repository', id: string, description?: string | null, forkCount: number, stargazerCount: number, name: string, nameWithOwner: string, primaryLanguage?: { __typename?: 'Language', id: string, color?: string | null, name: string } | null, owner: { __typename?: 'Organization', id: string, login: string } | { __typename?: 'User', id: string, login: string }, defaultBranchRef?: { __typename?: 'Ref', id: string, name: string } | null };
+export type RepoBlobQuery = {
+  __typename?: "Query";
+  repository?: {
+    __typename?: "Repository";
+    id: string;
+    defaultBranchRef?: { __typename?: "Ref"; name: string; id: string } | null;
+    object?:
+      | {
+          __typename?: "Blob";
+          id: string;
+          text?: string | null;
+          byteSize: number;
+          oid: any;
+        }
+      | { __typename?: "Commit"; id: string }
+      | { __typename?: "Tag"; id: string }
+      | {
+          __typename?: "Tree";
+          id: string;
+          entries?: Array<{
+            __typename?: "TreeEntry";
+            name: string;
+            type: string;
+            path?: string | null;
+            oid: any;
+          }> | null;
+        }
+      | null;
+  } | null;
+};
+
+export type RepoFieldsFragment = {
+  __typename?: "Repository";
+  id: string;
+  description?: string | null;
+  forkCount: number;
+  stargazerCount: number;
+  name: string;
+  nameWithOwner: string;
+  primaryLanguage?: {
+    __typename?: "Language";
+    id: string;
+    color?: string | null;
+    name: string;
+  } | null;
+  owner:
+    | { __typename?: "Organization"; id: string; login: string }
+    | { __typename?: "User"; id: string; login: string };
+  defaultBranchRef?: { __typename?: "Ref"; id: string; name: string } | null;
+};
 
 export type SearchQueryVariables = Exact<{
-  query: Scalars['String'];
-  limit?: InputMaybe<Scalars['Int']>;
+  query: Scalars["String"];
+  limit?: InputMaybe<Scalars["Int"]>;
   type: SearchType;
-  after?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars["String"]>;
 }>;
 
-
-export type SearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean }, nodes?: Array<{ __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, description?: string | null, forkCount: number, stargazerCount: number, name: string, nameWithOwner: string, primaryLanguage?: { __typename?: 'Language', id: string, color?: string | null, name: string } | null, owner: { __typename?: 'Organization', id: string, login: string } | { __typename?: 'User', id: string, login: string }, defaultBranchRef?: { __typename?: 'Ref', id: string, name: string } | null } | { __typename?: 'User' } | null> | null } };
+export type SearchQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResultItemConnection";
+    pageInfo: {
+      __typename?: "PageInfo";
+      endCursor?: string | null;
+      hasNextPage: boolean;
+    };
+    nodes?: Array<
+      | { __typename?: "App" }
+      | { __typename?: "Discussion" }
+      | { __typename?: "Issue" }
+      | { __typename?: "MarketplaceListing" }
+      | { __typename?: "Organization" }
+      | { __typename?: "PullRequest" }
+      | {
+          __typename?: "Repository";
+          id: string;
+          description?: string | null;
+          forkCount: number;
+          stargazerCount: number;
+          name: string;
+          nameWithOwner: string;
+          primaryLanguage?: {
+            __typename?: "Language";
+            id: string;
+            color?: string | null;
+            name: string;
+          } | null;
+          owner:
+            | { __typename?: "Organization"; id: string; login: string }
+            | { __typename?: "User"; id: string; login: string };
+          defaultBranchRef?: {
+            __typename?: "Ref";
+            id: string;
+            name: string;
+          } | null;
+        }
+      | { __typename?: "User" }
+      | null
+    > | null;
+  };
+};
 
 export const FileFieldsFragmentDoc = gql`
-    fragment FileFields on Blob {
-  text
-  byteSize
-}
-    `;
+  fragment FileFields on Blob {
+    text
+    byteSize
+    oid
+  }
+`;
 export const TreeEntryFieldsFragmentDoc = gql`
-    fragment TreeEntryFields on TreeEntry {
-  name
-  type
-  path
-  oid
-}
-    `;
-export const TreeFieldsFragmentDoc = gql`
-    fragment TreeFields on Tree {
-  entries {
-    ...TreeEntryFields
-  }
-}
-    ${TreeEntryFieldsFragmentDoc}`;
-export const RepoFieldsFragmentDoc = gql`
-    fragment RepoFields on Repository {
-  ... on Repository {
-    id
-    description
-    forkCount
-    stargazerCount
-    primaryLanguage {
-      id
-      color
-      name
-    }
-    owner {
-      id
-      login
-    }
-    defaultBranchRef {
-      id
-      name
-    }
+  fragment TreeEntryFields on TreeEntry {
     name
-    nameWithOwner
+    type
+    path
+    oid
   }
-}
-    `;
-export const RepoTreeQueryDocument = gql`
-    query RepoTreeQuery($owner: String!, $name: String!, $path: String!) {
-  repository(owner: $owner, name: $name) {
-    defaultBranchRef {
+`;
+export const TreeFieldsFragmentDoc = gql`
+  fragment TreeFields on Tree {
+    id
+    entries {
+      ...TreeEntryFields
+    }
+  }
+  ${TreeEntryFieldsFragmentDoc}
+`;
+export const RepoFieldsFragmentDoc = gql`
+  fragment RepoFields on Repository {
+    ... on Repository {
+      id
+      description
+      forkCount
+      stargazerCount
+      primaryLanguage {
+        id
+        color
+        name
+      }
+      owner {
+        id
+        login
+      }
+      defaultBranchRef {
+        id
+        name
+      }
       name
-    }
-    object(expression: $path) {
-      ...TreeFields
-      ...FileFields
+      nameWithOwner
     }
   }
-}
-    ${TreeFieldsFragmentDoc}
-${FileFieldsFragmentDoc}`;
+`;
+export const RepoTreeQueryDocument = gql`
+  query RepoTreeQuery($owner: String!, $name: String!, $path: String!) {
+    repository(owner: $owner, name: $name) {
+      id
+      defaultBranchRef {
+        name
+        id
+      }
+      object(expression: $path) {
+        id
+        ...TreeFields
+      }
+    }
+  }
+  ${TreeFieldsFragmentDoc}
+`;
 
-export function useRepoTreeQuery(options: Omit<Urql.UseQueryArgs<RepoTreeQueryVariables>, 'query'>) {
-  return Urql.useQuery<RepoTreeQuery>({ query: RepoTreeQueryDocument, ...options });
-};
-export const SearchQueryDocument = gql`
-    query SearchQuery($query: String!, $limit: Int, $type: SearchType!, $after: String) {
-  search(type: $type, query: $query, first: $limit, after: $after) {
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-    nodes {
-      ...RepoFields
+export function useRepoTreeQuery(
+  options: Omit<Urql.UseQueryArgs<RepoTreeQueryVariables>, "query">
+) {
+  return Urql.useQuery<RepoTreeQuery>({
+    query: RepoTreeQueryDocument,
+    ...options,
+  });
+}
+export const RepoBlobQueryDocument = gql`
+  query RepoBlobQuery($owner: String!, $name: String!, $path: String!) {
+    repository(owner: $owner, name: $name) {
+      id
+      defaultBranchRef {
+        name
+        id
+      }
+      object(expression: $path) {
+        id
+        ...TreeFields
+        ...FileFields
+      }
     }
   }
+  ${TreeFieldsFragmentDoc}
+  ${FileFieldsFragmentDoc}
+`;
+
+export function useRepoBlobQuery(
+  options: Omit<Urql.UseQueryArgs<RepoBlobQueryVariables>, "query">
+) {
+  return Urql.useQuery<RepoBlobQuery>({
+    query: RepoBlobQueryDocument,
+    ...options,
+  });
 }
-    ${RepoFieldsFragmentDoc}`;
+export const SearchQueryDocument = gql`
+  query SearchQuery(
+    $query: String!
+    $limit: Int
+    $type: SearchType!
+    $after: String
+  ) {
+    search(type: $type, query: $query, first: $limit, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        ...RepoFields
+      }
+    }
+  }
+  ${RepoFieldsFragmentDoc}
+`;
 
 export function useSearchQuery(options: Omit<Urql.UseQueryArgs<SearchQueryVariables>, 'query'>) {
   return Urql.useQuery<SearchQuery>({ query: SearchQueryDocument, ...options });
