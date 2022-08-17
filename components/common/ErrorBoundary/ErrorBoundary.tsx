@@ -46,11 +46,9 @@ class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: any) {
     // You can also log the error to an error reporting service
-    console.log(error, info);
   }
 
   getErrorComponent = (error: Error) => {
-    const self = this;
     const t = getErrorType(error);
     const router = this.props.router;
     switch (t) {
@@ -95,7 +93,6 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     const { error, hasError } = this.state;
-    const errorType = getErrorType(error);
     if (hasError) {
       return (
         <div

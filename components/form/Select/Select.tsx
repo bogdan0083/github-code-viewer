@@ -28,7 +28,6 @@ const Select = ({
       onChange(values);
     } else {
       const { value } = e.target;
-      console.log(value);
       onChange([value]);
     }
   };

@@ -64,7 +64,7 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
   const cls = clsx("w-full mx-auto", className);
 
   return (
-    <form className={cls} onSubmit={() => console.log("onSubmit")}>
+    <form className={cls} onSubmit={() => null}>
       <div className={"relative flex flex-grow"}>
         <Input
           type="search"
