@@ -73,7 +73,7 @@ const RepoEntries = ({
           entry.type === "tree" ? (
             <RepoDirectoryEntry
               {...entry}
-              key={entry.oid}
+              key={entry.path}
               size={size}
               selected={selectedEntryPath === entry.name}
               href={`${ownerWithName}/tree/${branchName}/${entry.path}`}
@@ -81,7 +81,7 @@ const RepoEntries = ({
           ) : (
             <RepoFileEntry
               {...entry}
-              key={entry.oid}
+              key={entry.path}
               size={size}
               selected={selectedEntryPath === entry.name}
               href={`${ownerWithName}/blob/${branchName}/${entry.path}`}

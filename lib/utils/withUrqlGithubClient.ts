@@ -24,6 +24,13 @@ const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
             search: relayPagination(),
           },
         },
+        keys: {
+          // @ts-ignore
+          TreeEntry: (entry) => entry.path || null,
+
+          // @ts-ignore
+          Blob: (data) => data.path || null,
+        },
       }),
       retryExchange({}),
       fetchExchange,

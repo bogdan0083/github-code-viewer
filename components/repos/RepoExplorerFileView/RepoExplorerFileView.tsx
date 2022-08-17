@@ -3,7 +3,7 @@ import { IoLogoGithub } from "react-icons/io5";
 import { GITHUB_URL } from "../../../lib/utils/constants";
 import {
   FileFieldsFragment,
-  useRepoTreeQuery,
+  useRepoBlobQuery,
 } from "../../../generated/graphql";
 import { useEffect, useMemo, useState } from "react";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
@@ -24,7 +24,7 @@ const RepoExplorerFileView = () => {
   let entryPath = path.slice(2);
   let expression = `${branchName}:${entryPath.join("/") || ""}`;
 
-  const [result] = useRepoTreeQuery({
+  const [result] = useRepoBlobQuery({
     variables: {
       owner: owner as string,
       name: name as string,
