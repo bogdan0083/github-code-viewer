@@ -75,9 +75,9 @@ const RepoExplorerFileView = () => {
     }
   }, [fetching, fileHtmlContents]);
   return (
-    <div>
-      <Topline left={left} right={right} />
-      <div className={"p-2"}>
+    <div className={"flex flex-col max-h-full"}>
+      <Topline left={left} right={right} className={"flex-shrink"} />
+      <div className={"p-2 flex-grow overflow-auto max-h-full"}>
         {fetching ? (
           <div>Loading...</div>
         ) : error ? (

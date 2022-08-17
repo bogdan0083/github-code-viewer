@@ -80,9 +80,9 @@ const RepoExplorerDirectoryView = () => {
   );
 
   return (
-    <div>
-      <Topline left={left} right={right} />
-      <div className={"p-2"}>
+    <div className={"flex flex-col max-h-full"}>
+      <Topline left={left} right={right} className={"flex-shrink"} />
+      <div className={"p-2 flex-grow max-h-full"}>
         <RepoEntries
           showBackFolder={isMobile && entryPath.length > 0}
           size={"sm"}
