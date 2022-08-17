@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "../../_app";
 import SidenavLayout from "../../../components/layouts/sidenavLayout";
-import RepoExplorerSideView from "../../../components/repos/RepoEntries/RepoEntriesView";
+import RepoExplorerSideView from "../../../components/repos/RepoEntries/RepoSideView";
 import RepoExplorerDirectoryView from "../../../components/repos/RepoExplorerMainView/RepoExplorerDirectoryView";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 import RepoExplorerFileView from "../../../components/repos/RepoExplorerFileView/RepoExplorerFileView";
@@ -46,8 +46,7 @@ RepoEntryPage.getLayout = function (page: ReactElement) {
 RepoEntryPage.getInitialProps = function (ctx: NextPageContext): Props {
   const { owner, name, path } = ctx.query as RepoPageQueryParams;
   const entryPath = path?.slice(2);
-  const ownerWithName = `${owner}/${name}`;
-  let title = ownerWithName;
+  let title = `${owner}/${name}`;
   if (entryPath && entryPath.length > 0) {
     title += `/${entryPath.join("/")}`;
   }

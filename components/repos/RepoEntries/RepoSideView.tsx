@@ -8,12 +8,11 @@ import orderBy from "lodash.orderby";
 import { useMemo } from "react";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 
-const RepoEntriesView = () => {
+const RepoSideView = () => {
   const router = useRouter();
   // @ts-ignore
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
 
-  const entryType = path[0];
   const branchName = path[1];
 
   let entryPath = path.slice(2);
@@ -42,7 +41,6 @@ const RepoEntriesView = () => {
     throw error;
   }
 
-
   return (
     <div className={"text-xs p-2 overflow-auto h-full"}>
       <RepoEntries
@@ -57,4 +55,4 @@ const RepoEntriesView = () => {
   );
 };
 
-export default RepoEntriesView;
+export default RepoSideView;
