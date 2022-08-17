@@ -2,17 +2,16 @@ import { NextPageWithLayout } from "../_app";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import DefaultLayout from "../../components/layouts/defaultLayout";
-import ReposView from "../../components/repos/ReposView/ReposView";
+import RepoListView from "../../components/repos/RepoListView/RepoListView";
 
 type SearchPageRouteParams = {
   q: string;
 };
 
-const SearchPage: NextPageWithLayout = () => {
+const SearchPage: NextPageWithLayout<any, {}> = () => {
   const router = useRouter();
   const { q } = router.query as SearchPageRouteParams;
   const title = `Search results for: ${q}`;
-  console.log(q);
   return (
     <>
       <Head>
@@ -22,7 +21,7 @@ const SearchPage: NextPageWithLayout = () => {
       </Head>
       <div>
         <div className="container mx-auto px-3 pt-8">
-          <ReposView title={title} query={q} />
+          <RepoListView title={title} query={q} />
         </div>
       </div>
     </>
