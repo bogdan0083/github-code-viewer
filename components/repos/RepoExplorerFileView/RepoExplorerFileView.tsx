@@ -18,7 +18,6 @@ const RepoExplorerFileView = () => {
 
   const fileExtensionSplit = path[path.length - 1].split(".");
   const fileExtension = fileExtensionSplit[fileExtensionSplit.length - 1];
-  const entryType = path[0];
   const branchName = path[1];
 
   let entryPath = path.slice(2);
@@ -31,6 +30,8 @@ const RepoExplorerFileView = () => {
       path: expression,
     },
   });
+
+  console.log(result);
 
   const { data, error, fetching } = result;
 
@@ -68,11 +69,10 @@ const RepoExplorerFileView = () => {
   }, [object?.text, fileExtension]);
 
   useEffect(() => {
-    if (fetching) {
+    if (fetching && fileHtmlContents) {
       setFileHtmlContents(null);
     }
-  }, [fetching]);
-
+  }, [fetching, fileHtmlContents]);
   return (
     <div>
       <Topline left={left} right={right} />
