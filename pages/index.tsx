@@ -1,11 +1,11 @@
 import Head from "next/head";
-import ReposView from "../components/repos/ReposView/ReposView";
+import RepoListView from "../components/repos/RepoListView/RepoListView";
 import subDays from "date-fns/subDays";
 import format from "date-fns/format";
 import { NextPageWithLayout } from "./_app";
 import DefaultLayout from "../components/layouts/defaultLayout";
 
-const Home: NextPageWithLayout = () => {
+const Home: NextPageWithLayout<any, {}> = () => {
   const weekAgo = format(subDays(new Date(), 7), "yyyy-MM-dd");
 
   return (
@@ -16,8 +16,8 @@ const Home: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="grid grid-cols-1 pt-8 gap-10 md:grid-cols-2 md:grid-rows-1 container mx-auto px-3">
-        <ReposView title={"Trending This Week"} created={weekAgo} />
-        <ReposView title={"Popular"} stars={1000} />
+        <RepoListView title={"Trending This Week"} created={weekAgo} />
+        <RepoListView title={"Popular"} stars={1000} />
       </div>
     </>
   );

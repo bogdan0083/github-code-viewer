@@ -18,7 +18,7 @@ interface ReposViewProps extends Omit<SearchOptions, "type"> {
   title: string;
 }
 
-const ReposView = ({
+const RepoListView = ({
   query,
   language,
   created,
@@ -100,4 +100,4 @@ const ReposView = ({
     </div>
   );
 };
-export default ReposView;
+export default RepoListView;
