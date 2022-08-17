@@ -1,4 +1,3 @@
-
 interface CodeFragmentProps {
   fileContents: string;
   language: string;
@@ -10,11 +9,12 @@ interface CodeFragmentProps {
 const CodeFragment = ({ fileContents, language }: CodeFragmentProps) => {
   return (
     <div>
-      <pre>
-        <code
-          dangerouslySetInnerHTML={{ __html: fileContents }}
-          style={{ fontSize: 12 }}
-        ></code>
+      <pre style={{ fontSize: 12 }}>
+        {language ? (
+          <code dangerouslySetInnerHTML={{ __html: fileContents }}></code>
+        ) : (
+          <code>{fileContents}</code>
+        )}
       </pre>
     </div>
   );

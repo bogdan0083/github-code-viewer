@@ -15,6 +15,7 @@ const RepoExplorerFileView = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
   const [fileHtmlContents, setFileHtmlContents] = useState<string | null>(null);
+  const [language, setLanguage] = useState<string | null>(null);
 
   const fileExtensionSplit = path[path.length - 1].split(".");
   const fileExtension = fileExtensionSplit[fileExtensionSplit.length - 1];
@@ -30,8 +31,6 @@ const RepoExplorerFileView = () => {
       path: expression,
     },
   });
-
-  console.log(result);
 
   const { data, error, fetching } = result;
 
@@ -62,6 +61,7 @@ const RepoExplorerFileView = () => {
       try {
         const html = hljs.highlight(fileExtension, object.text);
         setFileHtmlContents(html.value);
+        setLanguage(html.language);
       } catch (e) {
         setFileHtmlContents(object.text);
       }
@@ -71,6 +71,7 @@ const RepoExplorerFileView = () => {
   useEffect(() => {
     if (fetching && fileHtmlContents) {
       setFileHtmlContents(null);
+      setLanguage(null);
     }
   }, [fetching, fileHtmlContents]);
   return (
@@ -83,10 +84,7 @@ const RepoExplorerFileView = () => {
           <div>Error: {error.message}</div>
         ) : (
           fileHtmlContents && (
-            <CodeFragment
-              fileContents={fileHtmlContents}
-              language={fileExtension}
-            />
+            <CodeFragment fileContents={fileHtmlContents} language={language} />
           )
         )}
       </div>
