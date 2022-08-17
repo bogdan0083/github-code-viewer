@@ -25,7 +25,7 @@ const ReposListItem = ({
         "mb-1 rounded border border-gray-200 p-3 mb-3 shadow last:mb-0 transition-colors hover:bg-gray-100"
       }
     >
-      <Link href={`/${nameWithOwner}/tree/${defaultBranchRef?.name}`}>
+      <Link href={`/${nameWithOwner}/blob/${defaultBranchRef?.name}/README.md`}>
         <a className={"font-bold lg:text-xl block mb-1"}>
           <span>{name}</span>/
           <span className={"inline-block"}>{owner.login}</span>
