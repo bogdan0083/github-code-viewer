@@ -1,6 +1,5 @@
-
 .layoutContainer {
-    @apply flex flex-col flex-grow md:flex-row;
+  @apply flex flex-col flex-grow md:flex-row;
 }
 
 @media screen(md) {
