@@ -70,7 +70,12 @@ const RepoExplorerDirectoryView = () => {
 
   const right = useMemo(
     () => (
-      <a href={fullGithubViewUrl} target="_blank" rel="noreferrer">
+      <a
+        href={fullGithubViewUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={"shrink-0 block ml-3"}
+      >
         <IoLogoGithub size={20} />
       </a>
     ),
