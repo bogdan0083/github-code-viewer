@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm prettier pages components --write && next lint",
+    "lint": "pnpm prettier pages components lib --write && next lint",
     "codegen": "DOTENV_CONFIG_PATH=\"./.env.local\" graphql-codegen --require dotenv/config --config codegen.yml"
   },
   "dependencies": {
