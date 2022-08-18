@@ -20,6 +20,12 @@ const Owner: NextPageWithLayout<any, {}> = () => {
   );
 };
 
+export const getServerSideProps = async () => {
+  return {
+    notFound: true,
+  };
+};
+
 Owner.getLayout = function (page) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };
