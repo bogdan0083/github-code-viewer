@@ -3,7 +3,7 @@
 }
 
 @media screen(md) {
-    .layoutContainer {
-        height: calc(100vh - var(--header-height));
-    }
+  .layoutContainer {
+    height: calc(100vh - var(--header-height));
+  }
 }
