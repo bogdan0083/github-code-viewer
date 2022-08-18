@@ -10,6 +10,7 @@ import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
 import CodeFragment from "../../code/CodeFragment/CodeFragment";
 import hljs from "highlightjs";
+import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
 
 const RepoExplorerFileView = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const RepoExplorerFileView = () => {
 
   const fileExtensionSplit = path[path.length - 1].split(".");
   const fileExtension = fileExtensionSplit[fileExtensionSplit.length - 1];
+
   const branchName = path[1];
 
   let entryPath = path.slice(2);
@@ -42,9 +44,15 @@ const RepoExplorerFileView = () => {
 
   const fullGithubViewUrl = `${GITHUB_URL}/${fullPath}`;
 
+  const basePath = `${owner}/${name}/tree/${branchName}`;
+
   const left = useMemo(
-    () => <div className={"flex items-center"}>{entryPath.join("/")}</div>,
-    [entryPath]
+    () => (
+      <div className={"flex items-center"}>
+        {<RepoBreadcrumbs path={["/", ...entryPath]} basePath={basePath} />}
+      </div>
+    ),
+    [entryPath, basePath]
   );
 
   const right = useMemo(

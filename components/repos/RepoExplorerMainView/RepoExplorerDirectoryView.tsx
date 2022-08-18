@@ -10,6 +10,7 @@ import orderBy from "lodash.orderby";
 import RepoEntries from "../RepoEntries/RepoEntries";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
+import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
 
 const RepoExplorerDirectoryView = () => {
   const router = useRouter();
@@ -65,6 +66,8 @@ const RepoExplorerDirectoryView = () => {
     "/"
   )}`;
 
+  const basePath = `${owner}/${name}/${entryType}/${branchName}`;
+
   const right = useMemo(
     () => (
       <a href={fullGithubViewUrl} target="_blank" rel="noreferrer">
@@ -75,8 +78,12 @@ const RepoExplorerDirectoryView = () => {
   );
 
   const left = useMemo(
-    () => <div className={"flex items-center"}>{entryPath.join("/")}</div>,
-    [entryPath]
+    () => (
+      <div className={"flex items-center"}>
+        <RepoBreadcrumbs path={["/", ...entryPath]} basePath={basePath} />
+      </div>
+    ),
+    [entryPath, basePath]
   );
 
   return (
