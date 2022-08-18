@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import DefaultLayout from "../../components/layouts/defaultLayout";
 import RepoListView from "../../components/repos/RepoListView/RepoListView";
+import Favicon from "../../components/common/Favicon/Favicon";
 
 type SearchPageRouteParams = {
   q: string;
@@ -17,7 +18,7 @@ const SearchPage: NextPageWithLayout<any, {}> = () => {
       <Head>
         <title>Search | Github Code Viewer</title>
         <meta name="description" content="Search results" />
-        <link rel="icon" href="/favicon.ico" />
+        <Favicon />
       </Head>
       <div>
         <div className="container mx-auto px-3 pt-8">

@@ -8,6 +8,7 @@ import { RepoPageQueryParams } from "../../../lib/utils/types";
 import RepoExplorerFileView from "../../../components/repos/RepoExplorerFileView/RepoExplorerFileView";
 import { NextPageContext } from "next";
 import { ReactElement } from "react";
+import Favicon from "../../../components/common/Favicon/Favicon";
 
 type Props = {
   title: string;
@@ -28,7 +29,7 @@ const RepoEntryPage: NextPageWithLayout<any, Props> = ({ title }) => {
       <Head>
         <title>{title} | Github Code Viewer</title>
         <meta name="description" content="RepoPage" />
-        <link rel="icon" href="/favicon.ico" />
+        <Favicon />
       </Head>
       {isFile ? <RepoExplorerFileView /> : <RepoExplorerDirectoryView />}
     </>
