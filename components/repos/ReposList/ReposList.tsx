@@ -9,7 +9,10 @@ interface ReposListProps {
 
 const ReposList = ({ repos, className }: ReposListProps) => {
   return (
-    <div className={clsx(className, "transition-opacity")}>
+    <div
+      className={clsx(className, "transition-opacity")}
+      data-testid="RepoList"
+    >
       {repos.map((repo) => (
         <ReposListItem key={repo.id} {...repo} />
       ))}

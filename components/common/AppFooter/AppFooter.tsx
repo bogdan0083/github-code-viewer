@@ -25,6 +25,7 @@ const AppFooter = ({ className }: AppFooterProps) => {
         "border-t border-gray-300 text-gray-600 mt-6 text-sm",
         className
       )}
+      data-testid={"footer"}
     >
       <div className="container mx-auto py-3 px-2">
         <div className="flex justify-center items-center">

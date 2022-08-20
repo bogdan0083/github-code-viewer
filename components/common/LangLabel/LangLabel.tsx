@@ -16,6 +16,7 @@ const LangLabel = ({ color, name, className }: LangLabelProps) => {
         "inline-block rounded font-medium mr-1 py-1 px-2 text-white rounded",
         className
       )}
+      data-testid={"LangLabel"}
     >
       {name}
     </span>

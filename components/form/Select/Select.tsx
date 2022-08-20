@@ -13,13 +13,15 @@ interface SelectProps {
   className?: string;
 }
 
-const Select = ({
-  onChange,
-  multiple,
-  options,
-  placeholder,
-  className,
-}: SelectProps) => {
+const Select = (props: SelectProps) => {
+  const {
+    onChange,
+    multiple,
+    options,
+    placeholder,
+    className,
+    ...otherProps
+  }: SelectProps = props;
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const values = [...e.target.options]
@@ -64,6 +66,7 @@ const Select = ({
       onChange={handleChange}
       multiple={multiple}
       className={selectClassName}
+      {...otherProps}
     >
       {placeholder && <option value="">{placeholder}</option>}
       {renderOptions(options)}

@@ -24,12 +24,14 @@ const AppHeader = ({ title, mobileTitle, fixed = false }: AppHeaderProps) => {
   );
 
   return (
-    <header className={headerClassName}>
+    <header className={headerClassName} data-testid={"header"}>
       <div className={""}>
         <h1 className={headingClassName}>
           <Link href={"/"}>
             <a className={"transition-opacity hover:opacity-40"}>
-              <span className={"hidden sm:inline"}>{title}</span>
+              <span className={"hidden sm:inline"} data-testid="logo-text">
+                {title}
+              </span>
               <span className={"sm:hidden"}>{mobileTitle}</span>
             </a>
           </Link>

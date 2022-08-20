@@ -7,40 +7,42 @@ import { relayPagination } from "@urql/exchange-graphcache/extras";
 import { cacheExchange } from "@urql/exchange-graphcache";
 import { retryExchange } from "@urql/exchange-retry";
 
-const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
-  return withUrqlClient(() => ({
-    url: GITHUB_GRAPHQL_URL,
-    fetchOptions: {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-      },
+export const graphqlGithubClientConfig = {
+  url: GITHUB_GRAPHQL_URL,
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
     },
-    exchanges: [
-      devtoolsExchange,
-      dedupExchange,
-      cacheExchange({
-        resolvers: {
-          Query: {
-            search: relayPagination(),
-          },
+  },
+  exchanges: [
+    devtoolsExchange,
+    dedupExchange,
+    cacheExchange({
+      resolvers: {
+        Query: {
+          search: relayPagination(),
         },
-        keys: {
-          // @ts-ignore
-          TreeEntry: (entry) => entry.path || null,
+      },
+      keys: {
+        // @ts-ignore
+        TreeEntry: (entry) => entry.path || null,
 
-          // @ts-ignore
-          Blob: (data) => data.path || null,
-        },
-      }),
-      retryExchange({}),
-      fetchExchange,
-      errorExchange({
-        onError: (e) => {
-          throw e;
-        },
-      }),
-    ],
-  }))(AppOrPage);
+        // @ts-ignore
+        Blob: (data) => data.path || null,
+      },
+    }),
+    retryExchange({}),
+    fetchExchange,
+    errorExchange({
+      onError: (e) => {
+        throw e;
+      },
+    }),
+  ],
+};
+
+const withDefaultGithubClient = (AppOrPage: NextPage<any, any> | any) => {
+  return withUrqlClient(() => graphqlGithubClientConfig)(AppOrPage);
 };
 
 export default withDefaultGithubClient;

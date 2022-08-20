@@ -24,6 +24,7 @@ const ReposListItem = ({
       className={
         "mb-1 rounded border border-gray-200 p-3 mb-3 shadow last:mb-0 transition-colors hover:bg-gray-100"
       }
+      data-testid={`RepoListItem`}
     >
       <Link href={`/${nameWithOwner}/blob/${defaultBranchRef?.name}/README.md`}>
         <a className={"font-bold lg:text-xl block mb-1"}>
