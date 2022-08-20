@@ -49,10 +49,11 @@ test("paginates trending RepoListView", async ({ page }) => {
   ).toHaveLength(10);
 
   await Promise.all([
-    loadMoreButtonLocator.click(),
-    page.waitForTimeout(1000),
     waitForGraphqlResponse(page),
+    loadMoreButtonLocator.click(),
   ]);
+
+  await page.waitForTimeout(1000);
 
   expect(
     await trendingLocator.locator("data-testid=RepoListItem").elementHandles()
@@ -77,14 +78,12 @@ test("changes trending RepoListView language", async ({ page }) => {
   );
 
   await Promise.all([
-    page.waitForTimeout(1000),
     waitForGraphqlResponse(page),
     $langSelect.selectOption("JavaScript"),
   ]);
 
+  await page.waitForTimeout(1000);
+
   let labels = await labelsLocator.elementHandles();
-
-  await page.waitForTimeout(3000);
-
   expect(labels).toHaveLength(10);
 });

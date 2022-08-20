@@ -26,6 +26,7 @@ const Input = ({
   onFocus,
   onBlur,
   onClick,
+  ...otherProps
 }: InputProps) => {
   const cl = clsx(
     "py-2 px-2 w-full border text-sm rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow",
@@ -44,6 +45,7 @@ const Input = ({
       onFocus={onFocus}
       onBlur={onBlur}
       onClick={onClick}
+      {...otherProps}
     />
   );
 };

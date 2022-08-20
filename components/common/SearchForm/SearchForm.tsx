@@ -64,7 +64,7 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
   const cls = clsx("w-full mx-auto", className);
 
   return (
-    <form className={cls} onSubmit={() => null}>
+    <form className={cls} onSubmit={() => null} data-testid={"SearchForm"}>
       <div className={"relative flex flex-grow"}>
         <Input
           type="search"
@@ -74,6 +74,7 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
           className={"flex-grow"}
           onChange={onChangeHandler}
           onFocus={() => data && setDropdownOpen(true)}
+          data-testid={"SearchInput"}
         />
         <Dropdown
           isOpen={isDropdownOpen}
@@ -84,15 +85,16 @@ const SearchForm = ({ debounceDelay = 600, className }: SearchFormProps) => {
             <Link
               href={`/${encodeURIComponent(
                 item.owner.login
-              )}/${encodeURIComponent(item.name)}/tree/${
+              )}/${encodeURIComponent(item.name)}/blob/${
                 item.defaultBranchRef?.name
-              }`}
+              }/README.md`}
               key={item.id}
             >
               <a
                 className={
                   "block hover:bg-gray-200 hover:bg-gray-300 transition-colors px-2 pt-1 sm:px-3 sm:pt-2 pb-3"
                 }
+                data-testid={"SearchResultsItem"}
               >
                 <span className={"text-sm"}>{item.nameWithOwner}</span>
                 <p className={"text-xs text-gray-500"}>{item.description}</p>
