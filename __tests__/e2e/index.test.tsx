@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 import { waitForGraphqlResponse } from "../__utils__/utils";
 
+// @TODO: Refactor using a Page Object Model pattern
+// @see https://playwright.dev/docs/test-pom
+
 test.describe.configure({ mode: "parallel" });
 
 test("sender home page", async ({ page }) => {
@@ -47,7 +50,7 @@ test("paginates trending RepoListView", async ({ page }) => {
 
   await Promise.all([
     loadMoreButtonLocator.click(),
-    page.waitForTimeout(600),
+    page.waitForTimeout(1000),
     waitForGraphqlResponse(page),
   ]);
 
@@ -65,16 +68,23 @@ test("changes trending RepoListView language", async ({ page }) => {
     .locator("data-testid=RepoListView")
     .first();
 
+  let labelsLocator = await trendingLocator.locator(
+    "data-testid=RepoListItem >> text=JavaScript"
+  );
+
   const $langSelect = await trendingLocator.locator(
     "data-testid=LanguageSelect"
   );
 
-  await $langSelect.selectOption("JavaScript");
-  await waitForGraphqlResponse(page);
+  await Promise.all([
+    page.waitForTimeout(1000),
+    waitForGraphqlResponse(page),
+    $langSelect.selectOption("JavaScript"),
+  ]);
 
-  let labels = await trendingLocator
-    .locator("data-testid=RepoListItem >> text=JavaScript")
-    .elementHandles();
+  let labels = await labelsLocator.elementHandles();
 
-  await expect(labels).toHaveLength(10);
+  await page.waitForTimeout(3000);
+
+  expect(labels).toHaveLength(10);
 });
