@@ -50,7 +50,6 @@ const RepoListView = ({
       after,
     },
   });
-  console.log(result);
 
   const { data, error, fetching } = result;
 
@@ -58,9 +57,8 @@ const RepoListView = ({
     throw error;
   }
 
-  console.log(data);
-
   const handleLanguageChange = (selected: string[]) => {
+    setAfter(null);
     setLanguages(selected);
   };
 
