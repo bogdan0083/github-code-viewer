@@ -1,4 +1,4 @@
-export const initServiceWorker = async (): Promise<void> => {
+const setupMocks = async (): Promise<void> => {
   if (typeof window === undefined) {
     const { server } = await import("./server");
     server.listen();
@@ -7,3 +7,5 @@ export const initServiceWorker = async (): Promise<void> => {
     await worker.start();
   }
 };
+
+export default setupMocks;

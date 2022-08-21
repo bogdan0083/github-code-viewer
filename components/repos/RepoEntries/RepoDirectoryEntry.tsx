@@ -24,7 +24,7 @@ const RepoDirectoryEntry = ({
   );
 
   return (
-    <li key={oid}>
+    <li key={oid} data-testid={"RepoEntry"}>
       <Link className={textSizeMap[size]} href={href}>
         <a className={cls}>
           {selected ? (

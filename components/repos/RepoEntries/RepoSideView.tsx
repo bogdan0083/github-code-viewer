@@ -42,7 +42,10 @@ const RepoSideView = () => {
   }
 
   return (
-    <div className={"text-xs p-2 overflow-auto h-full"}>
+    <div
+      className={"text-xs p-2 overflow-auto h-full"}
+      data-testid={"RepoSideView"}
+    >
       <RepoEntries
         entries={sortedEntries}
         isLoading={fetching}

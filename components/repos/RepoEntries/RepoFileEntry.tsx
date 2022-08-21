@@ -22,7 +22,11 @@ const RepoFileEntry = ({
   );
 
   return (
-    <li key={oid} className={"whitespace-nowrap overflow-ellipsis"}>
+    <li
+      key={oid}
+      className={"whitespace-nowrap overflow-ellipsis"}
+      data-testid={"RepoEntry"}
+    >
       <Link className={textSizeMap[size]} href={href}>
         <a className={cls}>{name}</a>
       </Link>

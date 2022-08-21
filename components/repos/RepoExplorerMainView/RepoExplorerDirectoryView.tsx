@@ -92,7 +92,7 @@ const RepoExplorerDirectoryView = () => {
   );
 
   return (
-    <div className={"flex flex-col max-h-full"}>
+    <div className={"flex flex-col max-h-full"} data-testid="RepoDirectoryView">
       <Topline left={left} right={right} className={"flex-shrink"} />
       <div className={"p-2 flex-grow max-h-full"}>
         <RepoEntries

@@ -16,7 +16,12 @@ const RepoBreadcrumbs = ({
   const router = useRouter();
 
   const handleBreadcrumbClick = (index: number) => {
-    router.push(`/${basePath}${path.slice(0, index + 1).join("/")}`);
+    router.push(
+      `/${basePath}${path
+        .slice(0, index + 1)
+        .join("/")
+        .slice(1)}`
+    );
   };
 
   return (

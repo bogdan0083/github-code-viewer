@@ -3,7 +3,6 @@ import { NextPage } from "next";
 import { GITHUB_GRAPHQL_URL } from "./constants";
 import { devtoolsExchange } from "@urql/devtools";
 import { dedupExchange, errorExchange, fetchExchange } from "urql";
-import { relayPagination } from "@urql/exchange-graphcache/extras";
 import { cacheExchange } from "@urql/exchange-graphcache";
 import { retryExchange } from "@urql/exchange-retry";
 
@@ -18,11 +17,11 @@ export const graphqlGithubClientConfig = {
     devtoolsExchange,
     dedupExchange,
     cacheExchange({
-      resolvers: {
-        Query: {
-          search: relayPagination(),
-        },
-      },
+      // resolvers: {
+      //   Query: {
+      //     search: relayPagination(),
+      //   },
+      // },
       keys: {
         // @ts-ignore
         TreeEntry: (entry) => entry.path || null,

@@ -55,7 +55,7 @@ const RepoEntries = ({
   const ownerWithName = `/${owner}/${ownerName}`;
 
   return (
-    <ul className={cls}>
+    <ul className={cls} data-testid={"RepoEntries"}>
       {showBackFolder && (
         <RepoDirectoryEntry
           name={".."}
