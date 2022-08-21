@@ -70,7 +70,7 @@ test("shows 'back' folder button", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("returns to  root after 'back' button click", async ({ page }) => {
+test("returns to root after 'back' button click", async ({ page }) => {
   await page.goto(ROOT_ENTRY_URL + "/src/core", { waitUntil: "networkidle" });
 
   const resultSideEntryNamesBeforeClick = await parseEntryNames(
@@ -98,6 +98,7 @@ test("returns to  root after 'back' button click", async ({ page }) => {
   );
 
   await Promise.all([
+    page.waitForTimeout(1000),
     waitForGraphqlResponse(page),
     page.locator("data-testid=RepoSideView >> text='..'").click(),
   ]);
@@ -120,10 +121,129 @@ test("returns to  root after 'back' button click", async ({ page }) => {
   expect(resultMainEntryNamesAfterClick).toEqual(expectedEntryNamesAfterClick);
 });
 
-test("renders README.md", async ({ page }) => {
+test("renders file views", async ({ page }) => {
   await page.goto(ROOT_ENTRY_URL_WITH_README, { waitUntil: "networkidle" });
+
+  const firstResultSideEntryNames = await parseEntryNames(
+    page,
+    SIDE_REPO_ENTRIES_SELECTOR
+  );
+
+  const firstExpectedEntryNames = getTreeEntries("/").map(
+    (entry) => entry.name
+  );
 
   await expect(
     await page.locator("data-testid=RepoFileView >> css=.hljs-tag").first()
   ).toBeVisible();
+  expect(firstResultSideEntryNames).toEqual(firstExpectedEntryNames);
+
+  await Promise.all([
+    waitForGraphqlResponse(page),
+    page.locator("data-testid=RepoSideView >> text='src'").click(),
+  ]);
+
+  await Promise.all([
+    waitForGraphqlResponse(page),
+    page.locator("data-testid=RepoDirectoryView >> text='core'").click(),
+  ]);
+
+  await Promise.all([
+    waitForGraphqlResponse(page),
+    page.locator("data-testid=RepoDirectoryView >> text='vdom'").click(),
+  ]);
+
+  await Promise.all([
+    waitForGraphqlResponse(page),
+    page
+      .locator("data-testid=RepoDirectoryView >> text='create-element.ts'")
+      .click(),
+  ]);
+
+  await expect(
+    await page.locator("data-testid=RepoFileView >> css=.hljs-keyword").first()
+  ).toBeVisible();
+});
+
+test("renders github link", async ({ page }) => {
+  await page.goto(ROOT_ENTRY_URL + "/src/core", { waitUntil: "networkidle" });
+
+  await expect(
+    await page.locator(
+      "data-testid=RepoDirectoryView >> data-testid=Topline >> css=[href^='https://github.com']"
+    )
+  ).toBeVisible();
+});
+
+test("renders breadcrumbs for directory view", async ({ page }) => {
+  await page.goto(ROOT_ENTRY_URL + "/src/core/vdom", {
+    waitUntil: "networkidle",
+  });
+
+  await expect(
+    await page.locator(
+      "data-testid=RepoDirectoryView >> data-testid=RepoBreadcrumbs"
+    )
+  ).toBeVisible();
+
+  const breadcrumbsLocator = await page.locator("data-testid=RepoBreadcrumbs");
+
+  const items = breadcrumbsLocator.locator("> *");
+  await expect(await items.elementHandles()).toHaveLength(4);
+  expect(await items.allTextContents()).toEqual(["/", "src", "core", "vdom"]);
+});
+
+test("renders breadcrumbs for file view", async ({ page }) => {
+  await page.goto(ROOT_ENTRY_URL + "/src/core/vdom/create-element.ts", {
+    waitUntil: "networkidle",
+  });
+
+  await expect(
+    await page.locator(
+      "data-testid=RepoDirectoryView >> data-testid=RepoBreadcrumbs"
+    )
+  ).toBeVisible();
+
+  const breadcrumbsLocator = await page.locator("data-testid=RepoBreadcrumbs");
+
+  const items = breadcrumbsLocator.locator("> *");
+  await expect(await items.elementHandles()).toHaveLength(5);
+  expect(await items.allTextContents()).toEqual([
+    "/",
+    "src",
+    "core",
+    "vdom",
+    "create-element.ts",
+  ]);
+});
+
+test("goes to root entry on breadcrumb first item click", async ({ page }) => {
+  await page.goto(ROOT_ENTRY_URL + "/src/core/vdom", {
+    waitUntil: "networkidle",
+  });
+
+  const breadcrumbsLocator = await page.locator("data-testid=RepoBreadcrumbs");
+
+  const items = breadcrumbsLocator.locator("> *");
+
+  await items.first().click();
+
+  await waitForGraphqlResponse(page);
+
+  await expect(await items.elementHandles()).toHaveLength(1);
+
+  const resultSideEntryNames = await parseEntryNames(
+    page,
+    SIDE_REPO_ENTRIES_SELECTOR
+  );
+  const resultMainEntryNames = await parseEntryNames(
+    page,
+    MAIN_REPO_ENTRIES_SELECTOR
+  );
+
+  const expectedEntryNames = getTreeEntries("/").map((entry) => entry.name);
+
+  expect(resultSideEntryNames).toEqual(resultMainEntryNames);
+  expect(resultSideEntryNames).toEqual(expectedEntryNames);
+  expect(resultMainEntryNames).toEqual(expectedEntryNames);
 });

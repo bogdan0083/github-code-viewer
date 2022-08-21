@@ -25,7 +25,10 @@ const RepoBreadcrumbs = ({
   };
 
   return (
-    <div className={clsx("flex items-center flex-wrap", className)}>
+    <div
+      className={clsx("flex items-center flex-wrap", className)}
+      data-testid={"RepoBreadcrumbs"}
+    >
       {path.map((entry, index) =>
         index === path.length - 1 ? (
           <span key={index} className={"m-1"}>

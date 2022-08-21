@@ -49,11 +49,11 @@ test("paginates trending RepoListView", async ({ page }) => {
   ).toHaveLength(10);
 
   await Promise.all([
-    waitForGraphqlResponse(page),
     loadMoreButtonLocator.click(),
+    waitForGraphqlResponse(page),
   ]);
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(10000);
 
   expect(
     await trendingLocator.locator("data-testid=RepoListItem").elementHandles()
