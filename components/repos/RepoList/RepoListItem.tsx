@@ -7,7 +7,7 @@ import { RiStarSLine } from "react-icons/ri";
 
 interface ReposListProps extends RepoFieldsFragment {}
 
-const ReposListItem = ({
+const RepoListItem = ({
   id,
   nameWithOwner,
   name,
@@ -54,4 +54,4 @@ const ReposListItem = ({
   );
 };
 
-export default ReposListItem;
+export default RepoListItem;
