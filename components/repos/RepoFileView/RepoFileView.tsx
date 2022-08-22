@@ -12,7 +12,7 @@ import CodeFragment from "../../code/CodeFragment/CodeFragment";
 import hljs from "highlightjs";
 import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
 
-const RepoExplorerFileView = () => {
+const RepoFileView = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
   const [fileHtmlContents, setFileHtmlContents] = useState<string | null>(null);
@@ -106,4 +106,4 @@ const RepoExplorerFileView = () => {
   );
 };
 
-export default RepoExplorerFileView;
+export default RepoFileView;

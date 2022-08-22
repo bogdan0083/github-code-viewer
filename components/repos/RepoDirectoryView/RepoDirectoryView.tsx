@@ -12,7 +12,7 @@ import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
 import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
 
-const RepoExplorerDirectoryView = () => {
+const RepoDirectoryView = () => {
   const router = useRouter();
   const { owner, name, path = [] } = router.query as RepoPageQueryParams;
   const [isMobile, setIsMobile] = useState(false);
@@ -107,4 +107,4 @@ const RepoExplorerDirectoryView = () => {
   );
 };
 
-export default RepoExplorerDirectoryView;
+export default RepoDirectoryView;

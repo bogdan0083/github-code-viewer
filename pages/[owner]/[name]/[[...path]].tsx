@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { NextPageWithLayout } from "../../_app";
 import SidenavLayout from "../../../components/layouts/sidenavLayout";
 import RepoExplorerSideView from "../../../components/repos/RepoEntries/RepoSideView";
-import RepoExplorerDirectoryView from "../../../components/repos/RepoExplorerMainView/RepoExplorerDirectoryView";
+import RepoDirectoryView from "../../../components/repos/RepoDirectoryView/RepoDirectoryView";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
-import RepoExplorerFileView from "../../../components/repos/RepoExplorerFileView/RepoExplorerFileView";
+import RepoFileView from "../../../components/repos/RepoFileView/RepoFileView";
 import { NextPageContext } from "next";
 import { ReactElement } from "react";
 import Favicon from "../../../components/common/Favicon/Favicon";
@@ -31,7 +31,7 @@ const RepoEntryPage: NextPageWithLayout<any, Props> = ({ title }) => {
         <meta name="description" content="RepoPage" />
         <Favicon />
       </Head>
-      {isFile ? <RepoExplorerFileView /> : <RepoExplorerDirectoryView />}
+      {isFile ? <RepoFileView /> : <RepoDirectoryView />}
     </>
   );
 };
