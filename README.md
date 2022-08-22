@@ -1,37 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Github Code Viewer
 
-## Getting Started
+<img align="right" width="95" height="95"
+alt="Philosopher’s stone, logo of PostCSS"
+src="./public/octopus-logo.svg">
 
-First, run the development browser:
+`Github Code Viewer` is a web application to view and explore GitHub code in a more simple and pleasurable way. It is
+built on top of [Github GraphqL API](https://docs.github.com/en/graphql/guides/introduction-to-graphql), and
+uses [Next.js](https://nextjs.org/) Server Side Rendering and [TailwindCSS](https://tailwindcss.com/) for the styles.
+
+Implemented as part of [Ivelum Frontend Challenge](https://github.com/ivelum/job/blob/master/challenges/frontend.md).
+
+## Installation
+
+We use [pnpm](https://github.com/pnpm/pnpm) as a package manager. If you don't have it don't worry. `npm` or `yarn`
+should work too.
+
+### Install dependencies
+
+To install the application locally, clone the repository and run the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm install
+
+# or if you have yarn installed
+yarn
+
+# or if you have only npm installed
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Generating personal access token
 
-You can start editing the page by modifying `pages/[[...path]].tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file with the following content:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed
-on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited
-in `pages/api/hello.ts`.
+```bash
+NEXT_PUBLIC_GITHUB_TOKEN=YOUR_GITHUB_TOKEN
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated
-as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Where `YOUR_GITHUB_TOKEN` is your personal access token. You can follow
+the [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+on how to generate your personal token.
 
-## Learn More
+### Generate GraphQL schema and types
 
-To learn more about Next.js, take a look at the following resources:
+We use `graphql-codegen` to generate the GraphQL schema and types.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run the following command to GraphQL the application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+pnpm run codegen
 
-## Deploy on Vercel
+# or if you have yarn installed
+yarn run codegen
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# or if you have only npm installed
+npm run codegen
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+⚠ **Note**: Please make sure your personal access token is set in the `.env.local` file before running the command.
+Otherwise, the code generator will fail with `Authorization` error.
+
+### Open the application
+
+Now you can run `pnpm run dev` to start the app and open [http://localhost:3000](http://localhost:3000) with your
+browser to see the result. Hooray! 🎉
+
+## Testing the application
+
+To test the application, run the following command:
+
+```bash
+pnpm run e2e
+
+# or if you have yarn installed
+yarn run e2e 
+
+# or if you have only npm installed
+npm run e2e 
+```
+
+It uses [Playwright](https://playwright.dev/) under the hood to run End-To-End tests.
+
+## Contributing
+
+You always welcome to contribute to the project by opening an issue or creating a pull request. I'm open to any kind of
+contribution.Please don't hesitate to contact me if you have any questions.
+
+## Thanks
+
+This all would not be possible without this awesome tools:
+
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Playwright](https://playwright.dev/)
+
+Also big thanks to [Ivelum Team](https://ivelum.com/) for creating such an amazing.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions
+are welcome!
+
