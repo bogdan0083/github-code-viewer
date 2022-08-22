@@ -1,4 +1,4 @@
-import { TreeEntryFieldsFragment } from "../../../generated/graphql";
+import { TreeEntryFieldsFragment } from "../../../__generated__/graphql";
 import Link from "next/link";
 import { RepoEntrySize, textSizeMap } from "./RepoEntries";
 import clsx from "clsx";

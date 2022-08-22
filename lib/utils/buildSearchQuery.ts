@@ -1,4 +1,4 @@
-import { SearchType } from "../../generated/graphql";
+import { SearchType } from "../../__generated__/graphql";
 
 export type SearchOptions = {
   query?: string;

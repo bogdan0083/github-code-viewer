@@ -1,6 +1,6 @@
 import Link from "next/link";
 import LangLabel from "../../common/LangLabel/LangLabel";
-import { RepoFieldsFragment } from "../../../generated/graphql";
+import { RepoFieldsFragment } from "../../../__generated__/graphql";
 import { prettifyNumberToThousands } from "../../../lib/utils/prettify";
 import { TbGitFork } from "react-icons/tb";
 import { RiStarSLine } from "react-icons/ri";

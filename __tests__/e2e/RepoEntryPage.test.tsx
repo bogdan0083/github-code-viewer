@@ -58,8 +58,8 @@ test("renders with different entries on both sides", async ({ page }) => {
     (entry) => entry.name
   );
 
-  expect(resultSideEntryNames).toEqual(expectedSideEntryNames);
-  expect(resultMainEntryNames).toEqual(expectedMainEntryNames);
+  await expect(resultSideEntryNames).toEqual(expectedSideEntryNames);
+  await expect(resultMainEntryNames).toEqual(expectedMainEntryNames);
 });
 
 test("shows 'back' folder button", async ({ page }) => {

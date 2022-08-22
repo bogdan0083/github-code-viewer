@@ -1,4 +1,4 @@
-import { TreeEntryFieldsFragment } from "../../../generated/graphql";
+import { TreeEntryFieldsFragment } from "../../../__generated__/graphql";
 import Link from "next/link";
 import { IoFolder, IoFolderOpen } from "react-icons/io5";
 import { iconSizeMap, RepoEntrySize, textSizeMap } from "./RepoEntries";

@@ -1,5 +1,8 @@
 import { gql } from "urql";
-import { SearchQuery, SearchQueryVariables } from "../../../generated/graphql";
+import {
+  SearchQuery,
+  SearchQueryVariables,
+} from "../../../__generated__/graphql";
 
 export const SEARCH_QUERY = gql<SearchQuery, SearchQueryVariables>`
   fragment RepoFields on Repository {

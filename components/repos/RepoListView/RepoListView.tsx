@@ -9,7 +9,7 @@ import {
   RepoFieldsFragment,
   SearchType,
   useSearchQuery,
-} from "../../../generated/graphql";
+} from "../../../__generated__/graphql";
 import ReposList from "../RepoList/RepoList";
 import clsx from "clsx";
 import ThemedButton from "../../common/ThemedButton/ThemedButton";

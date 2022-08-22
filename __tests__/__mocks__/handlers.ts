@@ -7,7 +7,7 @@ import {
   RepoTreeQueryVariables,
   SearchQuery,
   SearchQueryVariables,
-} from "../../generated/graphql";
+} from "../../__generated__/graphql";
 import { createRandomRepository } from "../__fixtures__/repository";
 import { getTreeEntries } from "../__fixtures__/treeEntry";
 import readmeBlob from "../__fixtures__/blobs/readmeBlob";

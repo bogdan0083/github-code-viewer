@@ -6,7 +6,7 @@ import {
   RepoFieldsFragment,
   SearchType,
   useSearchQuery,
-} from "../../../generated/graphql";
+} from "../../../__generated__/graphql";
 import Input from "../../form/Input/Input";
 import Dropdown from "../Dropdown/Dropdown";
 import Link from "next/link";

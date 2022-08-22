@@ -1,4 +1,4 @@
-import { RepoFieldsFragment } from "../../generated/graphql";
+import { RepoFieldsFragment } from "../../__generated__/graphql";
 import { faker } from "@faker-js/faker";
 import { RecursivePartial } from "../../lib/utils/types";
 

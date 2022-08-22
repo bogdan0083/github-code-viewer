@@ -1,16 +1,19 @@
-import {useRouter} from "next/router";
-import {IoLogoGithub} from "react-icons/io5";
-import {GITHUB_URL} from "../../../lib/utils/constants";
-import {FileFieldsFragment, useRepoBlobQuery,} from "../../../generated/graphql";
-import {useEffect, useMemo, useState} from "react";
-import {RepoPageQueryParams} from "../../../lib/utils/types";
+import { useRouter } from "next/router";
+import { IoLogoGithub } from "react-icons/io5";
+import { GITHUB_URL } from "../../../lib/utils/constants";
+import {
+  FileFieldsFragment,
+  useRepoBlobQuery,
+} from "../../../__generated__/graphql";
+import { useEffect, useMemo, useState } from "react";
+import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
 import CodeFragment from "../../code/CodeFragment/CodeFragment";
 import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
 
 const RepoFileView = () => {
   const router = useRouter();
-  const {owner, name, path = []} = router.query as RepoPageQueryParams;
+  const { owner, name, path = [] } = router.query as RepoPageQueryParams;
   const [fileHtmlContents, setFileHtmlContents] = useState<string | null>(null);
   const [language, setLanguage] = useState<string | null>(null);
 

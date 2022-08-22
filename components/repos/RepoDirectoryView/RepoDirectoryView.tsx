@@ -4,7 +4,7 @@ import { GITHUB_URL } from "../../../lib/utils/constants";
 import {
   TreeFieldsFragment,
   useRepoTreeQuery,
-} from "../../../generated/graphql";
+} from "../../../__generated__/graphql";
 import { useEffect, useMemo, useState } from "react";
 import orderBy from "lodash.orderby";
 import RepoEntries from "../RepoEntries/RepoEntries";

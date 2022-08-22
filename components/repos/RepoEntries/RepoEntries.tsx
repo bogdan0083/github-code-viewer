@@ -1,4 +1,4 @@
-import { TreeFieldsFragment } from "../../../generated/graphql";
+import { TreeFieldsFragment } from "../../../__generated__/graphql";
 import RepoDirectoryEntry from "./RepoDirectoryEntry";
 import RepoFileEntry from "./RepoFileEntry";
 import { useRouter } from "next/router";

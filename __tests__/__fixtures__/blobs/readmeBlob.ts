@@ -1,4 +1,7 @@
-import { FileFieldsFragment } from "../../../generated/graphql";
+/* eslint-disable */
+/* tslint:disable */
+/* noinspection */
+import { FileFieldsFragment } from "../../../__generated__/graphql";
 import { faker } from "@faker-js/faker";
 
 const readmeBlob: FileFieldsFragment = {

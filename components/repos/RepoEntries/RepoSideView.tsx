@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import {
   TreeFieldsFragment,
   useRepoTreeQuery,
-} from "../../../generated/graphql";
+} from "../../../__generated__/graphql";
 import RepoEntries from "./RepoEntries";
 import orderBy from "lodash.orderby";
 import { useMemo } from "react";

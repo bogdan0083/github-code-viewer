@@ -20,6 +20,7 @@ body {
     flex-direction: column;
 }
 
+/*noinspection CssUnusedSymbol*/
 #__next {
     display: flex;
     flex-direction: column;

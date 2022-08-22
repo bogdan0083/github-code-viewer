@@ -2,6 +2,7 @@ import type {PlaywrightTestConfig} from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   testDir: "./__tests__/e2e",
+  retries: 3,
   webServer: {
     command: "pnpm run dev-test",
     url: 'http://localhost:3005/',

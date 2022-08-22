@@ -1,4 +1,4 @@
-import { TreeEntryFieldsFragment } from "../../generated/graphql";
+import { TreeEntryFieldsFragment } from "../../__generated__/graphql";
 import { faker } from "@faker-js/faker";
 
 // Kindly taken fron Sourcegraph API Console

@@ -8,8 +8,13 @@ documents:
   - components/**/*.tsx
   - lib/**/*.ts
 generates:
-  generated/graphql.tsx:
+  __generated__/graphql.tsx:
     plugins:
+      - add:
+          content:
+            - '// 🛑 NOTICE: __generated__ folders should be added to .gitignore'
+            - '/* eslint-disable */'
+            - '/* tslint:disable */'
       - typescript
       - typescript-operations
       - typescript-urql
@@ -17,6 +22,6 @@ generates:
       withHooks: true
       dedupeOperationSuffix: true
       gqlImport: 'urql#gql'
-  generated/schema.graphql:
+  __generated__/schema.graphql:
     plugins:
       - schema-ast

@@ -10,9 +10,13 @@
     "lint": "pnpm prettier pages components lib __tests__ --write && next lint",
     "codegen": "DOTENV_CONFIG_PATH=\"./.env.local\" graphql-codegen --require dotenv/config --config codegen.yml",
     "test": "jest --watch",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@graphql-codegen/add": "^3.2.1",
     "@graphql-codegen/cli": "^2.8.1",
     "@graphql-codegen/typescript-operations": "^2.5.1",
     "@graphql-codegen/typescript-urql": "^3.6.1",
@@ -44,6 +48,7 @@
     "@faker-js/faker": "^7.4.0",
     "@graphql-codegen/schema-ast": "^2.5.0",
     "@mswjs/data": "^0.10.1",
+    "@next/bundle-analyzer": "^12.2.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@types/highlightjs": "^9.12.2",
@@ -56,6 +61,7 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.0",
