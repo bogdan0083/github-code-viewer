@@ -138,6 +138,7 @@ test("renders file views", async ({ page }) => {
   ).toBeVisible();
   expect(firstResultSideEntryNames).toEqual(firstExpectedEntryNames);
 
+  // Click multiple entries down the tree and wait for response
   await Promise.all([
     waitForGraphqlResponse(page),
     page.locator("data-testid=RepoSideView >> text='src'").click(),
