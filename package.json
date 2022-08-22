@@ -1,5 +1,5 @@
 {
-  "name": "ivelum-frontend-challenge",
+  "name": "github-code-viewer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -75,7 +75,7 @@
     "typescript": "4.7.4"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint"
+    "pre-commit": "pnpm prettier pages components lib __tests__ --write && next lint"
   },
   "msw": {
     "workerDirectory": "public"
