@@ -5,8 +5,9 @@ alt="Philosopher’s stone, logo of PostCSS"
 src="./public/octopus-logo.svg">
 
 `Github Code Viewer` is a web application to view and explore GitHub code in a more simple and pleasurable way. It is
-built on top of [Github GraphqL API](https://docs.github.com/en/graphql/guides/introduction-to-graphql), and
-uses [Next.js](https://nextjs.org/) Server Side Rendering and [TailwindCSS](https://tailwindcss.com/) for the styles.
+built on top of [Github GraphqL API](https://docs.github.com/en/graphql/guides/introduction-to-graphql),
+uses [Next.js](https://nextjs.org/) with Server Side Rendering and [TailwindCSS](https://tailwindcss.com/) for the
+styles.
 
 Implemented as part of [Ivelum Frontend Challenge](https://github.com/ivelum/job/blob/master/challenges/frontend.md).
 
@@ -88,15 +89,12 @@ contribution.Please don't hesitate to contact me if you have any questions.
 
 ## Thanks
 
-This all would not be possible without this awesome tools:
+This all would not be possible without awesome tools:
 
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Playwright](https://playwright.dev/)
 
-Also big thanks to [Ivelum Team](https://ivelum.com/) for creating such an amazing.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions
-are welcome!
-
+Also big thanks to [Ivelum Team](https://ivelum.com/) for creating such an amazing challenge for junior level
+programmers.
