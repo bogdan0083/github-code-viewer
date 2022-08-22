@@ -1,14 +1,12 @@
 import SearchForm from "../SearchForm/SearchForm";
 import clsx from "clsx";
-import Link from "next/link";
+import Logo from "../Logo/Logo";
 
 interface AppHeaderProps {
-  title: string;
-  mobileTitle: string;
   fixed?: boolean;
 }
 
-const AppHeader = ({ title, mobileTitle, fixed = false }: AppHeaderProps) => {
+const AppHeader = ({ fixed = false }: AppHeaderProps) => {
   const headerClassName = clsx(
     "w-full pt-4 pt-5 bg-white/50 flex items-center px-2 md:px-3",
     fixed &&
@@ -18,25 +16,13 @@ const AppHeader = ({ title, mobileTitle, fixed = false }: AppHeaderProps) => {
 
   const searchFormClass = clsx("flex mt-4", fixed && "mt-0 ml-6");
 
-  const headingClassName = clsx(
-    "font-bold",
-    fixed && "text-base whitespace-nowrap"
-  );
-
   return (
     <header className={headerClassName} data-testid={"header"}>
-      <div className={""}>
-        <h1 className={headingClassName}>
-          <Link href={"/"}>
-            <a className={"transition-opacity hover:opacity-40"}>
-              <span className={"hidden sm:inline"} data-testid="logo-text">
-                {title}
-              </span>
-              <span className={"sm:hidden"}>{mobileTitle}</span>
-            </a>
-          </Link>
-        </h1>
-      </div>
+      <Logo
+        title={"Github Code Viewer"}
+        mobileTitle={"GCV"}
+        className={"flex-shrink-0"}
+      />
       <SearchForm className={searchFormClass} />
     </header>
   );

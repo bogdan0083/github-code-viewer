@@ -38,7 +38,7 @@ const AppFooter = ({ className }: AppFooterProps) => {
           The source code is available on&nbsp;
           <a
             target={"_blank"}
-            href={"https://github.com/bogdan0083/ivelum-frontend-challenge"}
+            href={"https://github.com/bogdan0083/github-code-viewer"}
             rel={"noreferrer"}
             className={"transition-opacity hover:opacity-75"}
           >

@@ -11,7 +11,7 @@ const DefaultLayout = ({ children }: LayoutProps) => {
   const router = useRouter();
   return (
     <>
-      <AppHeader title={"GitHub Code Viewer"} mobileTitle={"GCV"} fixed />
+      <AppHeader fixed />
       <ErrorBoundary router={router}>
         <div className="container mx-auto px-2 flex-grow">{children}</div>
       </ErrorBoundary>

@@ -16,7 +16,7 @@ const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
   );
   return (
     <>
-      <AppHeader title={"GitHub Code Viewer"} mobileTitle={"GCV"} fixed />
+      <AppHeader fixed />
       <main className={styles.layoutContainer}>
         <ErrorBoundary router={router}>
           <div className={sidenavWrapperClassName}>{sideNavContent}</div>

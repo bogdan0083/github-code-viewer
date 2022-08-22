@@ -1,7 +1,11 @@
 const Favicon = () => {
   return (
     <>
-      <link rel="icon" href="/favicon.ico" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
       <link
         rel="icon"
         type="image/png"

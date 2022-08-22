@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-test": "NEXT_PUBLIC_API_MOCKING=true next dev -p 3005",
     "build": "next build",
     "start": "next start",
     "lint": "pnpm prettier pages components lib __tests__ --write && next lint",
     "codegen": "DOTENV_CONFIG_PATH=\"./.env.local\" graphql-codegen --require dotenv/config --config codegen.yml",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^2.8.1",

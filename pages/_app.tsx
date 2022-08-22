@@ -12,7 +12,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout<any, any>;
 };
 
-const API_MOCKING = process?.env.NEXT_PUBLIC_API_MOCKING;
+const API_MOCKING = process?.env.NEXT_PUBLIC_API_MOCKING === "true" || false;
 const NODE_ENV = process?.env.NODE_ENV;
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
