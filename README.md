@@ -95,6 +95,8 @@ This all would not be possible without awesome tools:
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Playwright](https://playwright.dev/)
+- [DALLE-mini](https://huggingface.co/spaces/dalle-mini/dalle-mini) - The logo for the project is generated from this
+  gorgeous tool. Isn't that black octopus cute? :)
 
 Also big thanks to [Ivelum Team](https://ivelum.com/) for creating such an amazing challenge for junior level
 programmers.
