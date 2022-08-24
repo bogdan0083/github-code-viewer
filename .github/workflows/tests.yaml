@@ -15,8 +15,11 @@ jobs:
         run: npm install
       - name: Install Playwright
         run: npx playwright install --with-deps
+      - name: Generate graphQL schema and typescript types
+        run: npm run codegen
       - name: Run Playwright tests
         run: npm run e2e
         env:
           # This might depend on your test-runner/language binding
           PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
