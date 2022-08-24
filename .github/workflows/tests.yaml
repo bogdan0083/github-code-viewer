@@ -1,64 +1,22 @@
 name: "tests"
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
-  workflow_dispatch:
-  schedule:
-    - cron: '40 0 * * *'
-
+  deployment_status:
 jobs:
-  test-linux:
-    name: Playwright@${{ matrix.playwright}} ${{ matrix.os }} headless=${{ matrix.headless }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ ubuntu-20.04, macos-latest, windows-latest ]
-        playwright: [ 1.8.0, 1.12.0, 1.18.0, next, beta ]
-        headless: [ true, false ]
-        exclude:
-          - os: ubuntu-20.04
-            playwright: 1.0.0
-          - os: ubuntu-20.04
-            playwright: 1.1.0
-          - os: ubuntu-20.04
-            playwright: 1.2.0
-          - os: ubuntu-22.04
-            playwright: 1.23
-          - os: ubuntu-22.04
-            playwright: 1.25
-          - os: ubuntu-22.04
-            playwright: next
-          - os: ubuntu-20.04
-            playwright: latest
-        include:
-          - os: ubuntu-22.04
-            playwright: next
-
-    runs-on: ${{ matrix.os }}
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
-          node-version: 16
-      - uses: ./
+          node-version: '16.x'
       - name: Install dependencies
         run: npm install
-        # Headless running is the same across OSes
-      - name: Run Playwright (headless)
-        if: ${{ matrix.headless == true }}
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
         run: npm run e2e
-
-        # Headful is different in every OS
-#      - name: Run Playwright (headful linux)
-#        if: ${{ matrix.headless == false && startsWith(matrix.os, 'ubuntu') }}
-#        run: cd sample && HEADFUL=true xvfb-run --auto-servernum -- node index.js
-#      - name: Run Playwright (headful windows)
-#        if: ${{ matrix.headless == false && startsWith(matrix.os, 'windows') }}
-#        run: cd sample && HEADFUL=true node index.js
-#        shell: bash
-#      - name: Run Playwright (headful mac)
-#        if: ${{ matrix.headless == false && startsWith(matrix.os, 'mac') }}
-#        run: cd sample && HEADFUL=true node index.js
+        env:
+          # This might depend on your test-runner/language binding
+          PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
