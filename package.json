@@ -81,12 +81,6 @@
     "simple-git-hooks": "^2.8.0",
     "typescript": "4.7.4"
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write",
-      "npx next lint"
-    ]
-  },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
