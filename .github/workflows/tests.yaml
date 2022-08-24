@@ -16,7 +16,7 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
       - name: Generate graphQL schema and typescript types
-        run: npm run codegen
+        run: graphql-codegen --require dotenv/config --config codegen.yml
       - name: Run Playwright tests
         run: npm run e2e
         env:
