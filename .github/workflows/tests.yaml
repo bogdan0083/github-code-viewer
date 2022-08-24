@@ -8,17 +8,21 @@ jobs:
     if: github.event.deployment_status.state == 'success'
     steps:
       - uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 'latest'
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Install Playwright
-        run: npx playwright install --with-deps
+        run: pnpm playwright install --with-deps
       - name: Generate graphQL schema and typescript types
-        run: NEXT_PUBLIC_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npx graphql-codegen --config codegen.yml
+        run: NEXT_PUBLIC_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} pnpm graphql-codegen --config codegen.yml
       - name: Run Playwright tests
-        run: npm run e2e
+        run: pnpm run test:e2e
         env:
           # This might depend on your test-runner/language binding
           PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
