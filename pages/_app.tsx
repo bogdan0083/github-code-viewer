@@ -1,8 +1,8 @@
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import withUrqlGithubClient from "../lib/utils/withUrqlGithubClient";
-import { NextPage } from "next";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import type {AppProps} from "next/app";
+import withUrqlGithubClient from "@lib/utils/withUrqlGithubClient";
+import {NextPage} from "next";
+import {ReactElement, ReactNode, useEffect, useState} from "react";
 
 export type NextPageWithLayout<P, IP> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

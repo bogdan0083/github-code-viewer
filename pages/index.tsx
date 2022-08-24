@@ -1,10 +1,10 @@
 import Head from "next/head";
-import RepoListView from "../components/repos/RepoListView/RepoListView";
+import RepoListView from "@components/repos/RepoListView/RepoListView";
 import subDays from "date-fns/subDays";
 import format from "date-fns/format";
-import { NextPageWithLayout } from "./_app";
-import DefaultLayout from "../components/layouts/defaultLayout";
-import Favicon from "../components/common/Favicon/Favicon";
+import {NextPageWithLayout} from "./_app";
+import DefaultLayout from "@components/layouts/defaultLayout";
+import Favicon from "@components/common/Favicon/Favicon";
 
 const Home: NextPageWithLayout<any, {}> = () => {
   const weekAgo = format(subDays(new Date(), 7), "yyyy-MM-dd");

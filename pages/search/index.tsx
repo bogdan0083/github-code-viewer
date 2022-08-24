@@ -1,9 +1,9 @@
-import { NextPageWithLayout } from "../_app";
-import { useRouter } from "next/router";
+import {NextPageWithLayout} from "../_app";
+import {useRouter} from "next/router";
 import Head from "next/head";
-import DefaultLayout from "../../components/layouts/defaultLayout";
-import RepoListView from "../../components/repos/RepoListView/RepoListView";
-import Favicon from "../../components/common/Favicon/Favicon";
+import DefaultLayout from "@components/layouts/defaultLayout";
+import RepoListView from "@components/repos/RepoListView/RepoListView";
+import Favicon from "@components/common/Favicon/Favicon";
 
 type SearchPageRouteParams = {
   q: string;
@@ -11,7 +11,7 @@ type SearchPageRouteParams = {
 
 const SearchPage: NextPageWithLayout<any, {}> = () => {
   const router = useRouter();
-  const { q } = router.query as SearchPageRouteParams;
+  const {q} = router.query as SearchPageRouteParams;
   const title = `Search results for: ${q}`;
   return (
     <>
