@@ -4,7 +4,7 @@ const config: PlaywrightTestConfig = {
   testDir: "./__tests__/e2e",
   retries: 3,
   webServer: {
-    command: "pnpm run dev-test",
+    command: "NEXT_PUBLIC_API_MOCKING=true next dev -p 3005",
     url: 'http://localhost:3005/',
     reuseExistingServer: !process.env.CI,
   },
