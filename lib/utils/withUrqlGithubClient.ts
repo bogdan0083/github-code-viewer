@@ -1,13 +1,18 @@
-import { withUrqlClient } from "next-urql";
 import { NextPage } from "next";
 import { GITHUB_GRAPHQL_URL } from "./constants";
-import { devtoolsExchange } from "@urql/devtools";
-import { dedupExchange, errorExchange, fetchExchange } from "urql";
-import { cacheExchange } from "@urql/exchange-graphcache";
+import {
+  ClientOptions,
+  dedupExchange,
+  errorExchange,
+  fetchExchange,
+} from "urql";
+import { withUrqlClient } from "next-urql";
 import { retryExchange } from "@urql/exchange-retry";
+import { cacheExchange } from "@urql/exchange-graphcache";
 import { relayPagination } from "@urql/exchange-graphcache/extras";
+import { devtoolsExchange } from "@urql/devtools";
 
-export const graphqlGithubClientConfig = {
+export const graphqlGithubClientConfig: ClientOptions = {
   url: GITHUB_GRAPHQL_URL,
   fetchOptions: {
     headers: {
@@ -15,8 +20,8 @@ export const graphqlGithubClientConfig = {
     },
   },
   exchanges: [
-    devtoolsExchange,
     dedupExchange,
+    devtoolsExchange,
     cacheExchange({
       resolvers: {
         Query: {

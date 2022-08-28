@@ -37,13 +37,13 @@
     "lodash.orderby": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "next": "12.2.0",
-    "next-urql": "^3.3.3",
+    "next-urql": "^4.0.0",
     "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "tailwindcss": "^3.1.4",
-    "urql": "^2.2.2"
+    "urql": "^3.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.4.0",
