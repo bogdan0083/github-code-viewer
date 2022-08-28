@@ -5,7 +5,7 @@ alt="Philosopher’s stone, logo of PostCSS"
 src="./public/octopus-logo.svg">
 
 `Github Code Viewer` is a web application to view and explore GitHub code in a more simple and pleasurable way. It is
-built on top of [Github GraphqL API](https://docs.github.com/en/graphql/guides/introduction-to-graphql),
+built on top of [Github GraphQL API](https://docs.github.com/en/graphql/guides/introduction-to-graphql),
 uses [Next.js](https://nextjs.org/) with Server Side Rendering and [TailwindCSS](https://tailwindcss.com/) for the
 styles.
 
