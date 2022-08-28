@@ -1,8 +1,8 @@
 import "../styles/globals.css";
-import type {AppProps} from "next/app";
+import type { AppProps } from "next/app";
 import withUrqlGithubClient from "@lib/utils/withUrqlGithubClient";
-import {NextPage} from "next";
-import {ReactElement, ReactNode, useEffect, useState} from "react";
+import { NextPage } from "next";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 
 export type NextPageWithLayout<P, IP> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -13,7 +13,6 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const API_MOCKING = process?.env.NEXT_PUBLIC_API_MOCKING === "true" || false;
-const NODE_ENV = process?.env.NODE_ENV;
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -27,7 +26,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       setShouldRender(true);
     }
 
-    if (API_MOCKING && NODE_ENV === "development") {
+    if (API_MOCKING) {
       initMocks();
     }
   }, []);
