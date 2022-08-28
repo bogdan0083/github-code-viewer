@@ -74,10 +74,10 @@ To test the application, run the following command:
 pnpm run e2e
 
 # or if you have yarn installed
-yarn run e2e 
+yarn run e2e
 
 # or if you have only npm installed
-npm run e2e 
+npm run e2e
 ```
 
 It uses [Playwright](https://playwright.dev/) under the hood to run End-To-End tests.

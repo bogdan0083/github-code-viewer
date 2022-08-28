@@ -10,7 +10,8 @@
     --sidenav-height: calc(100vh - var(--header-height));
 }
 
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
 }

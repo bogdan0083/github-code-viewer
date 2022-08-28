@@ -16,13 +16,13 @@ const SearchPage: NextPageWithLayout<any, {}> = () => {
   return (
     <>
       <Head>
-        <title>Search | Github Code Viewer</title>
-        <meta name="description" content="Search results" />
-        <Favicon />
+        <title>{title} | Github Code Viewer</title>
+        <meta name="description" content="Search results"/>
+        <Favicon/>
       </Head>
       <div>
         <div className="container mx-auto px-3 pt-8">
-          <RepoListView title={title} query={q} />
+          <RepoListView title={title} query={q}/>
         </div>
       </div>
     </>

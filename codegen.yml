@@ -12,16 +12,16 @@ generates:
     plugins:
       - add:
           content:
-            - '// 🛑 NOTICE: __generated__ folders should be added to .gitignore'
-            - '/* eslint-disable */'
-            - '/* tslint:disable */'
+            - "// 🛑 NOTICE: __generated__ folders should be added to .gitignore"
+            - "/* eslint-disable */"
+            - "/* tslint:disable */"
       - typescript
       - typescript-operations
       - typescript-urql
     config:
       withHooks: true
       dedupeOperationSuffix: true
-      gqlImport: 'urql#gql'
+      gqlImport: "urql#gql"
   __generated__/schema.graphql:
     plugins:
       - schema-ast

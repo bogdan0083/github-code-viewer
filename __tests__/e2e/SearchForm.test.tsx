@@ -1,9 +1,9 @@
-import { expect, test } from "@playwright/test";
-import { waitForGraphqlResponse } from "../__utils__/utils";
+import {expect, test} from "@playwright/test";
+import {waitForGraphqlResponse} from "../__utils__/utils";
 
-test.describe.configure({ mode: "parallel" });
+test.describe.configure({mode: "parallel"});
 
-test("renders search form", async ({ page }) => {
+test("renders search form", async ({page}) => {
   await page.goto("/");
 
   let searchInputLocator = await page.locator(
@@ -17,11 +17,11 @@ test("renders search form", async ({ page }) => {
   await expect(searchInputLocator).toBeVisible();
   await expect(searchInputLocator).toBeEmpty();
 
-  await searchInputLocator.type("react");
+  await searchInputLocator.type("react", {delay: 100});
   await expect(searchInputLocator).toHaveValue("react");
 });
 
-test("types in search form and renders search results", async ({ page }) => {
+test("types in search form and renders search results", async ({page}) => {
   await page.goto("/");
 
   let submitButtonLocator = await page.locator(
@@ -39,8 +39,6 @@ test("types in search form and renders search results", async ({ page }) => {
     waitForGraphqlResponse(page),
     searchInputLocator.type("react"),
   ]);
-
-  await page.waitForTimeout(1000);
 
   await expect(searchInputLocator).toHaveValue("react");
   await expect(await searchResultsLocator.elementHandles()).toHaveLength(5);
@@ -48,8 +46,8 @@ test("types in search form and renders search results", async ({ page }) => {
 });
 
 test("types in search form, click submit button and navigates to search page", async ({
-  page,
-}) => {
+                                                                                        page,
+                                                                                      }) => {
   await page.goto("/");
 
   let submitButtonLocator = await page.locator(
@@ -62,13 +60,13 @@ test("types in search form, click submit button and navigates to search page", a
 
   await Promise.all([
     waitForGraphqlResponse(page),
-    searchInputLocator.type("react"),
+    searchInputLocator.type("react", {delay: 100}),
   ]);
 
   await page.waitForTimeout(1000);
 
   await Promise.all([
-    page.waitForNavigation({ waitUntil: "networkidle" }),
+    page.waitForNavigation({waitUntil: "networkidle"}),
     submitButtonLocator.click(),
   ]);
 
@@ -76,8 +74,8 @@ test("types in search form, click submit button and navigates to search page", a
 });
 
 test("types in search form, clicks search result item and navigates to repo page", async ({
-  page,
-}) => {
+                                                                                            page,
+                                                                                          }) => {
   await page.goto("/");
 
   let searchInputLocator = await page.locator(
@@ -90,13 +88,13 @@ test("types in search form, clicks search result item and navigates to repo page
 
   await Promise.all([
     waitForGraphqlResponse(page),
-    searchInputLocator.type("react"),
+    searchInputLocator.type("react", {delay: 100}),
   ]);
 
   await page.waitForTimeout(1000);
 
   await Promise.all([
-    page.waitForNavigation({ waitUntil: "networkidle" }),
+    page.waitForNavigation({waitUntil: "networkidle"}),
     searchResultsLocator.first().click(),
   ]);
 

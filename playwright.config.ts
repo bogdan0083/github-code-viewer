@@ -5,7 +5,7 @@ const config: PlaywrightTestConfig = {
   retries: 3,
   webServer: {
     command: "NODE_ENV=test next dev -p 3005",
-    url: 'http://localhost:3005/',
+    url: "http://localhost:3005/",
     reuseExistingServer: !process.env.CI,
   },
   use: {

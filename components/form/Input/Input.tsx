@@ -1,10 +1,10 @@
 import clsx from "clsx";
+import {ForwardedRef, forwardRef, InputHTMLAttributes} from "react";
 
 interface InputProps {
   type?: string;
   name?: string;
   placeholder?: string;
-  value?: string;
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -14,20 +14,24 @@ interface InputProps {
   onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({
-  type = "text",
-  name,
-  placeholder,
-  value,
-  className,
-  onChange,
-  onKeyDown,
-  onKeyUp,
-  onFocus,
-  onBlur,
-  onClick,
-  ...otherProps
-}: InputProps) => {
+const Input = (
+  props: InputHTMLAttributes<HTMLInputElement> & InputProps,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
+  const {
+    type = "text",
+    name,
+    placeholder,
+    className,
+    onChange,
+    onKeyDown,
+    onKeyUp,
+    onFocus,
+    onBlur,
+    onClick,
+    value,
+    ...otherProps
+  } = props;
   const cl = clsx(
     "py-2 px-2 w-full border text-sm rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow",
     className
@@ -45,9 +49,10 @@ const Input = ({
       onFocus={onFocus}
       onBlur={onBlur}
       onClick={onClick}
+      ref={ref}
       {...otherProps}
     />
   );
 };
 
-export default Input;
+export default forwardRef(Input);
