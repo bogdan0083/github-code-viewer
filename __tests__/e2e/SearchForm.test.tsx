@@ -1,9 +1,9 @@
-import {expect, test} from "@playwright/test";
-import {waitForGraphqlResponse} from "../__utils__/utils";
+import { expect, test } from "@playwright/test";
+import { waitForGraphqlResponse } from "../__utils__/utils";
 
-test.describe.configure({mode: "parallel"});
+test.describe.configure({ mode: "parallel" });
 
-test("renders search form", async ({page}) => {
+test("renders search form", async ({ page }) => {
   await page.goto("/");
 
   let searchInputLocator = await page.locator(
@@ -17,7 +17,7 @@ test("renders search form", async ({page}) => {
   await expect(searchInputLocator).toBeVisible();
   await expect(searchInputLocator).toBeEmpty();
 
-  await searchInputLocator.type("react", {delay: 100});
+  await searchInputLocator.type("react", { delay: 100 });
   await expect(searchInputLocator).toHaveValue("react");
 });
 
@@ -39,6 +39,8 @@ test("types in search form and renders search results", async ({page}) => {
     waitForGraphqlResponse(page),
     searchInputLocator.type("react"),
   ]);
+
+  await page.waitForTimeout(1000);
 
   await expect(searchInputLocator).toHaveValue("react");
   await expect(await searchResultsLocator.elementHandles()).toHaveLength(5);
