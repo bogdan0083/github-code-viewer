@@ -1,18 +1,24 @@
 import * as React from "react";
 
-type Action = { type: "increment" } | { type: "decrement" };
+export enum PaletteMode {
+  System,
+  Light,
+  Dark
+}
+
+type Action = { type: "set_palette_mode", value: PaletteMode };
 type Dispatch = (action: Action) => void;
-type State = { count: number };
+type State = { paletteMode: PaletteMode };
 type PaletteModeProviderProps = { children: React.ReactNode };
 
 const PaletteModeStateContext = React.createContext<
   { state: State; dispatch: Dispatch } | undefined
 >(undefined);
 
-function countReducer(state: State, action: Action) {
+function paletteModeReducer(state: State, action: Action) {
   switch (action.type) {
-    case "increment": {
-      return { count: state.count + 1 };
+    case "set_palette_mode": {
+      return { paletteMode: action.value };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -21,7 +27,7 @@ function countReducer(state: State, action: Action) {
 }
 
 function PaletteModeProvider({ children }: PaletteModeProviderProps) {
-  const [state, dispatch] = React.useReducer(countReducer, { count: 0 });
+  const [state, dispatch] = React.useReducer(paletteModeReducer, { paletteMode: PaletteMode.System });
   // NOTE: you *might* need to memoize this value
   // Learn more in http://kcd.im/optimize-context
   const value = { state, dispatch };

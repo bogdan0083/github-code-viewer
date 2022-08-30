@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import withUrqlGithubClient from "@lib/utils/withUrqlGithubClient";
 import { NextPage } from "next";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { PaletteModeProvider } from "@lib/context/paletteModeContext";
 
 export type NextPageWithLayout<P, IP> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -35,7 +36,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     return null;
   }
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <PaletteModeProvider>
+      {getLayout(<Component {...pageProps} />)}
+    </PaletteModeProvider>
+  );
 }
 
 export default withUrqlGithubClient(MyApp);

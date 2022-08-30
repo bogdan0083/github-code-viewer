@@ -1,5 +1,4 @@
-@import "highlightjs/styles/github.css";
-@import "highlightjs/styles/github.css";
+@import "node_modules/highlightjs/styles/github.css";
 
 @tailwind base;
 @tailwind components;
@@ -26,4 +25,15 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        @apply: text-gray-100;
+    }
+    :focus {
+        outline: 2px auto var(--tw-ring-color);
+    }
+    @import "node_modules/highlightjs/styles/atom-one-dark.css";
 }

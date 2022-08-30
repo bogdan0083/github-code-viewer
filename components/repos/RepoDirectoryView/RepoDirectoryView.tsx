@@ -1,16 +1,16 @@
+import orderBy from "lodash.orderby";
 import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
 import { IoLogoGithub } from "react-icons/io5";
 import { GITHUB_URL } from "../../../lib/utils/constants";
+import { RepoPageQueryParams } from "../../../lib/utils/types";
 import {
   TreeFieldsFragment,
-  useRepoTreeQuery,
+  useRepoTreeQuery
 } from "../../../__generated__/graphql";
-import { useEffect, useMemo, useState } from "react";
-import orderBy from "lodash.orderby";
-import RepoEntries from "../RepoEntries/RepoEntries";
-import { RepoPageQueryParams } from "../../../lib/utils/types";
 import Topline from "../../common/Topline/Topline";
 import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";
+import RepoEntries from "../RepoEntries/RepoEntries";
 
 const RepoDirectoryView = () => {
   const router = useRouter();

@@ -8,7 +8,6 @@ import Favicon from "@components/common/Favicon/Favicon";
 
 const Home: NextPageWithLayout<any, {}> = () => {
   const weekAgo = format(subDays(new Date(), 7), "yyyy-MM-dd");
-
   return (
     <>
       <Head>
