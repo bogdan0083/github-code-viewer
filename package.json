@@ -81,7 +81,7 @@
     "playwright": "^1.25.0",
     "postcss-easy-import": "^4.0.0",
     "postcss-import": "^14.1.0",
-    "postcss-nested-import": "^0.2.0",
+    "postcss-nested-import": "github:sqrthree/postcss-nested-import",
     "prettier": "^2.7.1",
     "simple-git-hooks": "^2.8.0",
     "typescript": "4.7.4"

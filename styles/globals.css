@@ -1,4 +1,4 @@
-@import "node_modules/highlightjs/styles/github.css";
+@import "highlightjs/styles/github.css";
 
 @tailwind base;
 @tailwind components;
@@ -35,5 +35,5 @@ body {
     :focus {
         outline: 2px auto var(--tw-ring-color);
     }
-    @import "node_modules/highlightjs/styles/atom-one-dark.css";
+    @import "./node_modules/highlightjs/styles/atom-one-dark.css";
 }
