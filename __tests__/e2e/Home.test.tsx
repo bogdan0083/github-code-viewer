@@ -6,7 +6,7 @@ import { waitForGraphqlResponse } from "../__utils__/utils";
 
 test.describe.configure({ mode: "parallel" });
 
-test("sender home page", async ({ page }) => {
+test("render home page", async ({ page }) => {
   await page.goto("/");
   await expect(page).toHaveTitle(/github code viewer/i);
 });
