@@ -1,13 +1,16 @@
 import clsx from "clsx";
-import {HTMLAttributes, InputHTMLAttributes, useMemo,} from "react";
-import {Transition} from "@headlessui/react";
-import {useAutocomplete, UseAutocompleteProps} from "@mui/base";
+import { HTMLAttributes, InputHTMLAttributes, useMemo } from "react";
+import { Transition } from "@headlessui/react";
+import { useAutocomplete, UseAutocompleteProps } from "@mui/base";
+import { PaletteMode, usePaletteMode } from "@lib/context/paletteModeContext";
 
 interface DropdownProps<T>
-  extends UseAutocompleteProps<T,
+  extends UseAutocompleteProps<
+    T,
     boolean | undefined,
     boolean | undefined,
-    boolean | undefined> {
+    boolean | undefined
+  > {
   isLoading?: boolean;
   className?: string;
   open?: boolean;
@@ -19,12 +22,13 @@ interface DropdownProps<T>
 }
 
 function Autocomplete<T>({
-                           isLoading,
-                           className,
-                           renderInput,
-                           renderOption,
-                           ...otherProps
-                         }: DropdownProps<T>) {
+  isLoading,
+  className,
+  renderInput,
+  renderOption,
+  ...otherProps
+}: DropdownProps<T>) {
+  const paletteMode = usePaletteMode().state.paletteMode;
   const {
     getRootProps,
     getInputProps,
@@ -50,23 +54,31 @@ function Autocomplete<T>({
         leave={"transition-all"}
         leaveFrom={"opacity-100 scale-[1]"}
         leaveTo={"opacity-0 scale-[0.99]"}
-        className={clsx("absolute -bottom-1 translate-y-full mt-2 w-full")}
+        className={clsx("absolute -bottom-2 translate-y-full mt-2 w-full")}
       >
         {groupedOptions.length === 0 && isLoading && (
-          <div className="text-xs p-2 bg-white rounded shadow-md border border-gray-200 w-full">
+          <div
+            className={clsx({
+              "text-xs p-2 rounded shadow-md border w-full": true,
+              "bg-white dark:border-gray-800 dark:bg-zinc-900": paletteMode === PaletteMode.System,
+            })}
+          >
             <div>Loading...</div>
           </div>
         )}
         {groupedOptions.length > 0 && (
           <ul
             {...getListboxProps()}
-            className="text-xs p-2 bg-white rounded shadow-md border border-gray-200 w-full"
+            className={clsx({
+              "text-xs p-2 rounded shadow-md border w-full": true,
+              "bg-white border-gray-200 dark:bg-zinc-900 dark:border-gray-700": paletteMode === PaletteMode.System,
+            })}
           >
             {groupedOptions.length > 0 &&
               // @TODO: Fix this type
               // @ts-ignore
               groupedOptions.map((option: T, index) =>
-                renderOption(getOptionProps({option, index}), option)
+                renderOption(getOptionProps({ option, index }), option)
               )}
           </ul>
         )}

@@ -1,5 +1,6 @@
+import {PaletteMode, usePaletteMode} from "@lib/context/paletteModeContext";
 import clsx from "clsx";
-import {ForwardedRef, forwardRef, InputHTMLAttributes} from "react";
+import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
 
 interface InputProps {
   type?: string;
@@ -18,6 +19,7 @@ const Input = (
   props: InputHTMLAttributes<HTMLInputElement> & InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
+  const paletteMode = usePaletteMode().state.paletteMode;
   const {
     type = "text",
     name,
@@ -33,8 +35,9 @@ const Input = (
     ...otherProps
   } = props;
   const cl = clsx(
-    "py-2 px-2 w-full border text-sm rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow",
-    className
+    "py-2 px-2 w-full border text-sm rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+    className,
+    paletteMode === PaletteMode.System && "bg-white border-gray-300 dark:bg-zinc-900 dark:border-gray-700 dark:focus:ring-white"
   );
   return (
     <input

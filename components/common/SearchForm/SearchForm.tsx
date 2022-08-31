@@ -1,42 +1,62 @@
 import clsx from "clsx";
 import ThemedButton from "../ThemedButton/ThemedButton";
-import {ChangeEvent, HTMLAttributes, useCallback, useMemo, useState,} from "react";
+import {
+  ChangeEvent,
+  HTMLAttributes,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 import debounce from "lodash.debounce";
-import {RepoFieldsFragment, SearchType, useSearchQuery,} from "../../../__generated__/graphql";
+import {
+  RepoFieldsFragment,
+  SearchType,
+  useSearchQuery,
+} from "../../../__generated__/graphql";
 import Input from "../../form/Input/Input";
 import Autocomplete from "../Autocomplete/Autocomplete";
-import {IoSearch} from "react-icons/io5";
-import {useRouter} from "next/router";
+import { IoSearch } from "react-icons/io5";
+import { useRouter } from "next/router";
+import {PaletteMode, usePaletteMode} from "@lib/context/paletteModeContext";
 
 interface SearchFormProps {
   className?: string;
 }
 
+interface ListOptionAdditionalProps {
+  focused?: boolean;
+  paletteMode: PaletteMode;
+}
+
 const ListOption = ({
-                      owner,
-                      id,
-                      nameWithOwner,
-                      name,
-                      description,
-                      defaultBranchRef,
-                      primaryLanguage,
-                      forkCount,
-                      stargazerCount,
-                      focused,
-                      __typename,
-                      ...other
-                    }: HTMLAttributes<HTMLLIElement> &
-  RepoFieldsFragment & { focused: boolean }) => {
+  owner,
+  id,
+  nameWithOwner,
+  name,
+  description,
+  defaultBranchRef,
+  primaryLanguage,
+  forkCount,
+  stargazerCount,
+  focused,
+  __typename,
+  paletteMode,
+  ...other
+}: HTMLAttributes<HTMLLIElement> &
+  RepoFieldsFragment &
+  ListOptionAdditionalProps) => {
   const itemClassName = clsx(
-    "w-full aria-selected:bg-blue-600 aria-selected:text-white cursor-pointer",
-    focused && "bg-blue-600 text-white"
+    "w-full cursor-pointer group",
+    focused && paletteMode === PaletteMode.System && "bg-blue-600 text-white dark:bg-zinc-800",
   );
   const linkClassName = clsx(
-    "block hover:bg-gray-200 hover:bg-gray-300 transition-colors px-2 pt-1 sm:px-3 sm:pt-2 pb-3",
-    focused && "hover:bg-blue-700"
+    "block transition-colors px-2 pt-1 sm:px-3 sm:pt-2 pb-3",
+    paletteMode === PaletteMode.System && "hover:bg-gray-200 dark:hover:bg-zinc-800 dark:hover:text-white",
+    focused && paletteMode === PaletteMode.System && "hover:bg-blue-700 dark:hover:bg-zinc-700"
   );
   const descriptionClassName = clsx(
-    "text-xs text-gray-500",
+    "text-xs",
+    paletteMode === PaletteMode.System && "text-gray-500 dark:group-hover:text-inherit",
     focused && "text-inherit"
   );
   return (
@@ -49,12 +69,13 @@ const ListOption = ({
   );
 };
 
-const SearchForm = ({className}: SearchFormProps) => {
+const SearchForm = ({ className }: SearchFormProps) => {
   const router = useRouter();
   const [query, setQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSelected, setIsSelected] = useState<boolean | undefined>(undefined);
   const [focusedId, setFocusedId] = useState<string | undefined>(undefined);
+  const paletteMode = usePaletteMode().state.paletteMode;
 
   const [result] = useSearchQuery({
     pause: !isLoading || isSelected,
@@ -65,7 +86,7 @@ const SearchForm = ({className}: SearchFormProps) => {
     },
   });
 
-  const {data, error, fetching} = result;
+  const { data, error, fetching } = result;
 
   const handleDebounceChange = useMemo(
     () =>
@@ -99,15 +120,19 @@ const SearchForm = ({className}: SearchFormProps) => {
 
   return (
     <form className={cls} onSubmit={() => null} data-testid={"SearchForm"}>
-      <div className={"relative flex flex-grow"}>
+      <div className={"relative flex flex-grow items-center"}>
         <Autocomplete
           renderInput={(params) => (
-            <Input {...params} data-testid={"SearchInput"}/>
+            <Input
+              {...params}
+              placeholder="Search repos..."
+              data-testid={"SearchInput"}
+            />
           )}
-          options={(data?.search.nodes as RepoFieldsFragment[] || [])}
+          options={(data?.search.nodes as RepoFieldsFragment[]) || []}
           onInputChange={handleDebounceChange}
-          getOptionLabel={o => typeof o === 'string' ? o : o.nameWithOwner}
-          filterOptions={o => o}
+          getOptionLabel={(o) => (typeof o === "string" ? o : o.nameWithOwner)}
+          filterOptions={(o) => o}
           isOptionEqualToValue={(o, v) => o.id === v.id}
           filterSelectedOptions={false}
           freeSolo={true}
@@ -124,6 +149,7 @@ const SearchForm = ({className}: SearchFormProps) => {
             <ListOption
               {...props}
               {...option}
+              paletteMode={paletteMode}
               focused={focusedId === option.id}
             />
           )}
@@ -139,7 +165,7 @@ const SearchForm = ({className}: SearchFormProps) => {
             router.push(`/search/?q=${encodeURIComponent(query)}`);
           }}
         >
-          <IoSearch size={22}/>
+          <IoSearch size={22} />
         </ThemedButton>
       </div>
     </form>

@@ -21,7 +21,7 @@ test("renders search form", async ({ page }) => {
   await expect(searchInputLocator).toHaveValue("react");
 });
 
-test("types in search form and renders search results", async ({page}) => {
+test("types in search form and renders search results", async ({ page }) => {
   await page.goto("/");
 
   let submitButtonLocator = await page.locator(
@@ -48,8 +48,8 @@ test("types in search form and renders search results", async ({page}) => {
 });
 
 test("types in search form, click submit button and navigates to search page", async ({
-                                                                                        page,
-                                                                                      }) => {
+  page,
+}) => {
   await page.goto("/");
 
   let submitButtonLocator = await page.locator(
@@ -62,13 +62,13 @@ test("types in search form, click submit button and navigates to search page", a
 
   await Promise.all([
     waitForGraphqlResponse(page),
-    searchInputLocator.type("react", {delay: 100}),
+    searchInputLocator.type("react", { delay: 100 }),
   ]);
 
   await page.waitForTimeout(1000);
 
   await Promise.all([
-    page.waitForNavigation({waitUntil: "networkidle"}),
+    page.waitForNavigation({ waitUntil: "networkidle" }),
     submitButtonLocator.click(),
   ]);
 
@@ -76,8 +76,8 @@ test("types in search form, click submit button and navigates to search page", a
 });
 
 test("types in search form, clicks search result item and navigates to repo page", async ({
-                                                                                            page,
-                                                                                          }) => {
+  page,
+}) => {
   await page.goto("/");
 
   let searchInputLocator = await page.locator(
@@ -90,13 +90,13 @@ test("types in search form, clicks search result item and navigates to repo page
 
   await Promise.all([
     waitForGraphqlResponse(page),
-    searchInputLocator.type("react", {delay: 100}),
+    searchInputLocator.type("react", { delay: 100 }),
   ]);
 
   await page.waitForTimeout(1000);
 
   await Promise.all([
-    page.waitForNavigation({waitUntil: "networkidle"}),
+    page.waitForNavigation({ waitUntil: "networkidle" }),
     searchResultsLocator.first().click(),
   ]);
 

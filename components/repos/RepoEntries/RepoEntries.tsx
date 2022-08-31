@@ -3,6 +3,7 @@ import RepoDirectoryEntry from "./RepoDirectoryEntry";
 import RepoFileEntry from "./RepoFileEntry";
 import { useRouter } from "next/router";
 import clsx from "clsx";
+import {usePaletteMode} from "@lib/context/paletteModeContext";
 
 export type RepoEntrySize = "xs" | "sm" | "md" | "lg";
 
@@ -37,6 +38,7 @@ const RepoEntries = ({
   selectedEntryPath,
   currentPath = [],
 }: RepoEntriesProps) => {
+  const paletteMode = usePaletteMode().state.paletteMode;
   const router = useRouter();
   const owner = router.query.owner as string;
   const ownerName = router.query.name as string;
@@ -63,6 +65,7 @@ const RepoEntries = ({
           path={currentPath.slice(0, -1).join("/")}
           size={size}
           selected={false}
+          paletteMode={paletteMode}
           href={`${ownerWithName}/tree/${branchName}/${currentPath
             .slice(0, -1)
             .join("/")}`}
@@ -76,6 +79,7 @@ const RepoEntries = ({
               key={entry.path}
               size={size}
               selected={selectedEntryPath === entry.name}
+              paletteMode={paletteMode}
               href={`${ownerWithName}/tree/${branchName}/${entry.path}`}
             />
           ) : (
@@ -84,6 +88,7 @@ const RepoEntries = ({
               key={entry.path}
               size={size}
               selected={selectedEntryPath === entry.name}
+              paletteMode={paletteMode}
               href={`${ownerWithName}/blob/${branchName}/${entry.path}`}
             />
           )
