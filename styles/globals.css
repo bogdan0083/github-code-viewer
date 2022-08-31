@@ -35,5 +35,5 @@ body {
     :focus {
         outline: 2px auto var(--tw-ring-color);
     }
-    @import "./node_modules/highlightjs/styles/atom-one-dark.css";
+    @import "./node_modules/highlightjs/styles/codepen-embed.css";
 }
