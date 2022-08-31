@@ -20,7 +20,7 @@ const RepoListItem = ({
   primaryLanguage = null,
   defaultBranchRef,
 }: ReposListProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   return (
     <div
       key={id}

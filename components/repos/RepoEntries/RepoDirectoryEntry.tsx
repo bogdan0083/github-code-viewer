@@ -20,7 +20,7 @@ const RepoDirectoryEntry = ({
   selected = false,
   href,
 }: RepoDirectoryEntryProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const cls = clsx({
     "flex items-center block py-[1px] px-3 -ml-2 -mr-2 hover:bg-gray-100 focus:text-white focus:bg-blue-400 focus:outline-none":
       true,

@@ -24,7 +24,7 @@ const Me = ({ paletteMode }: { paletteMode: PaletteMode }) => {
 };
 
 const AppFooter = ({ className }: AppFooterProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   return (
     <footer
       className={clsx(

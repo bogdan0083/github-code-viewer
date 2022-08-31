@@ -8,7 +8,7 @@ interface AppHeaderProps {
 }
 
 const AppHeader = ({ fixed = false }: AppHeaderProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   
   const headerClassName = clsx(
     "w-full pt-4 pt-5 flex items-center px-2 md:px-3",

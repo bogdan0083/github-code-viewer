@@ -28,7 +28,7 @@ function Autocomplete<T>({
   renderOption,
   ...otherProps
 }: DropdownProps<T>) {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const {
     getRootProps,
     getInputProps,

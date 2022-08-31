@@ -9,7 +9,7 @@ interface ToplineProps {
 }
 
 export const Topline = ({ left, right, className }: ToplineProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const cn = clsx(
     {
       "text-xs flex flex-grow relative justify-between items-center border-b p-2": true,

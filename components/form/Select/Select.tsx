@@ -23,7 +23,7 @@ const Select = (props: SelectProps) => {
     className,
     ...otherProps
   }: SelectProps = props;
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const values = [...e.target.options]

@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 const SidenavLayout = ({ children, sideNavContent }: LayoutProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const router = useRouter();
   const wrapperClassName = "flex flex-col flex-grow md:flex-row md:h-[calc(100vh-var(--header-height))]";
   const sidenavWrapperClassName = clsx(

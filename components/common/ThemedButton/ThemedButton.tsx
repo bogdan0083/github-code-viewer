@@ -28,7 +28,7 @@ const ThemedButton = ({
   size = "md",
   variant = "contained",
 }: ThemedButtonProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const systemPaletteSolidClassName = (
     theme === "primary" &&
     variant === "contained" &&

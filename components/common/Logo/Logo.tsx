@@ -10,7 +10,7 @@ interface LogoProps {
 }
 
 const Logo = ({ className, title, mobileTitle }: LogoProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
 
   return (
     <Link href={"/"}>

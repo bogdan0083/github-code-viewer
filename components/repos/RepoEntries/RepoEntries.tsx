@@ -38,7 +38,7 @@ const RepoEntries = ({
   selectedEntryPath,
   currentPath = [],
 }: RepoEntriesProps) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const router = useRouter();
   const owner = router.query.owner as string;
   const ownerName = router.query.name as string;

@@ -75,7 +75,7 @@ const SearchForm = ({ className }: SearchFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSelected, setIsSelected] = useState<boolean | undefined>(undefined);
   const [focusedId, setFocusedId] = useState<string | undefined>(undefined);
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
 
   const [result] = useSearchQuery({
     pause: !isLoading || isSelected,

@@ -19,7 +19,7 @@ const Input = (
   props: InputHTMLAttributes<HTMLInputElement> & InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const paletteMode = usePaletteMode().state.paletteMode;
+  const [paletteMode] = usePaletteMode();
   const {
     type = "text",
     name,

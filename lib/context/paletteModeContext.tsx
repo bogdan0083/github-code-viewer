@@ -38,12 +38,12 @@ function PaletteModeProvider({ children }: PaletteModeProviderProps) {
   );
 }
 
-function usePaletteMode() {
+function usePaletteMode(): [PaletteMode, Dispatch] {
   const context = React.useContext(PaletteModeStateContext);
   if (context === undefined) {
     throw new Error("usePaletteMode must be used within a PaletteModeProvider");
   }
-  return context;
+  return [context.state.paletteMode, context.dispatch];
 }
 
 export { PaletteModeProvider, usePaletteMode };
