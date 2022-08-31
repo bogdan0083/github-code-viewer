@@ -1,9 +1,0 @@
-.layoutContainer {
-  @apply flex flex-col flex-grow md:flex-row;
-}
-
-@media screen(md) {
-  .layoutContainer {
-    height: calc(100vh - var(--header-height));
-  }
-}
