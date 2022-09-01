@@ -6,7 +6,7 @@ import { GITHUB_URL } from "../../../lib/utils/constants";
 import { RepoPageQueryParams } from "../../../lib/utils/types";
 import {
   TreeFieldsFragment,
-  useRepoTreeQuery
+  useRepoTreeQuery,
 } from "../../../__generated__/graphql";
 import Topline from "../../common/Topline/Topline";
 import RepoBreadcrumbs from "../RepoBreadcrumbs/RepoBreadcrumbs";

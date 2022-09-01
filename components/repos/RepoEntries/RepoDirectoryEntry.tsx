@@ -3,7 +3,7 @@ import Link from "next/link";
 import { IoFolder, IoFolderOpen } from "react-icons/io5";
 import { iconSizeMap, RepoEntrySize, textSizeMap } from "./RepoEntries";
 import clsx from "clsx";
-import {PaletteMode, usePaletteMode} from "@lib/context/paletteModeContext";
+import { PaletteMode, usePaletteMode } from "@lib/context/paletteModeContext";
 
 interface RepoDirectoryEntryProps
   extends Omit<TreeEntryFieldsFragment, "type"> {
@@ -24,8 +24,10 @@ const RepoDirectoryEntry = ({
   const cls = clsx({
     "flex items-center block py-[1px] px-3 -ml-2 -mr-2 hover:bg-gray-100 focus:text-white focus:bg-blue-400 focus:outline-none":
       true,
-    "hover:bg-gray-100 focus:text-white focus:bg-blue-400 dark:hover:bg-inherit dark:hover:text-white dark:focus:!bg-zinc-700": paletteMode === PaletteMode.System,
-    "!bg-blue-500 !focus:bg-blue-500 !text-white dark:!bg-zinc-700 dark:focus:bg-zinc-700 dark:text-white": selected && (paletteMode === PaletteMode.System),
+    "hover:bg-gray-100 focus:text-white focus:bg-blue-400 dark:hover:bg-inherit dark:hover:text-white dark:focus:!bg-zinc-700":
+      paletteMode === PaletteMode.System,
+    "!bg-blue-500 !focus:bg-blue-500 !text-white dark:!bg-zinc-700 dark:focus:bg-zinc-700 dark:text-white":
+      selected && paletteMode === PaletteMode.System,
   });
 
   return (

@@ -17,7 +17,7 @@ import Input from "../../form/Input/Input";
 import Autocomplete from "../Autocomplete/Autocomplete";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/router";
-import {PaletteMode, usePaletteMode} from "@lib/context/paletteModeContext";
+import { PaletteMode, usePaletteMode } from "@lib/context/paletteModeContext";
 
 interface SearchFormProps {
   className?: string;
@@ -47,16 +47,22 @@ const ListOption = ({
   ListOptionAdditionalProps) => {
   const itemClassName = clsx(
     "w-full cursor-pointer group",
-    focused && paletteMode === PaletteMode.System && "bg-blue-600 text-white dark:bg-zinc-800",
+    focused &&
+      paletteMode === PaletteMode.System &&
+      "bg-blue-600 text-white dark:bg-zinc-800"
   );
   const linkClassName = clsx(
     "block transition-colors px-2 pt-1 sm:px-3 sm:pt-2 pb-3",
-    paletteMode === PaletteMode.System && "hover:bg-gray-200 dark:hover:bg-zinc-800 dark:hover:text-white",
-    focused && paletteMode === PaletteMode.System && "hover:bg-blue-700 dark:hover:bg-zinc-700"
+    paletteMode === PaletteMode.System &&
+      "hover:bg-gray-200 dark:hover:bg-zinc-800 dark:hover:text-white",
+    focused &&
+      paletteMode === PaletteMode.System &&
+      "hover:bg-blue-700 dark:hover:bg-zinc-700"
   );
   const descriptionClassName = clsx(
     "text-xs",
-    paletteMode === PaletteMode.System && "text-gray-500 dark:group-hover:text-inherit",
+    paletteMode === PaletteMode.System &&
+      "text-gray-500 dark:group-hover:text-inherit",
     focused && "text-inherit"
   );
   return (

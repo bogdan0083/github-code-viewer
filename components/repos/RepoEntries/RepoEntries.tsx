@@ -3,7 +3,7 @@ import RepoDirectoryEntry from "./RepoDirectoryEntry";
 import RepoFileEntry from "./RepoFileEntry";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import {usePaletteMode} from "@lib/context/paletteModeContext";
+import { usePaletteMode } from "@lib/context/paletteModeContext";
 
 export type RepoEntrySize = "xs" | "sm" | "md" | "lg";
 

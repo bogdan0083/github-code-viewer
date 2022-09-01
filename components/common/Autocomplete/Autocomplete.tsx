@@ -60,7 +60,8 @@ function Autocomplete<T>({
           <div
             className={clsx({
               "text-xs p-2 rounded shadow-md border w-full": true,
-              "bg-white dark:border-gray-800 dark:bg-zinc-900": paletteMode === PaletteMode.System,
+              "bg-white dark:border-gray-800 dark:bg-zinc-900":
+                paletteMode === PaletteMode.System,
             })}
           >
             <div>Loading...</div>
@@ -71,7 +72,8 @@ function Autocomplete<T>({
             {...getListboxProps()}
             className={clsx({
               "text-xs p-2 rounded shadow-md border w-full": true,
-              "bg-white border-gray-200 dark:bg-zinc-900 dark:border-gray-700": paletteMode === PaletteMode.System,
+              "bg-white border-gray-200 dark:bg-zinc-900 dark:border-gray-700":
+                paletteMode === PaletteMode.System,
             })}
           >
             {groupedOptions.length > 0 &&

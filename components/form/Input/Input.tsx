@@ -1,4 +1,4 @@
-import {PaletteMode, usePaletteMode} from "@lib/context/paletteModeContext";
+import { PaletteMode, usePaletteMode } from "@lib/context/paletteModeContext";
 import clsx from "clsx";
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
 
@@ -37,7 +37,8 @@ const Input = (
   const cl = clsx(
     "py-2 px-2 w-full border text-sm rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     className,
-    paletteMode === PaletteMode.System && "bg-white border-gray-300 dark:bg-zinc-900 dark:border-gray-700 dark:focus:ring-white"
+    paletteMode === PaletteMode.System &&
+      "bg-white border-gray-300 dark:bg-zinc-900 dark:border-gray-700 dark:focus:ring-white"
   );
   return (
     <input

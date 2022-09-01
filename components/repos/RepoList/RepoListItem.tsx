@@ -26,15 +26,18 @@ const RepoListItem = ({
       key={id}
       className={clsx({
         "mb-1 rounded border p-3 mb-3 shadow last:mb-0 transition-colors": true,
-        "border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-zinc-800": paletteMode === PaletteMode.System,
+        "border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-zinc-800":
+          paletteMode === PaletteMode.System,
       })}
       data-testid={`RepoListItem`}
     >
       <Link href={`/${nameWithOwner}/blob/${defaultBranchRef?.name}/README.md`}>
-        <a className={clsx({
-          "lg:text-xl block mb-1": true,
-          "font-bold dark:font-medium": paletteMode === PaletteMode.System
-        })}>
+        <a
+          className={clsx({
+            "lg:text-xl block mb-1": true,
+            "font-bold dark:font-medium": paletteMode === PaletteMode.System,
+          })}
+        >
           <span>{name}</span>/
           <span className={"inline-block"}>{owner.login}</span>
         </a>
@@ -48,7 +51,7 @@ const RepoListItem = ({
             className={clsx({
               "text-xs mr-3": true,
               // @TODO: add darken function for label color
-              "dark:opacity-70": paletteMode === PaletteMode.System
+              "dark:opacity-70": paletteMode === PaletteMode.System,
             })}
           />
         )}

@@ -3,10 +3,10 @@ import * as React from "react";
 export enum PaletteMode {
   System,
   Light,
-  Dark
+  Dark,
 }
 
-type Action = { type: "set_palette_mode", value: PaletteMode };
+type Action = { type: "set_palette_mode"; value: PaletteMode };
 type Dispatch = (action: Action) => void;
 type State = { paletteMode: PaletteMode };
 type PaletteModeProviderProps = { children: React.ReactNode };
@@ -27,7 +27,9 @@ function paletteModeReducer(state: State, action: Action) {
 }
 
 function PaletteModeProvider({ children }: PaletteModeProviderProps) {
-  const [state, dispatch] = React.useReducer(paletteModeReducer, { paletteMode: PaletteMode.System });
+  const [state, dispatch] = React.useReducer(paletteModeReducer, {
+    paletteMode: PaletteMode.System,
+  });
   // NOTE: you *might* need to memoize this value
   // Learn more in http://kcd.im/optimize-context
   const value = { state, dispatch };
