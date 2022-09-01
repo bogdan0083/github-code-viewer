@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import { MouseEventHandler } from "react";
+import { HTMLAttributes, MouseEventHandler } from "react";
 import { PaletteMode, usePaletteMode } from "@lib/context/paletteModeContext";
 
 interface ThemedButtonProps {
@@ -27,25 +27,23 @@ const ThemedButton = ({
   fullWidth = false,
   size = "md",
   variant = "contained",
-}: ThemedButtonProps) => {
+  ...otherProps
+}: ThemedButtonProps & HTMLAttributes<HTMLButtonElement>) => {
   const [paletteMode] = usePaletteMode();
-  const systemPaletteSolidClassName = (
+  const systemPaletteSolidClassName =
     theme === "primary" &&
     variant === "contained" &&
     paletteMode === PaletteMode.System &&
-    "bg-blue-500 hover:bg-blue-600 text-white dark:bg-zinc-800 dark:focus:ring-white dark:text-gray-300 dark:hover:text-white dark:hover:bg-zinc-700"
-  );
+    "bg-blue-500 hover:bg-blue-600 text-white dark:bg-zinc-800 dark:focus:ring-white dark:text-gray-300 dark:hover:text-white dark:hover:bg-zinc-700";
 
-  const systemPaletteOutlinedClassName = (
+  const systemPaletteOutlinedClassName =
     theme === "primary" &&
     variant === "outlined" &&
     paletteMode === PaletteMode.System &&
-    "text-blue-500 border border-blue-500 bg-transparent hover:bg-blue-600 hover:text-white dark:text-inherit dark:border-gray-400 dark:hover:bg-transparent dark:hover:border-white dark:focus:ring-white"
-  );
+    "text-blue-500 border border-blue-500 bg-transparent hover:bg-blue-600 hover:text-white dark:text-inherit dark:border-gray-400 dark:hover:bg-transparent dark:hover:border-white dark:focus:ring-white";
 
   const cls = clsx(
     "flex justify-center relative items-center rounded focus:ring-2 focus:ring-blue-300 focus:outline-none transition",
-    className,
     systemPaletteSolidClassName,
     systemPaletteOutlinedClassName,
     disabled && "cursor-not-allowed opacity-50",
@@ -53,11 +51,18 @@ const ThemedButton = ({
     size === "xs" && "p-1 px-2 text-xs font-base",
     size === "sm" && "p-2 text-sm",
     size === "md" && "py-2 px-4 text-base font-bold dark:font-medium",
-    size === "lg" && "py-4 px-6 text-lg font-bold dark:font-medium"
+    size === "lg" && "py-4 px-6 text-lg font-bold dark:font-medium",
+    className
   );
 
   return (
-    <button className={cls} onClick={onClick} disabled={disabled} type={type}>
+    <button
+      className={cls}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      {...otherProps}
+    >
       {loading ? (
         <LoadingSpinner
           wrapperClassName={"absolute"}

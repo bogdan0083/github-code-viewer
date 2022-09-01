@@ -67,6 +67,7 @@ export const handlers = [
               name: "master",
             },
             object: { id: faker.datatype.uuid(), ...blob },
+            lowerCase: { id: faker.datatype.uuid(), ...blob },
           },
         })
       );
