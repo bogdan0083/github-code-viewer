@@ -33,12 +33,22 @@ export const REPO_TREE_QUERY = gql`
       }
     }
   }
-  query RepoBlobQuery($owner: String!, $name: String!, $path: String!) {
+  query RepoBlobQuery(
+    $owner: String!
+    $name: String!
+    $path: String!
+    $pathLowercase: String!
+  ) {
     repository(owner: $owner, name: $name) {
       id
       defaultBranchRef {
         name
         id
+      }
+      lowerCase: object(expression: $pathLowercase) {
+        id
+        ...TreeFields
+        ...FileFields
       }
       object(expression: $path) {
         id

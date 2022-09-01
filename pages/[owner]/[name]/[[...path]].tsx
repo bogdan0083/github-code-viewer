@@ -1,22 +1,22 @@
 import Head from "next/head";
-import {useRouter} from "next/router";
-import {NextPageWithLayout} from "../../_app";
+import { useRouter } from "next/router";
+import { NextPageWithLayout } from "../../_app";
 import SidenavLayout from "@components/layouts/sidenavLayout";
 import RepoExplorerSideView from "@components/repos/RepoEntries/RepoSideView";
 import RepoDirectoryView from "@components/repos/RepoDirectoryView/RepoDirectoryView";
-import {RepoPageQueryParams} from "@lib/utils/types";
+import { RepoPageQueryParams } from "@lib/utils/types";
 import RepoFileView from "@components/repos/RepoFileView/RepoFileView";
-import {NextPageContext} from "next";
-import {ReactElement} from "react";
+import { NextPageContext } from "next";
+import { ReactElement } from "react";
 import Favicon from "@components/common/Favicon/Favicon";
 
 type Props = {
   title: string;
 };
 
-const RepoEntryPage: NextPageWithLayout<any, Props> = ({title}) => {
+const RepoEntryPage: NextPageWithLayout<any, Props> = ({ title }) => {
   const router = useRouter();
-  const {path = []} = router.query as RepoPageQueryParams;
+  const { path = [] } = router.query as RepoPageQueryParams;
 
   const entryType = path[0];
 

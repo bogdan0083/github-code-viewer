@@ -5,35 +5,45 @@
 @tailwind utilities;
 
 :root {
-    --header-height: 60px;
-    --sidenav-height: calc(100vh - var(--header-height));
+  --header-height: 60px;
+  --sidenav-height: calc(100vh - var(--header-height));
 }
 
 body,
 html {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /*noinspection CssUnusedSymbol*/
 #__next {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
+.prose img {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  max-width: 100%;
+  max-height: 300px;
+}
 
 @media (prefers-color-scheme: dark) {
-    body {
-        @apply: text-gray-100;
-    }
-    :focus {
-        outline: 2px auto var(--tw-ring-color);
-    }
-    @import "./node_modules/highlightjs/styles/codepen-embed.css";
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    @apply: text-gray-100;
+  }
+  :focus {
+    outline: 2px auto var(--tw-ring-color);
+  }
+  @import "./node_modules/highlightjs/styles/codepen-embed.css";
 }
