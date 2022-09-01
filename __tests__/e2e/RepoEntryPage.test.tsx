@@ -123,6 +123,18 @@ test("returns to root after 'back' button click", async ({ page }) => {
 
 test("renders file views", async ({ page }) => {
   await page.goto(ROOT_ENTRY_URL_WITH_README, { waitUntil: "networkidle" });
+  const markdownPreviewHeadingLocator = page.locator(
+    'data-testid=MarkdownPreview >> h2:has-text("This Repo is For Vue 2")'
+  );
+  const markdownToggleButtonLocator = page.locator(
+    "data-testid=MarkdownTogglePreviewButton"
+  );
+  const rawMarkdownHighlightLocator = page
+    .locator("data-testid=RepoFileView >> css=.hljs-tag")
+    .first();
+
+  // wait for markdown preview to be sanitized and parsed.
+  await page.waitForTimeout(300);
 
   const firstResultSideEntryNames = await parseEntryNames(
     page,
@@ -133,10 +145,25 @@ test("renders file views", async ({ page }) => {
     (entry) => entry.name
   );
 
-  await expect(
-    await page.locator("data-testid=RepoFileView >> css=.hljs-tag").first()
-  ).toBeVisible();
+  await expect(markdownPreviewHeadingLocator).toBeVisible();
+
+  // Let's toggle markdown preview to see raw md file
+  await markdownToggleButtonLocator.click();
+  await page.waitForTimeout(100);
+
+  await expect(rawMarkdownHighlightLocator).toBeVisible();
+
+  await expect(markdownPreviewHeadingLocator).toBeHidden();
+
   expect(firstResultSideEntryNames).toEqual(firstExpectedEntryNames);
+
+  // Toggle markdown back to preview
+  await markdownToggleButtonLocator.click();
+  await page.waitForTimeout(100);
+
+  await expect(rawMarkdownHighlightLocator).toBeHidden();
+
+  await expect(markdownPreviewHeadingLocator).toBeVisible();
 
   // Click multiple entries down the tree and wait for response
   await Promise.all([
@@ -162,7 +189,9 @@ test("renders file views", async ({ page }) => {
   ]);
 
   await expect(
-    await page.locator("data-testid=RepoFileView >> css=.hljs-keyword").first()
+    page
+      .locator("data-testid=RepoFileView >> css=.hljs-keyword")
+      .first()
   ).toBeVisible();
 });
 
