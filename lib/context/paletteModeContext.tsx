@@ -15,7 +15,7 @@ const PaletteModeStateContext = React.createContext<
   { state: State; dispatch: Dispatch } | undefined
 >(undefined);
 
-function paletteModeReducer(state: State, action: Action) {
+function paletteModeReducer(_: State, action: Action) {
   switch (action.type) {
     case "set_palette_mode": {
       return { paletteMode: action.value };
@@ -25,6 +25,7 @@ function paletteModeReducer(state: State, action: Action) {
     }
   }
 }
+
 
 function PaletteModeProvider({ children }: PaletteModeProviderProps) {
   const [state, dispatch] = React.useReducer(paletteModeReducer, {
