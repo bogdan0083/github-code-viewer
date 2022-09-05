@@ -151,7 +151,7 @@ const RepoFileView = () => {
         ) : isMarkdownFile && mdPreviewVisible && mdPreviewContents ? (
           <div
             dangerouslySetInnerHTML={{ __html: mdPreviewContents }}
-            className="prose prose-sm lg:prose-md 2xl:prose-lg dark:prose-invert mx-auto pt-5 lg:pt-9"
+            className="prose prose-sm lg:prose-md 2xl:prose-lg dark:prose-invert mx-auto pt-5 lg:pt-9 dark:prose-a:border-b dark:prose-a:border-gray-600 dark:prose-a:no-underline"
             data-testid="MarkdownPreview"
           ></div>
         ) : (
